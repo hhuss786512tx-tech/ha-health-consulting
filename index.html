@@ -3,23 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>HA Health Consulting | Healthcare & EHR Consulting</title>
-<meta name="description" content="Expert healthcare consulting tailored to your practice — EHR optimization, telemedicine integration, revenue cycle management, and compliance, backed by 20+ years of industry experience." />
+<title>HA Health Consulting | Streamlining Healthcare Practices</title>
+<meta name="description" content="H&amp;A Healthcare Consulting — EHR optimization, telemedicine integration, revenue cycle management, and HIPAA-compliant infrastructure, backed by 20+ years of healthcare industry experience." />
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --ink:#0f2530;
-    --ink-soft:#3c5560;
-    --paper:#f7f5ef;
+    --ink:#12142e;
+    --ink-soft:#4a4d68;
+    --paper:#f7f6f2;
     --paper-raised:#ffffff;
-    --brand:#0e4a52;
-    --brand-deep:#082e33;
-    --accent:#c98a3f;
-    --accent-soft:#e7c493;
-    --line:#dcd6c6;
+    --brand:#1a1c4d;
+    --brand-deep:#08082c;
+    --accent:#c31a21;
+    --accent-hover:#a5151b;
+    --accent-soft:#f0a3a7;
+    --line:#dcdae0;
   }
   html{scroll-behavior:smooth;}
   body{
@@ -32,10 +33,10 @@
   .leading-relaxed-body{line-height:1.7;}
 
   .shadow-soft{
-    box-shadow: 0 1px 2px rgba(15,37,48,0.06), 0 8px 24px -8px rgba(14,74,82,0.18), 0 24px 48px -24px rgba(14,74,82,0.16);
+    box-shadow: 0 1px 2px rgba(8,8,44,0.06), 0 8px 24px -8px rgba(8,8,44,0.2), 0 24px 48px -24px rgba(8,8,44,0.18);
   }
   .shadow-soft-lg{
-    box-shadow: 0 2px 4px rgba(15,37,48,0.08), 0 16px 40px -12px rgba(14,74,82,0.22), 0 32px 64px -24px rgba(14,74,82,0.2);
+    box-shadow: 0 2px 4px rgba(8,8,44,0.08), 0 16px 40px -12px rgba(8,8,44,0.24), 0 32px 64px -24px rgba(8,8,44,0.22);
   }
   .noise{
     position:absolute; inset:0; pointer-events:none; opacity:0.05; mix-blend-mode:overlay;
@@ -43,10 +44,10 @@
   }
   .btn-primary{
     background:var(--accent);
-    color:var(--brand-deep);
+    color:var(--paper);
     transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease;
   }
-  .btn-primary:hover{ transform: translateY(-2px); background:#d79847; box-shadow: 0 12px 24px -8px rgba(201,138,63,0.45); }
+  .btn-primary:hover{ transform: translateY(-2px); background:var(--accent-hover); box-shadow: 0 12px 24px -8px rgba(195,26,33,0.45); }
   .btn-primary:active{ transform: translateY(0); }
   .btn-primary:focus-visible{ outline: 2px solid var(--brand); outline-offset: 3px; }
 
@@ -72,7 +73,7 @@
     border:1px solid var(--line);
     transition: transform 0.3s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.2,0.64,1), border-color 0.3s ease;
   }
-  .card:hover{ transform: translateY(-4px); border-color: rgba(14,74,82,0.25); }
+  .card:hover{ transform: translateY(-4px); border-color: rgba(8,8,44,0.2); }
 
   @keyframes fadeInUp{
     from{ opacity:0; transform: translateY(16px); }
@@ -99,11 +100,11 @@
 <body class="antialiased">
 
 <!-- NAV -->
-<header class="sticky top-0 z-50 backdrop-blur bg-[#f7f5ef]/90 border-b border-[var(--line)]">
+<header class="sticky top-0 z-50 backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
     <a href="#home" class="flex items-center gap-2.5">
-      <span class="w-9 h-9 rounded-full bg-[var(--brand)] text-[var(--paper)] font-display text-sm flex items-center justify-center tracking-tightish">HA</span>
-      <span class="font-display text-lg tracking-tightish text-[var(--ink)]">HA Health Consulting</span>
+      <img src="brand_assets/logo.png" alt="H&amp;A Healthcare Consulting logo" class="w-10 h-10 rounded-lg shadow-soft" />
+      <span class="font-display text-lg tracking-tightish text-[var(--ink)]">H&amp;A Healthcare Consulting</span>
     </a>
     <nav class="hidden md:flex items-center gap-9 text-[15px]">
       <a href="#home" class="nav-link py-1">Home</a>
@@ -124,9 +125,9 @@
 <!-- HERO -->
 <section id="home" class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
   <div class="absolute inset-0" style="background:
-      radial-gradient(60% 50% at 15% 10%, rgba(14,74,82,0.9), transparent 60%),
-      radial-gradient(50% 45% at 90% 15%, rgba(201,138,63,0.35), transparent 60%),
-      radial-gradient(70% 60% at 50% 100%, rgba(8,46,51,0.9), transparent 60%);"></div>
+      radial-gradient(60% 50% at 15% 10%, rgba(26,28,77,0.9), transparent 60%),
+      radial-gradient(50% 45% at 90% 15%, rgba(195,26,33,0.3), transparent 60%),
+      radial-gradient(70% 60% at 50% 100%, rgba(8,8,44,0.95), transparent 60%);"></div>
   <div class="noise"></div>
   <div class="relative max-w-6xl mx-auto px-6 md:px-8 pt-20 pb-24 md:pt-28 md:pb-32">
     <div class="max-w-2xl">
@@ -134,10 +135,10 @@
         Houston, TX &middot; Serving practices nationwide
       </span>
       <h1 class="font-display tracking-tightish text-4xl sm:text-5xl md:text-[3.4rem] leading-[1.08] mt-6">
-        Expert healthcare consulting, tailored to your practice.
+        Expert Healthcare Consulting Tailored to Your Needs
       </h1>
       <p class="leading-relaxed-body text-[var(--paper)]/75 text-lg mt-6 max-w-xl">
-        Over 20 years of healthcare industry experience helping practices optimize operations, modernize their EHR, and improve patient care — with the personal attention of a local team.
+        Over 20 years of healthcare industry experience. We specialize in EHR consulting services designed to optimize operations and improve patient care.
       </p>
       <div class="flex flex-wrap items-center gap-4 mt-9">
         <a href="#contact" class="btn-primary text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft-lg">
@@ -147,14 +148,10 @@
           Explore Services
         </a>
       </div>
-      <div class="grid grid-cols-3 gap-6 mt-14 max-w-lg">
+      <div class="grid grid-cols-2 gap-6 mt-14 max-w-sm">
         <div>
-          <div class="font-display text-3xl tracking-tightish">20+</div>
-          <div class="text-xs text-[var(--paper)]/60 mt-1 leading-snug">Years of industry expertise</div>
-        </div>
-        <div>
-          <div class="font-display text-3xl tracking-tightish">50+</div>
-          <div class="text-xs text-[var(--paper)]/60 mt-1 leading-snug">Practices supported</div>
+          <div class="font-display text-3xl tracking-tightish">20+ Years</div>
+          <div class="text-xs text-[var(--paper)]/60 mt-1 leading-snug">Of industry expertise</div>
         </div>
         <div>
           <div class="font-display text-3xl tracking-tightish">Nationwide</div>
@@ -170,9 +167,9 @@
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-10">
     <p class="text-center text-xs uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-6">Platform partnerships</p>
     <div class="flex flex-wrap items-center justify-center gap-x-14 gap-y-6">
-      <span class="partner-logo font-display text-xl tracking-tightish">eClinicalWorks</span>
-      <span class="partner-logo font-display text-xl tracking-tightish">Athenahealth</span>
-      <span class="partner-logo font-display text-xl tracking-tightish">Experity</span>
+      <img src="brand_assets/eclinicalworks.png" alt="eClinicalWorks" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+      <img src="brand_assets/athenahealth-trimmed.png" alt="Athenahealth" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+      <img src="brand_assets/experity-trimmed.png" alt="Experity" class="partner-logo h-6 md:h-7 w-auto object-contain" />
     </div>
   </div>
 </section>
@@ -237,9 +234,8 @@
 <section id="about" class="bg-[var(--paper-raised)] border-y border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 grid md:grid-cols-2 gap-14 items-center">
     <div class="reveal relative">
-      <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg relative">
-        <img src="https://placehold.co/800x600/0e4a52/f7f5ef?text=Team+Photo" alt="HA Health Consulting team" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/50 to-transparent" style="mix-blend-mode:multiply;"></div>
+      <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg relative bg-[var(--brand-deep)] flex items-center justify-center">
+        <img src="brand_assets/logo.png" alt="H&amp;A Healthcare Consulting" class="w-2/3 max-w-[280px] object-contain" />
       </div>
       <div class="hidden sm:block absolute -bottom-6 -right-6 bg-[var(--brand)] text-[var(--paper)] rounded-2xl px-6 py-5 shadow-soft-lg">
         <div class="font-display text-2xl tracking-tightish">20+ yrs</div>
@@ -248,9 +244,12 @@
     </div>
     <div class="reveal">
       <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">About us</span>
-      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">A dedicated team, decades of experience</h2>
+      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Empowering Healthcare with Innovative Solutions</h2>
       <p class="leading-relaxed-body text-[var(--ink-soft)] mt-5">
-        HA Health Consulting works alongside practices to modernize operations without disrupting patient care. Our team brings decades of combined healthcare industry experience — from EHR implementation to day-to-day revenue cycle management — with the responsiveness of a local partner and the reach to support practices nationwide.
+        At H&amp;A Healthcare Consulting, we are dedicated to helping healthcare providers optimize their operations, enhance patient care, and implement cutting-edge technology solutions. We simplify complex healthcare systems and create more efficient, compliant, and patient-centric environments — with expertise spanning telemedicine integration, EHR optimization, and HIPAA-compliant infrastructure.
+      </p>
+      <p class="leading-relaxed-body text-[var(--ink-soft)] mt-4">
+        With over 20 years of experience, H&amp;A Healthcare Consulting is your trusted partner in optimizing healthcare systems, improving operational efficiency, and enhancing patient care — serving clients across the country.
       </p>
       <ul class="mt-7 space-y-3">
         <li class="flex items-start gap-3 text-sm text-[var(--ink)]">
@@ -259,7 +258,7 @@
         </li>
         <li class="flex items-start gap-3 text-sm text-[var(--ink)]">
           <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-          Nationwide support with a personal, local feel
+          Nationwide reach with a personal, local feel
         </li>
         <li class="flex items-start gap-3 text-sm text-[var(--ink)]">
           <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
@@ -278,7 +277,7 @@
   </div>
   <div class="grid sm:grid-cols-3 gap-6 mt-14">
     <a href="#" class="reveal card rounded-2xl overflow-hidden block">
-      <img src="https://placehold.co/600x400/0e4a52/f7f5ef?text=Article" alt="" class="w-full aspect-[3/2] object-cover" />
+      <img src="https://placehold.co/600x400/08082c/f7f6f2?text=Article" alt="" class="w-full aspect-[3/2] object-cover" />
       <div class="p-6">
         <span class="text-xs uppercase tracking-[0.1em] text-[var(--brand)]">EHR</span>
         <h3 class="font-display text-lg tracking-tightish mt-2 mb-2">5 signs your EHR workflow needs an audit</h3>
@@ -286,7 +285,7 @@
       </div>
     </a>
     <a href="#" class="reveal card rounded-2xl overflow-hidden block">
-      <img src="https://placehold.co/600x400/0e4a52/f7f5ef?text=Article" alt="" class="w-full aspect-[3/2] object-cover" />
+      <img src="https://placehold.co/600x400/08082c/f7f6f2?text=Article" alt="" class="w-full aspect-[3/2] object-cover" />
       <div class="p-6">
         <span class="text-xs uppercase tracking-[0.1em] text-[var(--brand)]">Telehealth</span>
         <h3 class="font-display text-lg tracking-tightish mt-2 mb-2">Telemedicine integration, done right</h3>
@@ -294,7 +293,7 @@
       </div>
     </a>
     <a href="#" class="reveal card rounded-2xl overflow-hidden block">
-      <img src="https://placehold.co/600x400/0e4a52/f7f5ef?text=Article" alt="" class="w-full aspect-[3/2] object-cover" />
+      <img src="https://placehold.co/600x400/08082c/f7f6f2?text=Article" alt="" class="w-full aspect-[3/2] object-cover" />
       <div class="p-6">
         <span class="text-xs uppercase tracking-[0.1em] text-[var(--brand)]">Compliance</span>
         <h3 class="font-display text-lg tracking-tightish mt-2 mb-2">Staying ahead of regulatory change</h3>
@@ -306,7 +305,7 @@
 
 <!-- CONTACT -->
 <section id="contact" class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
-  <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 85% 20%, rgba(201,138,63,0.25), transparent 60%), radial-gradient(50% 50% at 10% 90%, rgba(14,74,82,0.9), transparent 60%);"></div>
+  <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 85% 20%, rgba(195,26,33,0.22), transparent 60%), radial-gradient(50% 50% at 10% 90%, rgba(26,28,77,0.9), transparent 60%);"></div>
   <div class="noise"></div>
   <div class="relative max-w-6xl mx-auto px-6 md:px-8 py-24 grid md:grid-cols-2 gap-14">
     <div class="reveal">
@@ -318,15 +317,15 @@
       <div class="mt-9 space-y-4 text-sm">
         <div class="flex items-center gap-3">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <span>(281) 555-0142 <span class="text-[var(--paper)]/50">— placeholder, confirm real number</span></span>
+          <a href="tel:+18328004352" class="hover:text-[var(--paper)] transition-colors">(832) 800-4352</a>
         </div>
         <div class="flex items-center gap-3">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
-          <span>hello@hahealthconsulting.com <span class="text-[var(--paper)]/50">— placeholder</span></span>
+          <a href="mailto:info@hahealthconsulting.com" class="hover:text-[var(--paper)] transition-colors">info@hahealthconsulting.com</a>
         </div>
         <div class="flex items-center gap-3">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Houston, TX <span class="text-[var(--paper)]/50">— confirm full address</span></span>
+          <span>20008 Champion Forest Dr #203, Spring, TX 77379</span>
         </div>
       </div>
     </div>
@@ -355,8 +354,8 @@
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-14 grid sm:grid-cols-2 md:grid-cols-4 gap-10">
     <div>
       <div class="flex items-center gap-2.5 mb-4">
-        <span class="w-8 h-8 rounded-full bg-[var(--accent)] text-[var(--brand-deep)] font-display text-xs flex items-center justify-center">HA</span>
-        <span class="font-display text-base text-[var(--paper)] tracking-tightish">HA Health Consulting</span>
+        <img src="brand_assets/logo.png" alt="H&amp;A Healthcare Consulting logo" class="w-8 h-8 rounded-md" />
+        <span class="font-display text-base text-[var(--paper)] tracking-tightish">H&amp;A Healthcare Consulting</span>
       </div>
       <p class="text-sm leading-relaxed-body">Empowering healthcare practices nationwide.</p>
     </div>
@@ -380,15 +379,15 @@
     <div>
       <h4 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Legal</h4>
       <ul class="space-y-2.5 text-sm">
-        <li><a href="#" class="hover:text-[var(--paper)] transition-colors">Privacy Policy</a></li>
-        <li><a href="#" class="hover:text-[var(--paper)] transition-colors">Disclaimer</a></li>
-        <li><a href="#" class="hover:text-[var(--paper)] transition-colors">Terms of Use</a></li>
+        <li><a href="https://hahealthconsulting.com/legal/privacy-policy/" class="hover:text-[var(--paper)] transition-colors">Privacy Policy</a></li>
+        <li><a href="https://hahealthconsulting.com/legal/disclaimer/" class="hover:text-[var(--paper)] transition-colors">Disclaimer</a></li>
+        <li><a href="https://hahealthconsulting.com/legal/terms-of-use/" class="hover:text-[var(--paper)] transition-colors">Terms of Use</a></li>
       </ul>
     </div>
   </div>
   <div class="border-t border-white/10">
     <div class="max-w-6xl mx-auto px-6 md:px-8 py-6 text-xs flex flex-col sm:flex-row gap-2 justify-between">
-      <span>&copy; 2026 HA Health Consulting. All rights reserved.</span>
+      <span>&copy; 2026 H&amp;A Healthcare Consulting. All rights reserved.</span>
       <span>Serving Texas &amp; practices nationwide.</span>
     </div>
   </div>
