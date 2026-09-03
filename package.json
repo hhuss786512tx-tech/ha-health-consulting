@@ -1,0 +1,24 @@
+{
+  "name": "ha-health-consulting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hhuss786512tx-tech/ha-health-consulting.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/hhuss786512tx-tech/ha-health-consulting/issues"
+  },
+  "homepage": "https://github.com/hhuss786512tx-tech/ha-health-consulting#readme",
+  "dependencies": {
+    "puppeteer": "^25.10.0"
+  }
+}

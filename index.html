@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HA Health Consulting | Healthcare & EHR Consulting</title>
+<meta name="description" content="Expert healthcare consulting tailored to your practice — EHR optimization, telemedicine integration, revenue cycle management, and compliance, backed by 20+ years of industry experience." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#0f2530;
+    --ink-soft:#3c5560;
+    --paper:#f7f5ef;
+    --paper-raised:#ffffff;
+    --brand:#0e4a52;
+    --brand-deep:#082e33;
+    --accent:#c98a3f;
+    --accent-soft:#e7c493;
+    --line:#dcd6c6;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+  }
+  .font-display{font-family:'Fraunces',serif;}
+  .tracking-tightish{letter-spacing:-0.03em;}
+  .leading-relaxed-body{line-height:1.7;}
+
+  .shadow-soft{
+    box-shadow: 0 1px 2px rgba(15,37,48,0.06), 0 8px 24px -8px rgba(14,74,82,0.18), 0 24px 48px -24px rgba(14,74,82,0.16);
+  }
+  .shadow-soft-lg{
+    box-shadow: 0 2px 4px rgba(15,37,48,0.08), 0 16px 40px -12px rgba(14,74,82,0.22), 0 32px 64px -24px rgba(14,74,82,0.2);
+  }
+  .noise{
+    position:absolute; inset:0; pointer-events:none; opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .btn-primary{
+    background:var(--accent);
+    color:var(--brand-deep);
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease;
+  }
+  .btn-primary:hover{ transform: translateY(-2px); background:#d79847; box-shadow: 0 12px 24px -8px rgba(201,138,63,0.45); }
+  .btn-primary:active{ transform: translateY(0); }
+  .btn-primary:focus-visible{ outline: 2px solid var(--brand); outline-offset: 3px; }
+
+  .btn-outline{
+    border:1px solid rgba(247,245,239,0.35);
+    color:var(--paper);
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-outline:hover{ transform: translateY(-2px); background:rgba(247,245,239,0.1); border-color:rgba(247,245,239,0.6); }
+  .btn-outline:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .nav-link{ position:relative; color:var(--ink-soft); transition: color 0.2s ease; }
+  .nav-link::after{
+    content:''; position:absolute; left:0; right:0; bottom:-4px; height:1px; background:var(--accent);
+    transform:scaleX(0); transform-origin:left; transition: transform 0.25s ease;
+  }
+  .nav-link:hover{ color:var(--ink); }
+  .nav-link:hover::after{ transform:scaleX(1); }
+  .nav-link:focus-visible{ outline: 2px solid var(--brand); outline-offset: 4px; border-radius:2px; }
+
+  .card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    transition: transform 0.3s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.2,0.64,1), border-color 0.3s ease;
+  }
+  .card:hover{ transform: translateY(-4px); border-color: rgba(14,74,82,0.25); }
+
+  @keyframes fadeInUp{
+    from{ opacity:0; transform: translateY(16px); }
+    to{ opacity:1; transform:none; }
+  }
+  .reveal{ animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+  .reveal:nth-child(2){ animation-delay: 0.06s; }
+  .reveal:nth-child(3){ animation-delay: 0.12s; }
+  .reveal:nth-child(4){ animation-delay: 0.18s; }
+  .reveal:nth-child(5){ animation-delay: 0.24s; }
+  .reveal:nth-child(6){ animation-delay: 0.3s; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ animation: none; }
+  }
+
+  .partner-logo{ filter:grayscale(1); opacity:0.55; transition: filter 0.3s ease, opacity 0.3s ease; }
+  .partner-logo:hover{ filter:grayscale(0); opacity:1; }
+
+  input:focus-visible, textarea:focus-visible, a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--brand); outline-offset: 2px;
+  }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 backdrop-blur bg-[#f7f5ef]/90 border-b border-[var(--line)]">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
+    <a href="#home" class="flex items-center gap-2.5">
+      <span class="w-9 h-9 rounded-full bg-[var(--brand)] text-[var(--paper)] font-display text-sm flex items-center justify-center tracking-tightish">HA</span>
+      <span class="font-display text-lg tracking-tightish text-[var(--ink)]">HA Health Consulting</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-9 text-[15px]">
+      <a href="#home" class="nav-link py-1">Home</a>
+      <a href="#about" class="nav-link py-1">About</a>
+      <a href="#services" class="nav-link py-1">Services</a>
+      <a href="#blog" class="nav-link py-1">Blog</a>
+      <a href="#contact" class="nav-link py-1">Contact</a>
+    </nav>
+    <a href="#contact" class="btn-primary hidden md:inline-flex text-sm font-semibold px-5 py-2.5 rounded-full shadow-soft">
+      Schedule a Free Consultation
+    </a>
+    <button aria-label="Open menu" class="md:hidden w-11 h-11 flex items-center justify-center text-[var(--ink)]">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="home" class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
+  <div class="absolute inset-0" style="background:
+      radial-gradient(60% 50% at 15% 10%, rgba(14,74,82,0.9), transparent 60%),
+      radial-gradient(50% 45% at 90% 15%, rgba(201,138,63,0.35), transparent 60%),
+      radial-gradient(70% 60% at 50% 100%, rgba(8,46,51,0.9), transparent 60%);"></div>
+  <div class="noise"></div>
+  <div class="relative max-w-6xl mx-auto px-6 md:px-8 pt-20 pb-24 md:pt-28 md:pb-32">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)] border border-[var(--accent-soft)]/30 rounded-full px-3.5 py-1.5">
+        Houston, TX &middot; Serving practices nationwide
+      </span>
+      <h1 class="font-display tracking-tightish text-4xl sm:text-5xl md:text-[3.4rem] leading-[1.08] mt-6">
+        Expert healthcare consulting, tailored to your practice.
+      </h1>
+      <p class="leading-relaxed-body text-[var(--paper)]/75 text-lg mt-6 max-w-xl">
+        Over 20 years of healthcare industry experience helping practices optimize operations, modernize their EHR, and improve patient care — with the personal attention of a local team.
+      </p>
+      <div class="flex flex-wrap items-center gap-4 mt-9">
+        <a href="#contact" class="btn-primary text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft-lg">
+          Schedule Your Free Consultation
+        </a>
+        <a href="#services" class="btn-outline text-sm font-semibold px-6 py-3.5 rounded-full">
+          Explore Services
+        </a>
+      </div>
+      <div class="grid grid-cols-3 gap-6 mt-14 max-w-lg">
+        <div>
+          <div class="font-display text-3xl tracking-tightish">20+</div>
+          <div class="text-xs text-[var(--paper)]/60 mt-1 leading-snug">Years of industry expertise</div>
+        </div>
+        <div>
+          <div class="font-display text-3xl tracking-tightish">50+</div>
+          <div class="text-xs text-[var(--paper)]/60 mt-1 leading-snug">Practices supported</div>
+        </div>
+        <div>
+          <div class="font-display text-3xl tracking-tightish">Nationwide</div>
+          <div class="text-xs text-[var(--paper)]/60 mt-1 leading-snug">Reach, local-level service</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="border-b border-[var(--line)]">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-10">
+    <p class="text-center text-xs uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-6">Platform partnerships</p>
+    <div class="flex flex-wrap items-center justify-center gap-x-14 gap-y-6">
+      <span class="partner-logo font-display text-xl tracking-tightish">eClinicalWorks</span>
+      <span class="partner-logo font-display text-xl tracking-tightish">Athenahealth</span>
+      <span class="partner-logo font-display text-xl tracking-tightish">Experity</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="max-w-6xl mx-auto px-6 md:px-8 py-24">
+  <div class="reveal max-w-xl mx-auto text-center">
+    <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">What we do</span>
+    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Services built around your practice</h2>
+    <p class="leading-relaxed-body text-[var(--ink-soft)] mt-4">
+      Customized EHR and operational solutions designed to reduce administrative burden and improve outcomes.
+    </p>
+  </div>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
+    <div class="reveal card rounded-2xl p-7">
+      <div class="w-11 h-11 rounded-xl bg-[var(--brand)]/10 flex items-center justify-center mb-5">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4"/><path d="M18 2l4 4-10 10H8v-4z"/></svg>
+      </div>
+      <h3 class="font-display text-lg tracking-tightish mb-2">EHR Optimization</h3>
+      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Streamline workflows and configuration inside your existing EHR to cut clicks and reclaim clinician time.</p>
+    </div>
+    <div class="reveal card rounded-2xl p-7">
+      <div class="w-11 h-11 rounded-xl bg-[var(--brand)]/10 flex items-center justify-center mb-5">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><rect x="2" y="7" width="15" height="10" rx="2"/><path d="M17 10l5-3v10l-5-3"/></svg>
+      </div>
+      <h3 class="font-display text-lg tracking-tightish mb-2">Telemedicine Integration</h3>
+      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Stand up secure, patient-friendly virtual care that fits directly into your existing scheduling and records.</p>
+    </div>
+    <div class="reveal card rounded-2xl p-7">
+      <div class="w-11 h-11 rounded-xl bg-[var(--brand)]/10 flex items-center justify-center mb-5">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      <h3 class="font-display text-lg tracking-tightish mb-2">Revenue Cycle Management</h3>
+      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Tighten billing and collections end-to-end to reduce denials and speed up reimbursement.</p>
+    </div>
+    <div class="reveal card rounded-2xl p-7">
+      <div class="w-11 h-11 rounded-xl bg-[var(--brand)]/10 flex items-center justify-center mb-5">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
+      </div>
+      <h3 class="font-display text-lg tracking-tightish mb-2">Practice Transformation</h3>
+      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Redesign workflow and staffing models so your team spends more time on patients, less on process.</p>
+    </div>
+    <div class="reveal card rounded-2xl p-7">
+      <div class="w-11 h-11 rounded-xl bg-[var(--brand)]/10 flex items-center justify-center mb-5">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+      </div>
+      <h3 class="font-display text-lg tracking-tightish mb-2">Compliance &amp; Regulatory</h3>
+      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Stay ahead of HIPAA and regulatory requirements with proactive audits and documentation support.</p>
+    </div>
+    <div class="reveal card rounded-2xl p-7">
+      <div class="w-11 h-11 rounded-xl bg-[var(--brand)]/10 flex items-center justify-center mb-5">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+      </div>
+      <h3 class="font-display text-lg tracking-tightish mb-2">IT Support &amp; Managed Services</h3>
+      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Ongoing technical support and managed IT so your systems stay secure, current, and online.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="bg-[var(--paper-raised)] border-y border-[var(--line)]">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 grid md:grid-cols-2 gap-14 items-center">
+    <div class="reveal relative">
+      <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg relative">
+        <img src="https://placehold.co/800x600/0e4a52/f7f5ef?text=Team+Photo" alt="HA Health Consulting team" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/50 to-transparent" style="mix-blend-mode:multiply;"></div>
+      </div>
+      <div class="hidden sm:block absolute -bottom-6 -right-6 bg-[var(--brand)] text-[var(--paper)] rounded-2xl px-6 py-5 shadow-soft-lg">
+        <div class="font-display text-2xl tracking-tightish">20+ yrs</div>
+        <div class="text-xs text-[var(--paper)]/70 mt-0.5">Industry experience</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">About us</span>
+      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">A dedicated team, decades of experience</h2>
+      <p class="leading-relaxed-body text-[var(--ink-soft)] mt-5">
+        HA Health Consulting works alongside practices to modernize operations without disrupting patient care. Our team brings decades of combined healthcare industry experience — from EHR implementation to day-to-day revenue cycle management — with the responsiveness of a local partner and the reach to support practices nationwide.
+      </p>
+      <ul class="mt-7 space-y-3">
+        <li class="flex items-start gap-3 text-sm text-[var(--ink)]">
+          <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          Customized EHR solutions built around your specialty
+        </li>
+        <li class="flex items-start gap-3 text-sm text-[var(--ink)]">
+          <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          Nationwide support with a personal, local feel
+        </li>
+        <li class="flex items-start gap-3 text-sm text-[var(--ink)]">
+          <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          Partnerships with eClinicalWorks, Athenahealth &amp; Experity
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="max-w-6xl mx-auto px-6 md:px-8 py-24">
+  <div class="reveal max-w-xl mx-auto text-center">
+    <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Insights</span>
+    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">From the blog</h2>
+  </div>
+  <div class="grid sm:grid-cols-3 gap-6 mt-14">
+    <a href="#" class="reveal card rounded-2xl overflow-hidden block">
+      <img src="https://placehold.co/600x400/0e4a52/f7f5ef?text=Article" alt="" class="w-full aspect-[3/2] object-cover" />
+      <div class="p-6">
+        <span class="text-xs uppercase tracking-[0.1em] text-[var(--brand)]">EHR</span>
+        <h3 class="font-display text-lg tracking-tightish mt-2 mb-2">5 signs your EHR workflow needs an audit</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Practical warning signs practices often miss until burnout sets in.</p>
+      </div>
+    </a>
+    <a href="#" class="reveal card rounded-2xl overflow-hidden block">
+      <img src="https://placehold.co/600x400/0e4a52/f7f5ef?text=Article" alt="" class="w-full aspect-[3/2] object-cover" />
+      <div class="p-6">
+        <span class="text-xs uppercase tracking-[0.1em] text-[var(--brand)]">Telehealth</span>
+        <h3 class="font-display text-lg tracking-tightish mt-2 mb-2">Telemedicine integration, done right</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">What separates a bolted-on video tool from real virtual care.</p>
+      </div>
+    </a>
+    <a href="#" class="reveal card rounded-2xl overflow-hidden block">
+      <img src="https://placehold.co/600x400/0e4a52/f7f5ef?text=Article" alt="" class="w-full aspect-[3/2] object-cover" />
+      <div class="p-6">
+        <span class="text-xs uppercase tracking-[0.1em] text-[var(--brand)]">Compliance</span>
+        <h3 class="font-display text-lg tracking-tightish mt-2 mb-2">Staying ahead of regulatory change</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">A simple framework for keeping compliance proactive, not reactive.</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
+  <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 85% 20%, rgba(201,138,63,0.25), transparent 60%), radial-gradient(50% 50% at 10% 90%, rgba(14,74,82,0.9), transparent 60%);"></div>
+  <div class="noise"></div>
+  <div class="relative max-w-6xl mx-auto px-6 md:px-8 py-24 grid md:grid-cols-2 gap-14">
+    <div class="reveal">
+      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)]">Get in touch</span>
+      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Schedule your free consultation</h2>
+      <p class="leading-relaxed-body text-[var(--paper)]/70 mt-5 max-w-md">
+        Tell us a bit about your practice and where you're feeling the most friction — we'll follow up to schedule a call.
+      </p>
+      <div class="mt-9 space-y-4 text-sm">
+        <div class="flex items-center gap-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>(281) 555-0142 <span class="text-[var(--paper)]/50">— placeholder, confirm real number</span></span>
+        </div>
+        <div class="flex items-center gap-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+          <span>hello@hahealthconsulting.com <span class="text-[var(--paper)]/50">— placeholder</span></span>
+        </div>
+        <div class="flex items-center gap-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Houston, TX <span class="text-[var(--paper)]/50">— confirm full address</span></span>
+        </div>
+      </div>
+    </div>
+    <form class="reveal bg-[var(--paper-raised)] text-[var(--ink)] rounded-2xl p-7 md:p-8 shadow-soft-lg space-y-4">
+      <div>
+        <label class="text-xs font-semibold text-[var(--ink-soft)]" for="name">Name</label>
+        <input id="name" type="text" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-[var(--paper)]" placeholder="Jane Smith" />
+      </div>
+      <div>
+        <label class="text-xs font-semibold text-[var(--ink-soft)]" for="email">Email</label>
+        <input id="email" type="email" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-[var(--paper)]" placeholder="jane@practice.com" />
+      </div>
+      <div>
+        <label class="text-xs font-semibold text-[var(--ink-soft)]" for="message">Message</label>
+        <textarea id="message" rows="4" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-[var(--paper)]" placeholder="Tell us about your practice"></textarea>
+      </div>
+      <button type="submit" class="btn-primary w-full text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft">
+        Leave a Message
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[var(--brand-deep)] text-[var(--paper)]/70 border-t border-white/10">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-14 grid sm:grid-cols-2 md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-2.5 mb-4">
+        <span class="w-8 h-8 rounded-full bg-[var(--accent)] text-[var(--brand-deep)] font-display text-xs flex items-center justify-center">HA</span>
+        <span class="font-display text-base text-[var(--paper)] tracking-tightish">HA Health Consulting</span>
+      </div>
+      <p class="text-sm leading-relaxed-body">Empowering healthcare practices nationwide.</p>
+    </div>
+    <div>
+      <h4 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Services</h4>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="#services" class="hover:text-[var(--paper)] transition-colors">EHR Optimization</a></li>
+        <li><a href="#services" class="hover:text-[var(--paper)] transition-colors">Telemedicine Integration</a></li>
+        <li><a href="#services" class="hover:text-[var(--paper)] transition-colors">Revenue Cycle Management</a></li>
+        <li><a href="#services" class="hover:text-[var(--paper)] transition-colors">Compliance &amp; Regulatory</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Company</h4>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="#about" class="hover:text-[var(--paper)] transition-colors">About</a></li>
+        <li><a href="#blog" class="hover:text-[var(--paper)] transition-colors">Blog</a></li>
+        <li><a href="#contact" class="hover:text-[var(--paper)] transition-colors">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Legal</h4>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="#" class="hover:text-[var(--paper)] transition-colors">Privacy Policy</a></li>
+        <li><a href="#" class="hover:text-[var(--paper)] transition-colors">Disclaimer</a></li>
+        <li><a href="#" class="hover:text-[var(--paper)] transition-colors">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-6 md:px-8 py-6 text-xs flex flex-col sm:flex-row gap-2 justify-between">
+      <span>&copy; 2026 HA Health Consulting. All rights reserved.</span>
+      <span>Serving Texas &amp; practices nationwide.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
