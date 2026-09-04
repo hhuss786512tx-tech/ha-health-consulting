@@ -92,6 +92,16 @@
   .partner-logo{ filter:grayscale(1); opacity:0.55; transition: filter 0.3s ease, opacity 0.3s ease; }
   .partner-logo:hover{ filter:grayscale(0); opacity:1; }
 
+  @keyframes kenburns{
+    0%{ transform: scale(1) translate(0,0); }
+    50%{ transform: scale(1.08) translate(-1.5%, -1%); }
+    100%{ transform: scale(1) translate(0,0); }
+  }
+  .hero-loop{ animation: kenburns 14s ease-in-out infinite; will-change: transform; }
+  @media (prefers-reduced-motion: reduce){
+    .hero-loop{ animation: none; }
+  }
+
   input:focus-visible, textarea:focus-visible, a:focus-visible, button:focus-visible{
     outline: 2px solid var(--brand); outline-offset: 2px;
   }
@@ -123,13 +133,13 @@
 </header>
 
 <!-- HERO -->
-<section id="home" class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
+<section id="home" class="relative bg-[var(--brand-deep)] text-[var(--paper)]">
   <div class="absolute inset-0" style="background:
       radial-gradient(60% 50% at 15% 10%, rgba(26,28,77,0.9), transparent 60%),
       radial-gradient(50% 45% at 90% 15%, rgba(195,26,33,0.3), transparent 60%),
       radial-gradient(70% 60% at 50% 100%, rgba(8,8,44,0.95), transparent 60%);"></div>
   <div class="noise"></div>
-  <div class="relative max-w-6xl mx-auto px-6 md:px-8 pt-20 pb-24 md:pt-28 md:pb-32">
+  <div class="relative max-w-6xl mx-auto px-6 md:px-8 pt-20 pb-24 md:pt-28 md:pb-32 grid md:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
     <div class="max-w-2xl">
       <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)] border border-[var(--accent-soft)]/30 rounded-full px-3.5 py-1.5">
         Houston, TX &middot; Serving practices nationwide
@@ -159,6 +169,11 @@
         </div>
       </div>
     </div>
+    <div class="reveal relative hidden md:block">
+      <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-soft-lg">
+        <img src="brand_assets/og/Blue-Medical-Doctors-edit.png" alt="H&amp;A Healthcare Consulting" class="hero-loop w-full h-full object-cover" />
+      </div>
+    </div>
   </div>
 </section>
 
@@ -170,6 +185,8 @@
       <img src="brand_assets/eclinicalworks.png" alt="eClinicalWorks" class="partner-logo h-6 md:h-7 w-auto object-contain" />
       <img src="brand_assets/athenahealth-trimmed.png" alt="Athenahealth" class="partner-logo h-6 md:h-7 w-auto object-contain" />
       <img src="brand_assets/experity-trimmed.png" alt="Experity" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+      <img src="brand_assets/og/pngegg.png" alt="Cerner" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+      <img src="brand_assets/og/pngwing.com_-1024x388.png" alt="Epic" class="partner-logo h-6 md:h-7 w-auto object-contain" />
     </div>
   </div>
 </section>
@@ -185,47 +202,83 @@
   </div>
 
   <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
-    <div class="reveal card rounded-2xl p-7">
-      <div class="w-11 h-11 rounded-xl bg-[var(--brand)]/10 flex items-center justify-center mb-5">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4"/><path d="M18 2l4 4-10 10H8v-4z"/></svg>
+    <div class="reveal card rounded-2xl overflow-hidden">
+      <div class="aspect-[16/10] overflow-hidden relative">
+        <img src="brand_assets/og/Modern-And-Minimalist-Medical-Healthcare-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/70 to-transparent" style="mix-blend-mode:multiply;"></div>
+        <div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-[var(--paper)] flex items-center justify-center shadow-soft">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4"/><path d="M18 2l4 4-10 10H8v-4z"/></svg>
+        </div>
       </div>
-      <h3 class="font-display text-lg tracking-tightish mb-2">EHR Optimization</h3>
-      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Streamline workflows and configuration inside your existing EHR to cut clicks and reclaim clinician time.</p>
+      <div class="p-7">
+        <h3 class="font-display text-lg tracking-tightish mb-2">EHR Optimization</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Streamline workflows and configuration inside your existing EHR to cut clicks and reclaim clinician time.</p>
+      </div>
     </div>
-    <div class="reveal card rounded-2xl p-7">
-      <div class="w-11 h-11 rounded-xl bg-[var(--brand)]/10 flex items-center justify-center mb-5">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><rect x="2" y="7" width="15" height="10" rx="2"/><path d="M17 10l5-3v10l-5-3"/></svg>
+    <div class="reveal card rounded-2xl overflow-hidden">
+      <div class="aspect-[16/10] overflow-hidden relative">
+        <img src="brand_assets/og/Online-Doctor-Consultation-Promo-Facebook-Post.png" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/70 to-transparent" style="mix-blend-mode:multiply;"></div>
+        <div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-[var(--paper)] flex items-center justify-center shadow-soft">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><rect x="2" y="7" width="15" height="10" rx="2"/><path d="M17 10l5-3v10l-5-3"/></svg>
+        </div>
       </div>
-      <h3 class="font-display text-lg tracking-tightish mb-2">Telemedicine Integration</h3>
-      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Stand up secure, patient-friendly virtual care that fits directly into your existing scheduling and records.</p>
+      <div class="p-7">
+        <h3 class="font-display text-lg tracking-tightish mb-2">Telemedicine Integration</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Stand up secure, patient-friendly virtual care that fits directly into your existing scheduling and records.</p>
+      </div>
     </div>
-    <div class="reveal card rounded-2xl p-7">
-      <div class="w-11 h-11 rounded-xl bg-[var(--brand)]/10 flex items-center justify-center mb-5">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+    <div class="reveal card rounded-2xl overflow-hidden">
+      <div class="aspect-[16/10] overflow-hidden relative">
+        <img src="brand_assets/og/Black-Management-Business-Financial-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/70 to-transparent" style="mix-blend-mode:multiply;"></div>
+        <div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-[var(--paper)] flex items-center justify-center shadow-soft">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
       </div>
-      <h3 class="font-display text-lg tracking-tightish mb-2">Revenue Cycle Management</h3>
-      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Tighten billing and collections end-to-end to reduce denials and speed up reimbursement.</p>
+      <div class="p-7">
+        <h3 class="font-display text-lg tracking-tightish mb-2">Revenue Cycle Management</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Tighten billing and collections end-to-end to reduce denials and speed up reimbursement.</p>
+      </div>
     </div>
-    <div class="reveal card rounded-2xl p-7">
-      <div class="w-11 h-11 rounded-xl bg-[var(--brand)]/10 flex items-center justify-center mb-5">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
+    <div class="reveal card rounded-2xl overflow-hidden">
+      <div class="aspect-[16/10] overflow-hidden relative">
+        <img src="brand_assets/og/Doctor-Appointment-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/70 to-transparent" style="mix-blend-mode:multiply;"></div>
+        <div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-[var(--paper)] flex items-center justify-center shadow-soft">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
+        </div>
       </div>
-      <h3 class="font-display text-lg tracking-tightish mb-2">Practice Transformation</h3>
-      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Redesign workflow and staffing models so your team spends more time on patients, less on process.</p>
+      <div class="p-7">
+        <h3 class="font-display text-lg tracking-tightish mb-2">Practice Transformation</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Redesign workflow and staffing models so your team spends more time on patients, less on process.</p>
+      </div>
     </div>
-    <div class="reveal card rounded-2xl p-7">
-      <div class="w-11 h-11 rounded-xl bg-[var(--brand)]/10 flex items-center justify-center mb-5">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+    <div class="reveal card rounded-2xl overflow-hidden">
+      <div class="aspect-[16/10] overflow-hidden relative">
+        <img src="brand_assets/og/Blue-And-White-Modern-Business-Consulting-Services-Instagram-Post-746x1024.png" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/70 to-transparent" style="mix-blend-mode:multiply;"></div>
+        <div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-[var(--paper)] flex items-center justify-center shadow-soft">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
+        </div>
       </div>
-      <h3 class="font-display text-lg tracking-tightish mb-2">Compliance &amp; Regulatory</h3>
-      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Stay ahead of HIPAA and regulatory requirements with proactive audits and documentation support.</p>
+      <div class="p-7">
+        <h3 class="font-display text-lg tracking-tightish mb-2">Compliance &amp; Regulatory</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Stay ahead of HIPAA and regulatory requirements with proactive audits and documentation support.</p>
+      </div>
     </div>
-    <div class="reveal card rounded-2xl p-7">
-      <div class="w-11 h-11 rounded-xl bg-[var(--brand)]/10 flex items-center justify-center mb-5">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+    <div class="reveal card rounded-2xl overflow-hidden">
+      <div class="aspect-[16/10] overflow-hidden relative">
+        <img src="brand_assets/og/White-Modern-Online-Doctor-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/70 to-transparent" style="mix-blend-mode:multiply;"></div>
+        <div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-[var(--paper)] flex items-center justify-center shadow-soft">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+        </div>
       </div>
-      <h3 class="font-display text-lg tracking-tightish mb-2">IT Support &amp; Managed Services</h3>
-      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Ongoing technical support and managed IT so your systems stay secure, current, and online.</p>
+      <div class="p-7">
+        <h3 class="font-display text-lg tracking-tightish mb-2">IT Support &amp; Managed Services</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Ongoing technical support and managed IT so your systems stay secure, current, and online.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -234,8 +287,8 @@
 <section id="about" class="bg-[var(--paper-raised)] border-y border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 grid md:grid-cols-2 gap-14 items-center">
     <div class="reveal relative">
-      <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg relative bg-[var(--brand-deep)] flex items-center justify-center">
-        <img src="brand_assets/logo.png" alt="H&amp;A Healthcare Consulting" class="w-2/3 max-w-[280px] object-contain" />
+      <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg relative">
+        <img src="brand_assets/og/blue-find-doctor-modern-instagram-post.png" alt="H&amp;A Healthcare Consulting" class="w-full h-full object-cover" />
       </div>
       <div class="hidden sm:block absolute -bottom-6 -right-6 bg-[var(--brand)] text-[var(--paper)] rounded-2xl px-6 py-5 shadow-soft-lg">
         <div class="font-display text-2xl tracking-tightish">20+ yrs</div>
@@ -265,6 +318,37 @@
           Partnerships with eClinicalWorks, Athenahealth &amp; Experity
         </li>
       </ul>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6 md:px-8 pb-24">
+    <div class="reveal max-w-xl mx-auto text-center mb-14">
+      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Meet the team</span>
+      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">The people behind H&amp;A</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+      <div class="reveal card rounded-2xl p-7 text-center">
+        <div class="w-16 h-16 rounded-full bg-[var(--brand-deep)] mx-auto flex items-center justify-center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 class="font-display text-lg tracking-tightish mt-4">Eddie Zakaria</h3>
+        <p class="text-xs uppercase tracking-[0.1em] text-[var(--accent)] font-semibold mt-1">EHR Specialist</p>
+        <div class="mt-4 space-y-1.5 text-sm text-[var(--ink-soft)]">
+          <a href="tel:+18328004352" class="block hover:text-[var(--ink)] transition-colors">(832) 800-4352</a>
+          <a href="mailto:eddie@hahealthconsulting.com" class="block hover:text-[var(--ink)] transition-colors">eddie@hahealthconsulting.com</a>
+        </div>
+      </div>
+      <div class="reveal card rounded-2xl p-7 text-center">
+        <div class="w-16 h-16 rounded-full bg-[var(--brand-deep)] mx-auto flex items-center justify-center">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 class="font-display text-lg tracking-tightish mt-4">Sajid Sultan</h3>
+        <p class="text-xs uppercase tracking-[0.1em] text-[var(--accent)] font-semibold mt-1">Chief Technology Officer</p>
+        <div class="mt-4 space-y-1.5 text-sm text-[var(--ink-soft)]">
+          <a href="tel:+18323748779" class="block hover:text-[var(--ink)] transition-colors">(832) 374-8779</a>
+          <a href="mailto:mo@hahealthconsulting.com" class="block hover:text-[var(--ink)] transition-colors">mo@hahealthconsulting.com</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
