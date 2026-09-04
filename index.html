@@ -59,6 +59,15 @@
   .btn-outline:hover{ transform: translateY(-2px); background:rgba(247,245,239,0.1); border-color:rgba(247,245,239,0.6); }
   .btn-outline:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
 
+  .btn-dark{
+    background:var(--brand-deep);
+    color:var(--paper);
+    border:1px solid rgba(240,163,167,0.4);
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-dark:hover{ transform: translateY(-2px); background:var(--brand); border-color:rgba(240,163,167,0.7); }
+  .btn-dark:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
   .nav-link{ position:relative; color:var(--ink-soft); transition: color 0.2s ease; }
   .nav-link::after{
     content:''; position:absolute; left:0; right:0; bottom:-4px; height:1px; background:var(--accent);
@@ -120,11 +129,11 @@
       <a href="#home" class="nav-link py-1">Home</a>
       <a href="#about" class="nav-link py-1">About</a>
       <a href="#services" class="nav-link py-1">Services</a>
-      <a href="#blog" class="nav-link py-1">Blog</a>
       <a href="#contact" class="nav-link py-1">Contact</a>
+      <a href="#blog" class="nav-link py-1">Blog</a>
     </nav>
     <a href="#contact" class="btn-primary hidden md:inline-flex text-sm font-semibold px-5 py-2.5 rounded-full shadow-soft">
-      Schedule a Free Consultation
+      Schedule Your Free Consultation
     </a>
     <button aria-label="Open menu" class="md:hidden w-11 h-11 flex items-center justify-center text-[var(--ink)]">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -148,25 +157,12 @@
         Expert Healthcare Consulting Tailored to Your Needs
       </h1>
       <p class="leading-relaxed-body text-[var(--paper)]/75 text-lg mt-6 max-w-xl">
-        Over 20 years of healthcare industry experience. We specialize in EHR consulting services designed to optimize operations and improve patient care.
+        Welcome to <strong class="text-[var(--paper)] font-semibold">H&amp;A Healthcare Consulting</strong>, and thank you for visiting our site! Based in <strong class="text-[var(--paper)] font-semibold">Houston, Texas</strong>, we proudly serve clients nationwide with over <strong class="text-[var(--paper)] font-semibold">20 years of healthcare industry experience</strong>. Our team specializes in providing expert <strong class="text-[var(--paper)] font-semibold">EHR consulting services</strong> designed to meet the unique needs of your organization. Whether you're seeking to optimize, implement, or enhance your EHR system, we're here to help you streamline operations and improve patient outcomes. <strong class="text-[var(--paper)] font-semibold">Let us support your success.</strong>
       </p>
       <div class="flex flex-wrap items-center gap-4 mt-9">
         <a href="#contact" class="btn-primary text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft-lg">
           Schedule Your Free Consultation
         </a>
-        <a href="#services" class="btn-outline text-sm font-semibold px-6 py-3.5 rounded-full">
-          Explore Services
-        </a>
-      </div>
-      <div class="grid grid-cols-2 gap-6 mt-14 max-w-sm">
-        <div>
-          <div class="font-display text-3xl tracking-tightish">20+ Years</div>
-          <div class="text-xs text-[var(--paper)]/60 mt-1 leading-snug">Of industry expertise</div>
-        </div>
-        <div>
-          <div class="font-display text-3xl tracking-tightish">Nationwide</div>
-          <div class="text-xs text-[var(--paper)]/60 mt-1 leading-snug">Reach, local-level service</div>
-        </div>
       </div>
     </div>
     <div class="reveal relative hidden md:block">
@@ -183,10 +179,50 @@
     <p class="text-center text-xs uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-6">Platform partnerships</p>
     <div class="flex flex-wrap items-center justify-center gap-x-14 gap-y-6">
       <img src="brand_assets/eclinicalworks.png" alt="eClinicalWorks" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-      <img src="brand_assets/athenahealth-trimmed.png" alt="Athenahealth" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-      <img src="brand_assets/experity-trimmed.png" alt="Experity" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-      <img src="brand_assets/og/pngegg.png" alt="Cerner" class="partner-logo h-6 md:h-7 w-auto object-contain" />
       <img src="brand_assets/og/pngwing.com_-1024x388.png" alt="Epic" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+      <img src="brand_assets/athenahealth-trimmed.png" alt="Athenahealth" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+      <img src="brand_assets/og/pngegg.png" alt="Cerner" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+      <img src="brand_assets/experity-trimmed.png" alt="Experity" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+    </div>
+  </div>
+</section>
+
+<!-- INTRO TRIO -->
+<section class="max-w-6xl mx-auto px-6 md:px-8 py-20">
+  <div class="grid md:grid-cols-3 gap-10">
+    <div class="reveal border-t-2 border-[var(--brand-deep)] pt-6">
+      <h3 class="font-display text-xl tracking-tightish mb-3">Tailored EHR Solutions for Every Practice</h3>
+      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">At <strong class="text-[var(--ink)]">H&amp;A Healthcare Consulting</strong>, we understand that every healthcare practice is unique. Our expert team works closely with your organization to deliver customized <strong class="text-[var(--ink)]">Electronic Health Record (EHR) solutions</strong> that align with your operational goals and patient care needs. Whether you're implementing a new system or optimizing your current one, we provide tailored strategies that streamline workflows, improve efficiency, and enhance patient outcomes.</p>
+    </div>
+    <div class="reveal border-t-2 border-[var(--brand-deep)] pt-6">
+      <h3 class="font-display text-xl tracking-tightish mb-3">20+ Years of Industry Expertise</h3>
+      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">With over <strong class="text-[var(--ink)]">two decades of experience</strong> in the healthcare industry, our consultants bring a wealth of knowledge and proven strategies to each project. Our expertise spans across multiple EHR platforms, ensuring that you receive the most up-to-date and effective solutions. Trust H&amp;A Healthcare Consulting to deliver the results you need to navigate the complexities of healthcare technology, compliance, and patient management.</p>
+    </div>
+    <div class="reveal border-t-2 border-[var(--brand-deep)] pt-6">
+      <h3 class="font-display text-xl tracking-tightish mb-3">Nationwide Support, Local Service</h3>
+      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Based in <strong class="text-[var(--ink)]">Houston, Texas</strong>, H&amp;A Healthcare Consulting proudly provides services to clients across the nation. Despite our wide reach, we prioritize <strong class="text-[var(--ink)]">personalized service</strong>, ensuring that each client receives the dedicated attention and tailored solutions they deserve. Whether you need remote consultations or on-site support, we're equipped to offer flexible services that fit your needs, no matter your location.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPREHENSIVE SERVICES BAND -->
+<section class="bg-[var(--paper-raised)] border-y border-[var(--line)] overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-20 grid md:grid-cols-[1fr_1.1fr_1fr] gap-8 items-center">
+    <div class="reveal aspect-[3/4] rounded-2xl overflow-hidden shadow-soft-lg hidden md:block">
+      <img src="brand_assets/og/blue-find-doctor-modern-instagram-post.png" alt="" class="w-full h-full object-cover" />
+    </div>
+    <div class="reveal text-center">
+      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Tailored solutions for modern healthcare</span>
+      <h2 class="font-display tracking-tightish text-2xl md:text-3xl mt-3">Comprehensive Healthcare Consulting Services Designed for Your Success</h2>
+      <p class="leading-relaxed-body text-[var(--ink-soft)] text-sm mt-5">
+        At <strong class="text-[var(--ink)]">H&amp;A Healthcare Consulting</strong>, we offer a full suite of healthcare consulting services that are specifically crafted to meet the unique needs of your organization. From <strong class="text-[var(--ink)]">EHR optimization</strong> to <strong class="text-[var(--ink)]">telemedicine integration</strong> and <strong class="text-[var(--ink)]">revenue cycle management</strong>, our expert team is here to help you streamline your operations, enhance patient outcomes, and improve financial performance. With over 20 years of experience, we are dedicated to driving your practice forward with innovative, reliable solutions.
+      </p>
+      <a href="#services" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-7">
+        Transform Your Practice Today
+      </a>
+    </div>
+    <div class="reveal aspect-[3/4] rounded-2xl overflow-hidden shadow-soft-lg hidden md:block">
+      <img src="brand_assets/og/Modern-And-Minimalist-Medical-Healthcare-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
     </div>
   </div>
 </section>
@@ -194,90 +230,87 @@
 <!-- SERVICES -->
 <section id="services" class="max-w-6xl mx-auto px-6 md:px-8 py-24">
   <div class="reveal max-w-xl mx-auto text-center">
-    <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">What we do</span>
-    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Services built around your practice</h2>
+    <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Expert healthcare solutions</span>
+    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Your Path to Better Healthcare Management</h2>
     <p class="leading-relaxed-body text-[var(--ink-soft)] mt-4">
-      Customized EHR and operational solutions designed to reduce administrative burden and improve outcomes.
+      At H&amp;A Healthcare Consulting, we provide specialized services that empower your healthcare practice to operate more efficiently, improve patient care, and boost profitability. Explore how we can support your success.
     </p>
   </div>
 
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-14">
-    <div class="reveal card rounded-2xl overflow-hidden">
-      <div class="aspect-[16/10] overflow-hidden relative">
-        <img src="brand_assets/og/Modern-And-Minimalist-Medical-Healthcare-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/70 to-transparent" style="mix-blend-mode:multiply;"></div>
-        <div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-[var(--paper)] flex items-center justify-center shadow-soft">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4"/><path d="M18 2l4 4-10 10H8v-4z"/></svg>
-        </div>
-      </div>
-      <div class="p-7">
-        <h3 class="font-display text-lg tracking-tightish mb-2">EHR Optimization</h3>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Streamline workflows and configuration inside your existing EHR to cut clicks and reclaim clinician time.</p>
-      </div>
-    </div>
-    <div class="reveal card rounded-2xl overflow-hidden">
-      <div class="aspect-[16/10] overflow-hidden relative">
-        <img src="brand_assets/og/Online-Doctor-Consultation-Promo-Facebook-Post.png" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/70 to-transparent" style="mix-blend-mode:multiply;"></div>
-        <div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-[var(--paper)] flex items-center justify-center shadow-soft">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><rect x="2" y="7" width="15" height="10" rx="2"/><path d="M17 10l5-3v10l-5-3"/></svg>
-        </div>
-      </div>
-      <div class="p-7">
-        <h3 class="font-display text-lg tracking-tightish mb-2">Telemedicine Integration</h3>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Stand up secure, patient-friendly virtual care that fits directly into your existing scheduling and records.</p>
-      </div>
-    </div>
-    <div class="reveal card rounded-2xl overflow-hidden">
-      <div class="aspect-[16/10] overflow-hidden relative">
-        <img src="brand_assets/og/Black-Management-Business-Financial-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/70 to-transparent" style="mix-blend-mode:multiply;"></div>
-        <div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-[var(--paper)] flex items-center justify-center shadow-soft">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-        </div>
-      </div>
-      <div class="p-7">
-        <h3 class="font-display text-lg tracking-tightish mb-2">Revenue Cycle Management</h3>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Tighten billing and collections end-to-end to reduce denials and speed up reimbursement.</p>
-      </div>
-    </div>
-    <div class="reveal card rounded-2xl overflow-hidden">
-      <div class="aspect-[16/10] overflow-hidden relative">
-        <img src="brand_assets/og/Doctor-Appointment-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/70 to-transparent" style="mix-blend-mode:multiply;"></div>
-        <div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-[var(--paper)] flex items-center justify-center shadow-soft">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
-        </div>
-      </div>
-      <div class="p-7">
-        <h3 class="font-display text-lg tracking-tightish mb-2">Practice Transformation</h3>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Redesign workflow and staffing models so your team spends more time on patients, less on process.</p>
-      </div>
-    </div>
-    <div class="reveal card rounded-2xl overflow-hidden">
-      <div class="aspect-[16/10] overflow-hidden relative">
+  <div class="mt-16 space-y-20">
+    <!-- 1. EHR Optimization -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
         <img src="brand_assets/og/Blue-And-White-Modern-Business-Consulting-Services-Instagram-Post-746x1024.png" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/70 to-transparent" style="mix-blend-mode:multiply;"></div>
-        <div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-[var(--paper)] flex items-center justify-center shadow-soft">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/></svg>
-        </div>
       </div>
-      <div class="p-7">
-        <h3 class="font-display text-lg tracking-tightish mb-2">Compliance &amp; Regulatory</h3>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Stay ahead of HIPAA and regulatory requirements with proactive audits and documentation support.</p>
+      <div class="reveal">
+        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Streamline your EHR, enhance your practice</span>
+        <h3 class="font-display text-2xl tracking-tightish mt-2 mb-4">EHR Optimization Services</h3>
+        <p class="text-[var(--ink-soft)] leading-relaxed-body">We provide customized Electronic Health Record (EHR) optimization solutions tailored to your practice's unique needs. Our team helps healthcare organizations streamline workflows, improve data accessibility, and enhance patient care by refining and optimizing their existing&hellip;</p>
+        <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore EHR Optimization Services Services</a>
       </div>
     </div>
-    <div class="reveal card rounded-2xl overflow-hidden">
-      <div class="aspect-[16/10] overflow-hidden relative">
-        <img src="brand_assets/og/White-Modern-Online-Doctor-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-[var(--brand-deep)]/70 to-transparent" style="mix-blend-mode:multiply;"></div>
-        <div class="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-[var(--paper)] flex items-center justify-center shadow-soft">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
-        </div>
+    <!-- 2. Telemedicine Integration -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal md:order-2 aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
+        <img src="brand_assets/og/Online-Doctor-Consultation-Promo-Facebook-Post.png" alt="" class="w-full h-full object-cover" />
       </div>
-      <div class="p-7">
-        <h3 class="font-display text-lg tracking-tightish mb-2">IT Support &amp; Managed Services</h3>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Ongoing technical support and managed IT so your systems stay secure, current, and online.</p>
+      <div class="reveal md:order-1">
+        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Expand your reach with secure telemedicine</span>
+        <h3 class="font-display text-2xl tracking-tightish mt-2 mb-4">Telemedicine Integration</h3>
+        <p class="text-[var(--ink-soft)] leading-relaxed-body">We offer telemedicine integration solutions designed to expand your practice's reach and improve patient engagement. Our team provides end-to-end support, from selecting the right telemedicine platform to ensuring compliance with HIPAA and other regulations, so&hellip;</p>
+        <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore Telemedicine Integration Services</a>
+      </div>
+    </div>
+    <!-- 3. Revenue Cycle Management -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
+        <img src="brand_assets/og/Black-Management-Business-Financial-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
+      </div>
+      <div class="reveal">
+        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Maximize revenue, minimize hassle</span>
+        <h3 class="font-display text-2xl tracking-tightish mt-2 mb-4">Revenue Cycle Management</h3>
+        <p class="text-[var(--ink-soft)] leading-relaxed-body">Our revenue cycle management (RCM) services help healthcare providers maximize revenue while improving operational efficiency. We work with your team to implement best practices in billing, coding, and collections, ensuring you capture the full value&hellip;</p>
+        <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore Revenue Cycle Management Services</a>
+      </div>
+    </div>
+    <!-- 4. Practice Transformation -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal md:order-2 aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
+        <img src="brand_assets/og/Doctor-Appointment-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
+      </div>
+      <div class="reveal md:order-1">
+        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Transform your practice, improve efficiency</span>
+        <h3 class="font-display text-2xl tracking-tightish mt-2 mb-4">Practice Transformation and Workflow Optimization</h3>
+        <p class="text-[var(--ink-soft)] leading-relaxed-body">We help healthcare organizations transform their practices by optimizing workflows, automating routine tasks, and improving overall efficiency. From implementing new technologies to refining patient management processes, we ensure your practice operates smoothly and efficiently.</p>
+        <p class="text-[var(--ink)] font-semibold text-sm mt-3">Key&hellip;</p>
+        <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore Practice Transformation and Workflow Optimization Services</a>
+      </div>
+    </div>
+    <!-- 5. Compliance and Regulatory -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
+        <img src="brand_assets/og/Blue-and-White-Modern-National-Doctors-Day-Greeting-Instagram-Story-693x1024.png" alt="" class="w-full h-full object-cover" />
+      </div>
+      <div class="reveal">
+        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Stay compliant, stay secure</span>
+        <h3 class="font-display text-2xl tracking-tightish mt-2 mb-4">Compliance and Regulatory Consulting</h3>
+        <p class="text-[var(--ink-soft)] leading-relaxed-body">Ensuring compliance with healthcare regulations such as HIPAA, HITECH, and MACRA is critical. We offer consulting services that help you navigate these regulations, avoid penalties, and maintain data security and patient privacy.</p>
+        <p class="text-[var(--ink)] font-semibold text-sm mt-3">Key Benefits:</p>
+        <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore Compliance and Regulatory Consulting Services</a>
+      </div>
+    </div>
+    <!-- 6. IT Support -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal md:order-2 aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
+        <img src="brand_assets/og/White-Modern-Online-Doctor-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
+      </div>
+      <div class="reveal md:order-1">
+        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Reliable IT solutions for seamless healthcare operations</span>
+        <h3 class="font-display text-2xl tracking-tightish mt-2 mb-4">IT Support and Managed Services</h3>
+        <p class="text-[var(--ink-soft)] leading-relaxed-body">We provide IT support and managed services to ensure your healthcare technology operates smoothly. From server maintenance to network security, we offer 24/7 support to keep your systems running without interruptions.</p>
+        <p class="text-[var(--ink)] font-semibold text-sm mt-3">Key Benefits:</p>
+        <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore IT Support and Managed Services Services</a>
       </div>
     </div>
   </div>
@@ -286,150 +319,202 @@
 <!-- ABOUT -->
 <section id="about" class="bg-[var(--paper-raised)] border-y border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 grid md:grid-cols-2 gap-14 items-center">
-    <div class="reveal relative">
-      <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg relative">
-        <img src="brand_assets/og/blue-find-doctor-modern-instagram-post.png" alt="H&amp;A Healthcare Consulting" class="w-full h-full object-cover" />
-      </div>
-      <div class="hidden sm:block absolute -bottom-6 -right-6 bg-[var(--brand)] text-[var(--paper)] rounded-2xl px-6 py-5 shadow-soft-lg">
-        <div class="font-display text-2xl tracking-tightish">20+ yrs</div>
-        <div class="text-xs text-[var(--paper)]/70 mt-0.5">Industry experience</div>
-      </div>
-    </div>
     <div class="reveal">
-      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">About us</span>
-      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Empowering Healthcare with Innovative Solutions</h2>
+      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Empowering healthcare with innovative solutions</span>
+      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Transforming Healthcare Practices for the Future</h2>
       <p class="leading-relaxed-body text-[var(--ink-soft)] mt-5">
-        At H&amp;A Healthcare Consulting, we are dedicated to helping healthcare providers optimize their operations, enhance patient care, and implement cutting-edge technology solutions. We simplify complex healthcare systems and create more efficient, compliant, and patient-centric environments — with expertise spanning telemedicine integration, EHR optimization, and HIPAA-compliant infrastructure.
+        At H&amp;A Healthcare Consulting, we are dedicated to helping healthcare providers optimize their operations, enhance patient care, and implement cutting-edge technology solutions. With a deep understanding of the healthcare industry, we provide tailored consulting services that address the unique needs of medical practices and healthcare organizations. Our mission is to simplify complex healthcare systems and create more efficient, compliant, and patient-centric environments.
       </p>
       <p class="leading-relaxed-body text-[var(--ink-soft)] mt-4">
-        With over 20 years of experience, H&amp;A Healthcare Consulting is your trusted partner in optimizing healthcare systems, improving operational efficiency, and enhancing patient care — serving clients across the country.
+        Whether you need assistance with telemedicine integration, electronic health record (EHR) optimization, or HIPAA-compliant infrastructure, our team of experienced professionals is here to guide you every step of the way. We work closely with each client to ensure that our solutions align with their vision and deliver measurable improvements in both operational efficiency and patient outcomes. Partner with H&amp;A Healthcare Consulting and take your practice to the next level.
       </p>
-      <ul class="mt-7 space-y-3">
-        <li class="flex items-start gap-3 text-sm text-[var(--ink)]">
-          <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-          Customized EHR solutions built around your specialty
-        </li>
-        <li class="flex items-start gap-3 text-sm text-[var(--ink)]">
-          <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-          Nationwide reach with a personal, local feel
-        </li>
-        <li class="flex items-start gap-3 text-sm text-[var(--ink)]">
-          <svg class="mt-0.5 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
-          Partnerships with eClinicalWorks, Athenahealth &amp; Experity
-        </li>
-      </ul>
+    </div>
+    <div class="reveal relative">
+      <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft-lg max-w-md ml-auto">
+        <img src="brand_assets/og/HA-CARD-FRONT-1-pdf.jpg" alt="H&amp;A Healthcare Consulting" class="w-full h-full object-cover" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="max-w-6xl mx-auto px-6 md:px-8 py-24">
+  <div class="reveal">
+    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mb-12">Our Mission: Empowering Healthcare for a Better Future</h2>
+  </div>
+  <div class="grid md:grid-cols-2 gap-14">
+    <div class="reveal">
+      <h3 class="font-semibold text-lg mb-3">What We Believe</h3>
+      <p class="text-[var(--ink-soft)] leading-relaxed-body">At H&amp;A Healthcare Consulting, our mission is to help healthcare organizations thrive by delivering innovative, customized solutions that enhance patient care and streamline operations. We are dedicated to making healthcare more efficient, compliant, and accessible through expert consulting services. Our goal is to empower your practice to achieve greater success while improving the healthcare experience for both providers and patients.</p>
+    </div>
+    <div class="reveal">
+      <h3 class="font-semibold text-lg mb-3">Ready to Elevate Your Practice?</h3>
+      <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full">Get in Touch Today</a>
     </div>
   </div>
 
-  <div class="max-w-6xl mx-auto px-6 md:px-8 pb-24">
-    <div class="reveal max-w-xl mx-auto text-center mb-14">
-      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Meet the team</span>
-      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">The people behind H&amp;A</h2>
-    </div>
-    <div class="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-      <div class="reveal card rounded-2xl p-7 text-center">
-        <div class="w-16 h-16 rounded-full bg-[var(--brand-deep)] mx-auto flex items-center justify-center">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+  <!-- TEAM -->
+  <div class="mt-24 pt-16 border-t border-[var(--line)]">
+    <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Our team</span>
+    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3 mb-12">Guiding Your Healthcare Practice to Success</h2>
+    <div class="grid sm:grid-cols-2 gap-8 max-w-2xl">
+      <div class="reveal">
+        <div class="aspect-[768/439] rounded-xl overflow-hidden shadow-soft">
+          <img src="brand_assets/og/EDDIE-CARD-BACK-768x439.png" alt="Eddie Zakaria business card" class="w-full h-full object-cover" />
         </div>
-        <h3 class="font-display text-lg tracking-tightish mt-4">Eddie Zakaria</h3>
-        <p class="text-xs uppercase tracking-[0.1em] text-[var(--accent)] font-semibold mt-1">EHR Specialist</p>
-        <div class="mt-4 space-y-1.5 text-sm text-[var(--ink-soft)]">
-          <a href="tel:+18328004352" class="block hover:text-[var(--ink)] transition-colors">(832) 800-4352</a>
-          <a href="mailto:eddie@hahealthconsulting.com" class="block hover:text-[var(--ink)] transition-colors">eddie@hahealthconsulting.com</a>
-        </div>
+        <p class="mt-4 font-semibold text-[var(--brand)]">Eddie Zakaria</p>
+        <p class="text-sm text-[var(--ink-soft)]">President &amp; Founder | EHR Specialist</p>
       </div>
-      <div class="reveal card rounded-2xl p-7 text-center">
-        <div class="w-16 h-16 rounded-full bg-[var(--brand-deep)] mx-auto flex items-center justify-center">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.6"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <div class="reveal">
+        <div class="aspect-[768/439] rounded-xl overflow-hidden shadow-soft">
+          <img src="brand_assets/og/SAJID-CARD-BACK-768x439.png" alt="Sajid Sultan business card" class="w-full h-full object-cover" />
         </div>
-        <h3 class="font-display text-lg tracking-tightish mt-4">Sajid Sultan</h3>
-        <p class="text-xs uppercase tracking-[0.1em] text-[var(--accent)] font-semibold mt-1">Chief Technology Officer</p>
-        <div class="mt-4 space-y-1.5 text-sm text-[var(--ink-soft)]">
-          <a href="tel:+18323748779" class="block hover:text-[var(--ink)] transition-colors">(832) 374-8779</a>
-          <a href="mailto:mo@hahealthconsulting.com" class="block hover:text-[var(--ink)] transition-colors">mo@hahealthconsulting.com</a>
-        </div>
+        <p class="mt-4 font-semibold text-[var(--brand)]">Sajid &ldquo;Mo&rdquo; Sultan</p>
+        <p class="text-sm text-[var(--ink-soft)]">CTO | Agile Project Manager</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- BLOG -->
-<section id="blog" class="max-w-6xl mx-auto px-6 md:px-8 py-24">
-  <div class="reveal max-w-xl mx-auto text-center">
-    <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Insights</span>
-    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">From the blog</h2>
-  </div>
-  <div class="grid sm:grid-cols-3 gap-6 mt-14">
-    <a href="#" class="reveal card rounded-2xl overflow-hidden block">
-      <img src="https://placehold.co/600x400/08082c/f7f6f2?text=Article" alt="" class="w-full aspect-[3/2] object-cover" />
-      <div class="p-6">
-        <span class="text-xs uppercase tracking-[0.1em] text-[var(--brand)]">EHR</span>
-        <h3 class="font-display text-lg tracking-tightish mt-2 mb-2">5 signs your EHR workflow needs an audit</h3>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Practical warning signs practices often miss until burnout sets in.</p>
-      </div>
-    </a>
-    <a href="#" class="reveal card rounded-2xl overflow-hidden block">
-      <img src="https://placehold.co/600x400/08082c/f7f6f2?text=Article" alt="" class="w-full aspect-[3/2] object-cover" />
-      <div class="p-6">
-        <span class="text-xs uppercase tracking-[0.1em] text-[var(--brand)]">Telehealth</span>
-        <h3 class="font-display text-lg tracking-tightish mt-2 mb-2">Telemedicine integration, done right</h3>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">What separates a bolted-on video tool from real virtual care.</p>
-      </div>
-    </a>
-    <a href="#" class="reveal card rounded-2xl overflow-hidden block">
-      <img src="https://placehold.co/600x400/08082c/f7f6f2?text=Article" alt="" class="w-full aspect-[3/2] object-cover" />
-      <div class="p-6">
-        <span class="text-xs uppercase tracking-[0.1em] text-[var(--brand)]">Compliance</span>
-        <h3 class="font-display text-lg tracking-tightish mt-2 mb-2">Staying ahead of regulatory change</h3>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">A simple framework for keeping compliance proactive, not reactive.</p>
-      </div>
-    </a>
+<section id="blog" class="bg-[var(--paper-raised)] border-y border-[var(--line)]">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-24">
+    <div class="reveal">
+      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Latest updates in healthcare</span>
+      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Expert Advice for Optimizing Your Practice</h2>
+    </div>
+
+    <div class="mt-14 space-y-14">
+      <a href="#" class="reveal grid md:grid-cols-2 gap-8 items-center group">
+        <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
+          <img src="brand_assets/og/Our-Identity-1024x575.png" alt="" class="w-full h-full object-cover" />
+        </div>
+        <div>
+          <p class="text-xs text-[var(--ink-soft)] leading-relaxed">EHR consulting services, EHR optimization, Electronic Health Records, Healthcare workflow improvement, Improve patient care</p>
+          <h3 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">The Importance of EHR Optimization for Healthcare Practices</h3>
+          <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">In today's fast-paced healthcare environment, Electronic Health Records (EHR) have become a cornerstone of efficient operations. However, many healthcare practices&hellip;</p>
+        </div>
+      </a>
+      <a href="#" class="reveal grid md:grid-cols-2 gap-8 items-center group">
+        <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
+          <img src="brand_assets/og/Online-Doctor-Consultation-Promo-Facebook-Post.png" alt="" class="w-full h-full object-cover" />
+        </div>
+        <div>
+          <p class="text-xs text-[var(--ink-soft)] leading-relaxed">Benefits of telemedicine, HIPAA-compliant telemedicine, Remote patient care, Telemedicine integration, Virtual healthcare solutions</p>
+          <h3 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">How Telemedicine is Transforming Patient Care</h3>
+          <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">In recent years, telemedicine has emerged as a major component of modern healthcare, offering innovative ways to deliver care to&hellip;</p>
+        </div>
+      </a>
+      <a href="#" class="reveal grid md:grid-cols-2 gap-8 items-center group">
+        <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
+          <img src="brand_assets/og/Home-1024x620.png" alt="" class="w-full h-full object-cover" />
+        </div>
+        <div>
+          <p class="text-xs text-[var(--ink-soft)] leading-relaxed">Healthcare billing optimization, Improve financial performance in healthcare, Maximize healthcare revenue, Reduce claim denials, Revenue Cycle Management (RCM)</p>
+          <h3 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">Revenue Cycle Management: How to Maximize Your Practice's Financial Performance</h3>
+          <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">In today's complex healthcare environment, Revenue Cycle Management (RCM) is essential for maintaining the financial health of your practice. From&hellip;</p>
+        </div>
+      </a>
+      <a href="#" class="reveal grid md:grid-cols-2 gap-8 items-center group">
+        <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
+          <img src="brand_assets/og/Blue-And-White-Modern-Business-Consulting-Services-Instagram-Post-746x1024.png" alt="" class="w-full h-full object-cover" />
+        </div>
+        <div>
+          <p class="text-xs text-[var(--ink-soft)] leading-relaxed">Healthcare compliance, Healthcare regulatory consulting, HIPAA regulations, HITECH and MACRA, Protect patient data</p>
+          <h3 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">Healthcare Compliance: Navigating HIPAA, HITECH, and MACRA Regulations</h3>
+          <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Compliance with healthcare regulations is a critical concern for all healthcare providers. Failing to adhere to the necessary regulations can&hellip;</p>
+        </div>
+      </a>
+      <a href="#" class="reveal grid md:grid-cols-2 gap-8 items-center group">
+        <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
+          <img src="brand_assets/og/Blue-and-White-Modern-National-Doctors-Day-Greeting-Instagram-Story-693x1024.png" alt="" class="w-full h-full object-cover" />
+        </div>
+        <div>
+          <p class="text-xs text-[var(--ink-soft)] leading-relaxed">Healthcare practice management, Healthcare workflow optimization, Improve patient outcomes, Operational efficiency in healthcare, Streamline healthcare practice</p>
+          <h3 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">How to Streamline Your Healthcare Practice with Workflow Optimization</h3>
+          <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">In the healthcare industry, efficiency isn't just a luxury—it's a necessity. The ability to deliver timely, quality care while managing&hellip;</p>
+        </div>
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
+<section id="contact" class="max-w-6xl mx-auto px-6 md:px-8 py-24">
+  <div class="grid md:grid-cols-2 gap-10">
+    <div class="reveal rounded-2xl overflow-hidden shadow-soft-lg border border-[var(--line)] min-h-[320px]">
+      <iframe
+        title="H&amp;A Healthcare Consulting location"
+        src="https://www.google.com/maps?q=20008+Champion+Forest+Dr+%23203,+Spring,+TX+77379&output=embed"
+        class="w-full h-full min-h-[320px] border-0"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="reveal">
+      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mb-8">Contact Us</h2>
+      <div class="space-y-6">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-full bg-[var(--brand-deep)] flex items-center justify-center shrink-0">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">Address</p>
+            <p class="text-sm text-[var(--brand)]">20008 Champion Forest Dr #203, Spring, TX 77379</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-full bg-[var(--brand-deep)] flex items-center justify-center shrink-0">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">Phone</p>
+            <a href="tel:+18328004352" class="text-sm text-[var(--brand)] hover:text-[var(--accent)] transition-colors">(832) 800-4352</a>
+          </div>
+        </div>
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-full bg-[var(--brand-deep)] flex items-center justify-center shrink-0">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+          </div>
+          <div>
+            <p class="font-semibold text-sm">Email</p>
+            <a href="mailto:info@hahealthconsulting.com" class="text-sm text-[var(--brand)] hover:text-[var(--accent)] transition-colors">info@hahealthconsulting.com</a>
+          </div>
+        </div>
+      </div>
+
+      <form class="mt-10 space-y-4">
+        <div>
+          <label class="text-xs font-semibold text-[var(--ink-soft)]" for="name">Name</label>
+          <input id="name" type="text" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-[var(--paper-raised)]" placeholder="Jane Smith" />
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-[var(--ink-soft)]" for="email">Email</label>
+          <input id="email" type="email" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-[var(--paper-raised)]" placeholder="jane@practice.com" />
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-[var(--ink-soft)]" for="message">Message</label>
+          <textarea id="message" rows="4" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-[var(--paper-raised)]" placeholder="Tell us about your practice"></textarea>
+        </div>
+        <button type="submit" class="btn-primary w-full text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft">
+          Leave a Message
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
   <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 85% 20%, rgba(195,26,33,0.22), transparent 60%), radial-gradient(50% 50% at 10% 90%, rgba(26,28,77,0.9), transparent 60%);"></div>
   <div class="noise"></div>
-  <div class="relative max-w-6xl mx-auto px-6 md:px-8 py-24 grid md:grid-cols-2 gap-14">
-    <div class="reveal">
-      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)]">Get in touch</span>
-      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Schedule your free consultation</h2>
-      <p class="leading-relaxed-body text-[var(--paper)]/70 mt-5 max-w-md">
-        Tell us a bit about your practice and where you're feeling the most friction — we'll follow up to schedule a call.
-      </p>
-      <div class="mt-9 space-y-4 text-sm">
-        <div class="flex items-center gap-3">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <a href="tel:+18328004352" class="hover:text-[var(--paper)] transition-colors">(832) 800-4352</a>
-        </div>
-        <div class="flex items-center gap-3">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
-          <a href="mailto:info@hahealthconsulting.com" class="hover:text-[var(--paper)] transition-colors">info@hahealthconsulting.com</a>
-        </div>
-        <div class="flex items-center gap-3">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>20008 Champion Forest Dr #203, Spring, TX 77379</span>
-        </div>
-      </div>
-    </div>
-    <form class="reveal bg-[var(--paper-raised)] text-[var(--ink)] rounded-2xl p-7 md:p-8 shadow-soft-lg space-y-4">
-      <div>
-        <label class="text-xs font-semibold text-[var(--ink-soft)]" for="name">Name</label>
-        <input id="name" type="text" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-[var(--paper)]" placeholder="Jane Smith" />
-      </div>
-      <div>
-        <label class="text-xs font-semibold text-[var(--ink-soft)]" for="email">Email</label>
-        <input id="email" type="email" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-[var(--paper)]" placeholder="jane@practice.com" />
-      </div>
-      <div>
-        <label class="text-xs font-semibold text-[var(--ink-soft)]" for="message">Message</label>
-        <textarea id="message" rows="4" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-[var(--paper)]" placeholder="Tell us about your practice"></textarea>
-      </div>
-      <button type="submit" class="btn-primary w-full text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft">
-        Leave a Message
-      </button>
-    </form>
+  <div class="relative max-w-3xl mx-auto px-6 md:px-8 py-20 text-center">
+    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mb-6">Partner with Experts in Healthcare Consulting</h2>
+    <p class="leading-relaxed-body text-[var(--paper)]/75 max-w-xl mx-auto">
+      At H&amp;A Healthcare Consulting, we are committed to delivering innovative solutions that enhance healthcare operations and patient outcomes. With decades of experience and a dedicated team, we're here to support your success.
+    </p>
+    <a href="#contact" class="btn-outline inline-flex text-sm font-semibold px-6 py-3.5 rounded-full mt-8">
+      Contact Us Today to Learn More
+    </a>
   </div>
 </section>
 
