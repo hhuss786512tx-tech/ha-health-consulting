@@ -85,8 +85,9 @@
     var doneBtn = document.getElementById('leadDoneBtn');
     var steps = leadModal.querySelectorAll('.lead-step');
     var dots = leadModal.querySelectorAll('.lead-progress-dot');
-    var autoTimer = null;
     var SESSION_KEY = 'haLeadPopupShown';
+    var autoShown = false;
+    try { autoShown = sessionStorage.getItem(SESSION_KEY) === '1'; } catch(e){}
 
     function goToStep(n){
       steps.forEach(function(s){ s.classList.toggle('is-active', s.dataset.step === String(n)); });
@@ -97,8 +98,8 @@
       leadScrim.classList.add('is-open');
       leadModal.classList.add('is-open');
       document.body.style.overflow = 'hidden';
+      autoShown = true;
       try { sessionStorage.setItem(SESSION_KEY, '1'); } catch(e){}
-      if (autoTimer) { clearTimeout(autoTimer); autoTimer = null; }
       var firstField = leadModal.querySelector('input:not(.lead-honeypot)');
       if (firstField) setTimeout(function(){ firstField.focus(); }, 300);
     }
@@ -152,11 +153,24 @@
       });
     });
 
-    // Trigger 2: ~15 seconds of presence on the page, once per browser session
-    var alreadyShown = false;
-    try { alreadyShown = sessionStorage.getItem(SESSION_KEY) === '1'; } catch(e){}
-    if (!alreadyShown) {
-      autoTimer = setTimeout(openLead, 15000);
+    // Trigger 2: exit intent — mouse leaves via the top of the viewport (once per session).
+    // Never fires on load; requires an actual upward exit gesture past y<=0.
+    if (!autoShown) {
+      document.addEventListener('mouseout', function(e){
+        if (autoShown) return;
+        if (e.clientY <= 0 && !e.relatedTarget) openLead();
+      });
+    }
+
+    // Trigger 3: scroll depth past the services section (~2200px), once per session.
+    if (!autoShown) {
+      window.addEventListener('scroll', function onScrollDepth(){
+        if (autoShown) { window.removeEventListener('scroll', onScrollDepth); return; }
+        if ((window.scrollY || window.pageYOffset) > 2200) {
+          window.removeEventListener('scroll', onScrollDepth);
+          openLead();
+        }
+      }, { passive: true });
     }
   }
 })();

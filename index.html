@@ -6,7 +6,7 @@
 <title>HA Health Consulting | Streamlining Healthcare Practices</title>
 <link rel="icon" href="brand_assets/logo.png" type="image/png" />
 <meta name="description" content="H&amp;A Healthcare Consulting — EHR optimization, telemedicine integration, revenue cycle management, and HIPAA-compliant infrastructure, backed by 20+ years of healthcare industry experience." />
-<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="css/tailwind.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -72,13 +72,13 @@
   <div class="absolute inset-x-0 bottom-0 h-28 md:h-36" style="background:linear-gradient(to bottom, transparent, var(--paper));"></div>
   <div class="relative max-w-6xl mx-auto px-6 md:px-8 pt-20 pb-24 md:pt-28 md:pb-32">
     <div class="max-w-2xl">
-      <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)] border border-[var(--accent-soft)]/30 rounded-full px-3.5 py-1.5">
+      <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)] border border-[rgba(240,163,167,0.3)] rounded-full px-3.5 py-1.5">
         Houston, TX &middot; Serving practices nationwide
       </span>
-      <h1 class="font-display tracking-tightish text-4xl sm:text-5xl md:text-[3.4rem] leading-[1.08] mt-6">
+      <h1 class="hero-h1 font-display tracking-tightish text-4xl sm:text-5xl md:text-[3.4rem] mt-6">
         Expert Healthcare Consulting Tailored to Your Needs
       </h1>
-      <p class="leading-relaxed-body text-[var(--paper)]/75 text-lg mt-6 max-w-xl">
+      <p class="leading-relaxed-body text-[rgba(247,246,242,0.75)] text-lg mt-6 max-w-xl">
         Welcome to <strong class="text-[var(--paper)] font-semibold">H&amp;A Healthcare Consulting</strong>, and thank you for visiting our site! Based in <strong class="text-[var(--paper)] font-semibold">Houston, Texas</strong>, we proudly serve clients nationwide with over <strong class="text-[var(--paper)] font-semibold">20 years of healthcare industry experience</strong>. Our team specializes in providing expert <strong class="text-[var(--paper)] font-semibold">EHR consulting services</strong> designed to meet the unique needs of your organization. Whether you're seeking to optimize, implement, or enhance your EHR system, we're here to help you streamline operations and improve patient outcomes. <strong class="text-[var(--paper)] font-semibold">Let us support your success.</strong>
       </p>
       <div class="flex flex-wrap items-center gap-4 mt-9">
@@ -89,7 +89,7 @@
     </div>
   </div>
   <div class="relative flex justify-center pb-14">
-    <a href="#services-preview" aria-label="Scroll to explore" class="scroll-cue text-[var(--paper)]/60 hover:text-[var(--paper)] transition-colors">
+    <a href="#services-preview" aria-label="Scroll to explore" class="scroll-cue text-[rgba(247,246,242,0.6)] hover:text-[var(--paper)] transition-colors">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
     </a>
   </div>
@@ -114,6 +114,7 @@
         <img src="brand_assets/experity-trimmed.png" alt="" aria-hidden="true" class="partner-logo h-6 md:h-7 w-auto object-contain" />
       </div>
     </div>
+    <p class="text-center text-xs text-[var(--ink-soft)] mt-5">Platforms our consultants have implemented for client practices — not an official partnership or certification.</p>
   </div>
 </section>
 
@@ -163,18 +164,26 @@
   <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3 mb-12">Guiding Your Healthcare Practice to Success</h2>
   <div class="grid sm:grid-cols-2 gap-8 max-w-2xl">
     <div class="reveal">
-      <div class="aspect-[768/439] rounded-xl overflow-hidden shadow-soft">
-        <img src="brand_assets/og/EDDIE-CARD-BACK-768x439.png" alt="Eddie Zakaria business card" class="w-full h-full object-cover" />
+      <div class="w-[240px] h-[240px] rounded-full overflow-hidden shadow-soft">
+        <img src="brand_assets/team/eddie-zakaria-placeholder.svg" alt="Eddie Zakaria, President &amp; Founder — headshot placeholder" class="w-full h-full object-cover" />
       </div>
       <p class="mt-4 font-semibold text-[var(--brand)]">Eddie Zakaria</p>
-      <p class="text-sm text-[var(--ink-soft)]">President &amp; Founder | EHR Specialist</p>
+      <p class="text-sm text-[var(--ink-soft)]">President &amp; Founder</p>
+      <a href="brand_assets/og/EDDIE-CARD-BACK-768x439.png" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-2 text-xs text-[var(--ink-soft)] hover:text-[var(--brand)] transition-colors">
+        <img src="brand_assets/og/EDDIE-CARD-BACK-768x439.png" alt="" class="w-10 rounded-sm object-cover opacity-80" style="height:20px" />
+        View business card
+      </a>
     </div>
     <div class="reveal">
-      <div class="aspect-[768/439] rounded-xl overflow-hidden shadow-soft">
-        <img src="brand_assets/og/SAJID-CARD-BACK-768x439.png" alt="Sajid Sultan business card" class="w-full h-full object-cover" />
+      <div class="w-[240px] h-[240px] rounded-full overflow-hidden shadow-soft">
+        <img src="brand_assets/team/sajid-sultan-placeholder.svg" alt="Sajid &quot;Mo&quot; Sultan, Chief Technology Officer — headshot placeholder" class="w-full h-full object-cover" />
       </div>
       <p class="mt-4 font-semibold text-[var(--brand)]">Sajid &ldquo;Mo&rdquo; Sultan</p>
-      <p class="text-sm text-[var(--ink-soft)]">CTO | Agile Project Manager</p>
+      <p class="text-sm text-[var(--ink-soft)]">Chief Technology Officer</p>
+      <a href="brand_assets/og/SAJID-CARD-BACK-768x439.png" target="_blank" rel="noopener" class="mt-3 inline-flex items-center gap-2 text-xs text-[var(--ink-soft)] hover:text-[var(--brand)] transition-colors">
+        <img src="brand_assets/og/SAJID-CARD-BACK-768x439.png" alt="" class="w-10 rounded-sm object-cover opacity-80" style="height:20px" />
+        View business card
+      </a>
     </div>
   </div>
 </section>
@@ -185,7 +194,7 @@
   <div class="noise"></div>
   <div class="relative max-w-3xl mx-auto px-6 md:px-8 py-20 text-center">
     <h2 class="font-display tracking-tightish text-3xl md:text-4xl mb-6">Partner with Experts in Healthcare Consulting</h2>
-    <p class="leading-relaxed-body text-[var(--paper)]/75 max-w-xl mx-auto">
+    <p class="leading-relaxed-body text-[rgba(247,246,242,0.75)] max-w-xl mx-auto">
       At H&amp;A Healthcare Consulting, we are committed to delivering innovative solutions that enhance healthcare operations and patient outcomes. With decades of experience and a dedicated team, we're here to support your success.
     </p>
     <a href="contact.html" class="btn-outline inline-flex text-sm font-semibold px-6 py-3.5 rounded-full mt-8">
@@ -195,7 +204,7 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="bg-[var(--brand-deep)] text-[var(--paper)]/70 border-t border-white/10">
+<footer class="bg-[var(--brand-deep)] text-[rgba(247,246,242,0.7)] border-t border-white/10">
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-14 grid sm:grid-cols-2 md:grid-cols-4 gap-10">
     <div>
       <div class="flex items-center gap-2.5 mb-4">

@@ -16,7 +16,22 @@ body{
   color:var(--ink);
   font-family:'Inter',sans-serif;
 }
+/* Tailwind's arbitrary-value opacity modifier (text-[var(--x)]/NN) can't resolve a CSS
+   custom property to RGB channels, so it silently fails to compile — footer text and
+   links were inheriting body's dark --ink color on a near-black background (~1.1:1
+   contrast). Set it explicitly here instead of depending on that utility. */
+footer{ color: rgba(247,246,242,0.75); }
+footer a:hover{ color: var(--paper); }
+
 .font-display{font-family:'Fraunces',serif;}
+
+/* Tailwind's text-4xl/5xl utilities bundle their own line-height, and the
+   responsive (sm:/md:) utility blocks are emitted after the base layer —
+   so a bare `leading-[1.12]` gets beaten by sm:text-5xl's bundled
+   line-height:1 at >=640px even though it appears later in the class list.
+   Set it here instead, after tailwind.css in the cascade, so it holds at
+   every breakpoint. */
+.hero-h1{ line-height: 1.12; }
 .tracking-tightish{letter-spacing:-0.03em;}
 .leading-relaxed-body{line-height:1.7;}
 

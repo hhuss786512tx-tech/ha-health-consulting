@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "tailwindcss -i css/tailwind-src.css -o css/tailwind.css"
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
   "homepage": "https://github.com/hhuss786512tx-tech/ha-health-consulting#readme",
   "dependencies": {
     "puppeteer": "^25.10.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
   }
 }
