@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Services | HA Health Consulting</title>
+<link rel="icon" href="brand_assets/logo.png" type="image/png" />
+<meta name="description" content="EHR optimization, telemedicine integration, revenue cycle management, practice transformation, compliance, and IT support from H&amp;A Healthcare Consulting." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/site.css" />
+</head>
+<body class="antialiased">
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAV -->
+<header id="siteHeader" class="sticky top-0 z-50 backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
+    <a href="index.html" class="flex items-center gap-2.5">
+      <img src="brand_assets/logo.png" alt="H&amp;A Healthcare Consulting logo" class="w-10 h-10 rounded-lg shadow-soft" />
+      <span class="font-display text-lg tracking-tightish text-[var(--ink)]">H&amp;A Healthcare Consulting</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-9 text-[15px]">
+      <a href="index.html" class="nav-link py-1">Home</a>
+      <a href="about.html" class="nav-link py-1">About</a>
+      <a href="services.html" class="nav-link is-active py-1">Services</a>
+      <a href="contact.html" class="nav-link py-1">Contact</a>
+      <a href="blog.html" class="nav-link py-1">Blog</a>
+    </nav>
+    <button class="js-open-lead btn-primary hidden md:inline-flex text-sm font-semibold px-5 py-2.5 rounded-full shadow-soft">
+      Schedule Your Free Consultation
+    </button>
+    <button id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden w-11 h-11 flex items-center justify-center text-[var(--ink)] relative">
+      <svg id="iconMenu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="iconClose" class="hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<div id="mobileScrim" class="mobile-scrim md:hidden"></div>
+<nav id="mobileMenu" class="mobile-menu md:hidden" aria-label="Mobile">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="services.html" class="mobile-nav-link">Services</a>
+  <a href="contact.html" class="mobile-nav-link">Contact</a>
+  <a href="blog.html" class="mobile-nav-link">Blog</a>
+  <button class="js-open-lead btn-primary flex items-center justify-center w-full text-sm font-semibold px-5 py-3 rounded-full shadow-soft mt-3">
+    Schedule Your Free Consultation
+  </button>
+</nav>
+
+<!-- PAGE HEADER -->
+<section class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
+  <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 15% 10%, rgba(26,28,77,0.9), transparent 60%), radial-gradient(50% 50% at 90% 90%, rgba(195,26,33,0.22), transparent 60%);"></div>
+  <div class="noise"></div>
+  <div class="relative max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-20">
+    <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)]">Expert healthcare solutions</span>
+    <h1 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Your Path to Better Healthcare Management</h1>
+    <p class="leading-relaxed-body text-[var(--paper)]/75 mt-4 max-w-xl">At H&amp;A Healthcare Consulting, we provide specialized services that empower your healthcare practice to operate more efficiently, improve patient care, and boost profitability. Explore how we can support your success.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="max-w-6xl mx-auto px-6 md:px-8 py-24">
+  <div class="space-y-20">
+    <!-- 1. EHR Optimization -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
+        <img src="brand_assets/og/Blue-And-White-Modern-Business-Consulting-Services-Instagram-Post-746x1024.png" alt="" class="w-full h-full object-cover" />
+      </div>
+      <div class="reveal">
+        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Streamline your EHR, enhance your practice</span>
+        <h2 class="font-display text-2xl tracking-tightish mt-2 mb-4">EHR Optimization Services</h2>
+        <p class="text-[var(--ink-soft)] leading-relaxed-body">We provide customized Electronic Health Record (EHR) optimization solutions tailored to your practice's unique needs. Our team helps healthcare organizations streamline workflows, improve data accessibility, and enhance patient care by refining and optimizing their existing&hellip;</p>
+        <button class="js-open-lead btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore EHR Optimization Services Services</button>
+      </div>
+    </div>
+    <!-- 2. Telemedicine Integration -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal md:order-2 aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
+        <img src="brand_assets/og/Online-Doctor-Consultation-Promo-Facebook-Post.png" alt="" class="w-full h-full object-cover" />
+      </div>
+      <div class="reveal md:order-1">
+        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Expand your reach with secure telemedicine</span>
+        <h2 class="font-display text-2xl tracking-tightish mt-2 mb-4">Telemedicine Integration</h2>
+        <p class="text-[var(--ink-soft)] leading-relaxed-body">We offer telemedicine integration solutions designed to expand your practice's reach and improve patient engagement. Our team provides end-to-end support, from selecting the right telemedicine platform to ensuring compliance with HIPAA and other regulations, so&hellip;</p>
+        <button class="js-open-lead btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore Telemedicine Integration Services</button>
+      </div>
+    </div>
+    <!-- 3. Revenue Cycle Management -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
+        <img src="brand_assets/og/Black-Management-Business-Financial-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
+      </div>
+      <div class="reveal">
+        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Maximize revenue, minimize hassle</span>
+        <h2 class="font-display text-2xl tracking-tightish mt-2 mb-4">Revenue Cycle Management</h2>
+        <p class="text-[var(--ink-soft)] leading-relaxed-body">Our revenue cycle management (RCM) services help healthcare providers maximize revenue while improving operational efficiency. We work with your team to implement best practices in billing, coding, and collections, ensuring you capture the full value&hellip;</p>
+        <button class="js-open-lead btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore Revenue Cycle Management Services</button>
+      </div>
+    </div>
+    <!-- 4. Practice Transformation -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal md:order-2 aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
+        <img src="brand_assets/og/Doctor-Appointment-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
+      </div>
+      <div class="reveal md:order-1">
+        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Transform your practice, improve efficiency</span>
+        <h2 class="font-display text-2xl tracking-tightish mt-2 mb-4">Practice Transformation and Workflow Optimization</h2>
+        <p class="text-[var(--ink-soft)] leading-relaxed-body">We help healthcare organizations transform their practices by optimizing workflows, automating routine tasks, and improving overall efficiency. From implementing new technologies to refining patient management processes, we ensure your practice operates smoothly and efficiently.</p>
+        <p class="text-[var(--ink)] font-semibold text-sm mt-3">Key&hellip;</p>
+        <button class="js-open-lead btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore Practice Transformation and Workflow Optimization Services</button>
+      </div>
+    </div>
+    <!-- 5. Compliance and Regulatory -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
+        <img src="brand_assets/og/Blue-and-White-Modern-National-Doctors-Day-Greeting-Instagram-Story-693x1024.png" alt="" class="w-full h-full object-cover" />
+      </div>
+      <div class="reveal">
+        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Stay compliant, stay secure</span>
+        <h2 class="font-display text-2xl tracking-tightish mt-2 mb-4">Compliance and Regulatory Consulting</h2>
+        <p class="text-[var(--ink-soft)] leading-relaxed-body">Ensuring compliance with healthcare regulations such as HIPAA, HITECH, and MACRA is critical. We offer consulting services that help you navigate these regulations, avoid penalties, and maintain data security and patient privacy.</p>
+        <p class="text-[var(--ink)] font-semibold text-sm mt-3">Key Benefits:</p>
+        <button class="js-open-lead btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore Compliance and Regulatory Consulting Services</button>
+      </div>
+    </div>
+    <!-- 6. IT Support -->
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="reveal md:order-2 aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
+        <img src="brand_assets/og/White-Modern-Online-Doctor-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
+      </div>
+      <div class="reveal md:order-1">
+        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Reliable IT solutions for seamless healthcare operations</span>
+        <h2 class="font-display text-2xl tracking-tightish mt-2 mb-4">IT Support and Managed Services</h2>
+        <p class="text-[var(--ink-soft)] leading-relaxed-body">We provide IT support and managed services to ensure your healthcare technology operates smoothly. From server maintenance to network security, we offer 24/7 support to keep your systems running without interruptions.</p>
+        <p class="text-[var(--ink)] font-semibold text-sm mt-3">Key Benefits:</p>
+        <button class="js-open-lead btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore IT Support and Managed Services Services</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[var(--brand-deep)] text-[var(--paper)]/70 border-t border-white/10">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-14 grid sm:grid-cols-2 md:grid-cols-4 gap-10">
+    <div>
+      <div class="flex items-center gap-2.5 mb-4">
+        <img src="brand_assets/logo.png" alt="H&amp;A Healthcare Consulting logo" class="w-8 h-8 rounded-md" />
+        <span class="font-display text-base text-[var(--paper)] tracking-tightish">H&amp;A Healthcare Consulting</span>
+      </div>
+      <p class="text-sm leading-relaxed-body">Empowering healthcare practices nationwide.</p>
+    </div>
+    <div>
+      <h4 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Services</h4>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="services.html" class="hover:text-[var(--paper)] transition-colors">EHR Optimization</a></li>
+        <li><a href="services.html" class="hover:text-[var(--paper)] transition-colors">Telemedicine Integration</a></li>
+        <li><a href="services.html" class="hover:text-[var(--paper)] transition-colors">Revenue Cycle Management</a></li>
+        <li><a href="services.html" class="hover:text-[var(--paper)] transition-colors">Compliance &amp; Regulatory</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Company</h4>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="about.html" class="hover:text-[var(--paper)] transition-colors">About</a></li>
+        <li><a href="blog.html" class="hover:text-[var(--paper)] transition-colors">Blog</a></li>
+        <li><a href="contact.html" class="hover:text-[var(--paper)] transition-colors">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Legal</h4>
+      <ul class="space-y-2.5 text-sm">
+        <li><a href="https://hahealthconsulting.com/legal/privacy-policy/" class="hover:text-[var(--paper)] transition-colors">Privacy Policy</a></li>
+        <li><a href="https://hahealthconsulting.com/legal/disclaimer/" class="hover:text-[var(--paper)] transition-colors">Disclaimer</a></li>
+        <li><a href="https://hahealthconsulting.com/legal/terms-of-use/" class="hover:text-[var(--paper)] transition-colors">Terms of Use</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-6xl mx-auto px-6 md:px-8 py-6 text-xs flex flex-col sm:flex-row gap-2 justify-between">
+      <span>&copy; 2026 H&amp;A Healthcare Consulting. All rights reserved.</span>
+      <span>Serving Texas &amp; practices nationwide.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- LEAD CAPTURE POPUP -->
+<div id="leadScrim" class="lead-scrim"></div>
+<div id="leadModal" class="lead-modal" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+  <div class="p-7 md:p-8">
+    <div class="flex items-start justify-between mb-5">
+      <div class="flex items-center gap-2">
+        <span class="lead-progress-dot is-active" data-dot="1"></span>
+        <span class="lead-progress-dot" data-dot="2"></span>
+        <span class="lead-progress-dot" data-dot="3"></span>
+      </div>
+      <button id="leadCloseBtn" type="button" aria-label="Close" class="w-8 h-8 flex items-center justify-center text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors -mt-1 -mr-1">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <form id="leadForm">
+      <div class="lead-step is-active" data-step="1">
+        <h3 id="leadModalTitle" class="font-display text-2xl tracking-tightish mb-2">Get Your Free Consultation</h3>
+        <p class="text-sm text-[var(--ink-soft)] mb-6">Tell us how to reach you — takes less than a minute.</p>
+        <div class="space-y-4">
+          <input type="text" name="company_website" class="lead-honeypot" tabindex="-1" autocomplete="off" />
+          <div>
+            <label class="text-xs font-semibold text-[var(--ink-soft)]" for="leadName">Name</label>
+            <input required id="leadName" name="name" type="text" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm" placeholder="Jane Smith" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-[var(--ink-soft)]" for="leadEmail">Email</label>
+            <input required id="leadEmail" name="email" type="email" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm" placeholder="jane@practice.com" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-[var(--ink-soft)]" for="leadPhone">Phone</label>
+            <input required id="leadPhone" name="phone" type="tel" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm" placeholder="(832) 555-0100" />
+          </div>
+        </div>
+        <button type="button" class="lead-next btn-primary w-full text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft mt-6" data-next="2">Continue</button>
+      </div>
+      <div class="lead-step" data-step="2">
+        <h3 class="font-display text-2xl tracking-tightish mb-2">What can we help with?</h3>
+        <p class="text-sm text-[var(--ink-soft)] mb-6">This helps us route you to the right specialist.</p>
+        <div class="space-y-4">
+          <div>
+            <label class="text-xs font-semibold text-[var(--ink-soft)]" for="leadInterest">Area of interest</label>
+            <select id="leadInterest" name="interest" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-white">
+              <option>EHR Optimization</option>
+              <option>Telemedicine Integration</option>
+              <option>Revenue Cycle Management</option>
+              <option>Practice Transformation</option>
+              <option>Compliance &amp; Regulatory</option>
+              <option>IT Support &amp; Managed Services</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-[var(--ink-soft)]" for="leadMessage">Anything specific we should know?</label>
+            <textarea id="leadMessage" name="message" rows="3" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm" placeholder="Optional"></textarea>
+          </div>
+        </div>
+        <div class="flex gap-3 mt-6">
+          <button type="button" class="lead-back btn-ghost flex-1 text-sm font-semibold px-6 py-3.5 rounded-full" data-back="1">Back</button>
+          <button type="submit" class="btn-primary flex-1 text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft">Submit</button>
+        </div>
+      </div>
+      <div class="lead-step text-center py-6" data-step="3">
+        <div class="w-14 h-14 rounded-full bg-[var(--brand-deep)] mx-auto flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3 class="font-display text-2xl tracking-tightish mb-2">Thanks — we've got it!</h3>
+        <p class="text-sm text-[var(--ink-soft)]">Someone from H&amp;A Healthcare Consulting will reach out shortly.</p>
+        <button type="button" id="leadDoneBtn" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Close</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/site.js"></script>
+</body>
+</html>

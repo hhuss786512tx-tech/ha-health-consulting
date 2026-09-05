@@ -1,0 +1,225 @@
+:root{
+  --ink:#12142e;
+  --ink-soft:#4a4d68;
+  --paper:#f7f6f2;
+  --paper-raised:#ffffff;
+  --brand:#1a1c4d;
+  --brand-deep:#08082c;
+  --accent:#c31a21;
+  --accent-hover:#a5151b;
+  --accent-soft:#f0a3a7;
+  --line:#dcdae0;
+}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+}
+.font-display{font-family:'Fraunces',serif;}
+.tracking-tightish{letter-spacing:-0.03em;}
+.leading-relaxed-body{line-height:1.7;}
+
+.shadow-soft{
+  box-shadow: 0 1px 2px rgba(8,8,44,0.06), 0 8px 24px -8px rgba(8,8,44,0.2), 0 24px 48px -24px rgba(8,8,44,0.18);
+}
+.shadow-soft-lg{
+  box-shadow: 0 2px 4px rgba(8,8,44,0.08), 0 16px 40px -12px rgba(8,8,44,0.24), 0 32px 64px -24px rgba(8,8,44,0.22);
+}
+.noise{
+  position:absolute; inset:0; pointer-events:none; opacity:0.05; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.btn-primary{
+  background:var(--accent);
+  color:var(--paper);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease;
+}
+.btn-primary:hover{ transform: translateY(-2px); background:var(--accent-hover); box-shadow: 0 12px 24px -8px rgba(195,26,33,0.45); }
+.btn-primary:focus-visible{ outline: 2px solid var(--brand); outline-offset: 3px; }
+
+.btn-outline{
+  border:1px solid rgba(247,245,239,0.35);
+  color:var(--paper);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease, border-color 0.2s ease;
+}
+.btn-outline:hover{ transform: translateY(-2px); background:rgba(247,245,239,0.1); border-color:rgba(247,245,239,0.6); }
+.btn-outline:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.btn-dark{
+  background:var(--brand-deep);
+  color:var(--paper);
+  border:1px solid rgba(240,163,167,0.4);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease, border-color 0.2s ease;
+}
+.btn-dark:hover{ transform: translateY(-2px); background:var(--brand); border-color:rgba(240,163,167,0.7); }
+.btn-dark:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.btn-ghost{
+  background:transparent; color:var(--ink-soft); border:1px solid var(--line);
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease, color 0.2s ease;
+}
+.btn-ghost:hover{ background:rgba(8,8,44,0.04); color:var(--ink); }
+.btn-ghost:active{ transform: scale(0.97); }
+.btn-ghost:focus-visible{ outline: 2px solid var(--brand); outline-offset: 3px; }
+
+.btn-primary:active, .btn-outline:active, .btn-dark:active{ transform: scale(0.97); }
+
+.nav-link{ position:relative; color:var(--ink-soft); transition: color 0.2s ease; }
+.nav-link::after{
+  content:''; position:absolute; left:0; right:0; bottom:-4px; height:1px; background:var(--accent);
+  transform:scaleX(0); transform-origin:left; transition: transform 0.25s ease;
+}
+.nav-link:hover{ color:var(--ink); }
+.nav-link:hover::after{ transform:scaleX(1); }
+.nav-link.is-active::after{ transform:scaleX(1); }
+.nav-link:focus-visible{ outline: 2px solid var(--brand); outline-offset: 4px; border-radius:2px; }
+
+.card{
+  background:var(--paper-raised);
+  border:1px solid var(--line);
+  transition: transform 0.3s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.2,0.64,1), border-color 0.3s ease;
+}
+.card:hover{ transform: translateY(-4px); border-color: rgba(8,8,44,0.2); }
+
+/* Progressive-enhancement scroll reveal: visible by default (no-JS / no-IO safe).
+   JS adds "js-reveal" to <html> only once IntersectionObserver is confirmed working,
+   which is what actually gates the opacity:0 starting state. */
+.js-reveal .reveal{
+  opacity:0; transform: translateY(18px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.js-reveal .reveal.is-visible{ opacity:1; transform:none; }
+.js-reveal .reveal.is-visible:nth-child(2){ transition-delay: 0.06s; }
+.js-reveal .reveal.is-visible:nth-child(3){ transition-delay: 0.12s; }
+.js-reveal .reveal.is-visible:nth-child(4){ transition-delay: 0.18s; }
+.js-reveal .reveal.is-visible:nth-child(5){ transition-delay: 0.24s; }
+.js-reveal .reveal.is-visible:nth-child(6){ transition-delay: 0.3s; }
+@media (prefers-reduced-motion: reduce){
+  .js-reveal .reveal{ opacity:1; transform:none; transition:none; }
+}
+
+/* Scroll parallax layer — JS sets --parallax-y; falls back to 0 (no motion) if JS never runs */
+.parallax-el{ transform: translateY(var(--parallax-y, 0px)); will-change: transform; }
+@media (prefers-reduced-motion: reduce){
+  .parallax-el{ transform:none !important; }
+}
+
+/* Header gains weight once the page has scrolled past the hero */
+header{ transition: box-shadow 0.3s ease, background-color 0.3s ease; }
+header.is-scrolled{
+  box-shadow: 0 1px 0 rgba(8,8,44,0.06), 0 12px 24px -16px rgba(8,8,44,0.25);
+}
+
+.scroll-progress{
+  position:fixed; top:0; left:0; right:0; height:2.5px; z-index:60;
+  background:var(--accent); transform-origin:left; transform:scaleX(0);
+}
+@media (prefers-reduced-motion: reduce){
+  .scroll-progress{ display:none; }
+}
+
+@keyframes bounce-hint{
+  0%,100%{ transform: translateY(0); opacity:0.7; }
+  50%{ transform: translateY(7px); opacity:1; }
+}
+.scroll-cue{ animation: bounce-hint 2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce){
+  .scroll-cue{ animation:none; }
+}
+
+.mobile-scrim{
+  position:fixed; inset:0; top:5rem; z-index:48;
+  background:rgba(8,8,44,0.35);
+  opacity:0; pointer-events:none;
+  transition: opacity 0.25s ease;
+}
+.mobile-scrim.is-open{ opacity:1; pointer-events:auto; }
+
+.mobile-menu{
+  position:fixed; top:calc(5rem + 0.75rem); left:1rem; right:1rem; z-index:49;
+  display:flex; flex-direction:column; gap:0.25rem;
+  background:rgba(247,246,242,0.94); backdrop-filter: blur(20px) saturate(180%);
+  border:1px solid var(--line); border-radius:1.25rem; padding:0.75rem;
+  box-shadow: 0 2px 4px rgba(8,8,44,0.08), 0 16px 40px -12px rgba(8,8,44,0.28);
+  opacity:0; transform: translateY(-10px) scale(0.98);
+  pointer-events:none;
+  transition: opacity 0.25s cubic-bezier(0.16,1,0.3,1), transform 0.25s cubic-bezier(0.16,1,0.3,1);
+}
+.mobile-menu.is-open{ opacity:1; transform:none; pointer-events:auto; }
+.mobile-nav-link{
+  display:flex; align-items:center; min-height:44px;
+  padding:0.6rem 0.9rem; border-radius:0.75rem;
+  font-size:0.95rem; font-weight:500; color:var(--ink);
+  transition: background 0.15s ease;
+}
+.mobile-nav-link:active{ background:rgba(8,8,44,0.06); }
+@media (prefers-reduced-motion: reduce){
+  .mobile-menu{ transition: opacity 0.15s ease; transform:none; }
+  .mobile-scrim{ transition: opacity 0.15s ease; }
+}
+
+/* Partner logo marquee — continuous cycling loop */
+.logo-marquee{
+  overflow:hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+.logo-marquee-track{
+  display:flex; align-items:center; gap:3.5rem; width:max-content;
+  animation: marquee 28s linear infinite;
+}
+.logo-marquee:hover .logo-marquee-track{ animation-play-state: paused; }
+@keyframes marquee{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce){
+  .logo-marquee-track{ animation:none; flex-wrap:wrap; justify-content:center; width:auto; }
+}
+.partner-logo{ filter:grayscale(1); opacity:0.55; transition: filter 0.3s ease, opacity 0.3s ease; flex-shrink:0; }
+.partner-logo:hover{ filter:grayscale(0); opacity:1; }
+
+@keyframes kenburns{
+  0%{ transform: scale(1) translate(0,0); }
+  50%{ transform: scale(1.08) translate(-1.5%, -1%); }
+  100%{ transform: scale(1) translate(0,0); }
+}
+.hero-loop{ animation: kenburns 14s ease-in-out infinite; will-change: transform; }
+@media (prefers-reduced-motion: reduce){
+  .hero-loop{ animation: none; }
+}
+
+input:focus-visible, textarea:focus-visible, select:focus-visible, a:focus-visible, button:focus-visible{
+  outline: 2px solid var(--brand); outline-offset: 2px;
+}
+
+/* Lead capture popup */
+.lead-scrim{
+  position:fixed; inset:0; z-index:98;
+  background:rgba(8,8,44,0.55); backdrop-filter: blur(4px);
+  opacity:0; pointer-events:none;
+  transition: opacity 0.3s ease;
+}
+.lead-scrim.is-open{ opacity:1; pointer-events:auto; }
+
+.lead-modal{
+  position:fixed; z-index:99; left:50%; top:50%;
+  width:min(440px, calc(100vw - 2rem));
+  max-height:calc(100vh - 2rem); overflow:auto;
+  background:var(--paper-raised); border-radius:1.5rem;
+  box-shadow: 0 2px 4px rgba(8,8,44,0.1), 0 32px 64px -16px rgba(8,8,44,0.5);
+  opacity:0; pointer-events:none;
+  transform: translate(-50%, -50%) scale(0.96);
+  transition: opacity 0.3s cubic-bezier(0.16,1,0.3,1), transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.lead-modal.is-open{ opacity:1; pointer-events:auto; transform: translate(-50%, -50%) scale(1); }
+@media (prefers-reduced-motion: reduce){
+  .lead-scrim, .lead-modal{ transition: opacity 0.15s ease; }
+  .lead-modal{ transform: translate(-50%, -50%) !important; }
+}
+.lead-step{ display:none; }
+.lead-step.is-active{ display:block; }
+.lead-progress-dot{ width:6px; height:6px; border-radius:999px; background:var(--line); transition: background 0.2s ease, width 0.2s ease; }
+.lead-progress-dot.is-active{ background:var(--accent); width:18px; }
+.lead-honeypot{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }

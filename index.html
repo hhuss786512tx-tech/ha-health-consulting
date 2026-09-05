@@ -10,177 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<style>
-  :root{
-    --ink:#12142e;
-    --ink-soft:#4a4d68;
-    --paper:#f7f6f2;
-    --paper-raised:#ffffff;
-    --brand:#1a1c4d;
-    --brand-deep:#08082c;
-    --accent:#c31a21;
-    --accent-hover:#a5151b;
-    --accent-soft:#f0a3a7;
-    --line:#dcdae0;
-  }
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Inter',sans-serif;
-  }
-  .font-display{font-family:'Fraunces',serif;}
-  .tracking-tightish{letter-spacing:-0.03em;}
-  .leading-relaxed-body{line-height:1.7;}
-
-  .shadow-soft{
-    box-shadow: 0 1px 2px rgba(8,8,44,0.06), 0 8px 24px -8px rgba(8,8,44,0.2), 0 24px 48px -24px rgba(8,8,44,0.18);
-  }
-  .shadow-soft-lg{
-    box-shadow: 0 2px 4px rgba(8,8,44,0.08), 0 16px 40px -12px rgba(8,8,44,0.24), 0 32px 64px -24px rgba(8,8,44,0.22);
-  }
-  .noise{
-    position:absolute; inset:0; pointer-events:none; opacity:0.05; mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  .btn-primary{
-    background:var(--accent);
-    color:var(--paper);
-    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease;
-  }
-  .btn-primary:hover{ transform: translateY(-2px); background:var(--accent-hover); box-shadow: 0 12px 24px -8px rgba(195,26,33,0.45); }
-  .btn-primary:active{ transform: translateY(0); }
-  .btn-primary:focus-visible{ outline: 2px solid var(--brand); outline-offset: 3px; }
-
-  .btn-outline{
-    border:1px solid rgba(247,245,239,0.35);
-    color:var(--paper);
-    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease, border-color 0.2s ease;
-  }
-  .btn-outline:hover{ transform: translateY(-2px); background:rgba(247,245,239,0.1); border-color:rgba(247,245,239,0.6); }
-  .btn-outline:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
-
-  .btn-dark{
-    background:var(--brand-deep);
-    color:var(--paper);
-    border:1px solid rgba(240,163,167,0.4);
-    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), background 0.2s ease, border-color 0.2s ease;
-  }
-  .btn-dark:hover{ transform: translateY(-2px); background:var(--brand); border-color:rgba(240,163,167,0.7); }
-  .btn-dark:focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
-
-  .nav-link{ position:relative; color:var(--ink-soft); transition: color 0.2s ease; }
-  .nav-link::after{
-    content:''; position:absolute; left:0; right:0; bottom:-4px; height:1px; background:var(--accent);
-    transform:scaleX(0); transform-origin:left; transition: transform 0.25s ease;
-  }
-  .nav-link:hover{ color:var(--ink); }
-  .nav-link:hover::after{ transform:scaleX(1); }
-  .nav-link:focus-visible{ outline: 2px solid var(--brand); outline-offset: 4px; border-radius:2px; }
-
-  .card{
-    background:var(--paper-raised);
-    border:1px solid var(--line);
-    transition: transform 0.3s cubic-bezier(0.34,1.2,0.64,1), box-shadow 0.3s cubic-bezier(0.34,1.2,0.64,1), border-color 0.3s ease;
-  }
-  .card:hover{ transform: translateY(-4px); border-color: rgba(8,8,44,0.2); }
-
-  /* Progressive-enhancement scroll reveal: visible by default (no-JS / no-IO safe).
-     JS adds "js-reveal" to <html> only once IntersectionObserver is confirmed working,
-     which is what actually gates the opacity:0 starting state. */
-  .js-reveal .reveal{
-    opacity:0; transform: translateY(18px);
-    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
-  }
-  .js-reveal .reveal.is-visible{ opacity:1; transform:none; }
-  .js-reveal .reveal.is-visible:nth-child(2){ transition-delay: 0.06s; }
-  .js-reveal .reveal.is-visible:nth-child(3){ transition-delay: 0.12s; }
-  .js-reveal .reveal.is-visible:nth-child(4){ transition-delay: 0.18s; }
-  .js-reveal .reveal.is-visible:nth-child(5){ transition-delay: 0.24s; }
-  .js-reveal .reveal.is-visible:nth-child(6){ transition-delay: 0.3s; }
-  @media (prefers-reduced-motion: reduce){
-    .js-reveal .reveal{ opacity:1; transform:none; transition:none; }
-  }
-
-  /* Scroll parallax layer — JS sets --parallax-y; falls back to 0 (no motion) if JS never runs */
-  .parallax-el{ transform: translateY(var(--parallax-y, 0px)); will-change: transform; }
-  @media (prefers-reduced-motion: reduce){
-    .parallax-el{ transform:none !important; }
-  }
-
-  /* Header gains weight once the page has scrolled past the hero */
-  header{ transition: box-shadow 0.3s ease, background-color 0.3s ease; }
-  header.is-scrolled{
-    box-shadow: 0 1px 0 rgba(8,8,44,0.06), 0 12px 24px -16px rgba(8,8,44,0.25);
-  }
-
-  .scroll-progress{
-    position:fixed; top:0; left:0; right:0; height:2.5px; z-index:60;
-    background:var(--accent); transform-origin:left; transform:scaleX(0);
-  }
-  @media (prefers-reduced-motion: reduce){
-    .scroll-progress{ display:none; }
-  }
-
-  @keyframes bounce-hint{
-    0%,100%{ transform: translateY(0); opacity:0.7; }
-    50%{ transform: translateY(7px); opacity:1; }
-  }
-  .scroll-cue{ animation: bounce-hint 2s ease-in-out infinite; }
-  @media (prefers-reduced-motion: reduce){
-    .scroll-cue{ animation:none; }
-  }
-
-  .btn-primary:active, .btn-outline:active, .btn-dark:active{ transform: scale(0.97); }
-
-  .mobile-scrim{
-    position:fixed; inset:0; top:5rem; z-index:48;
-    background:rgba(8,8,44,0.35);
-    opacity:0; pointer-events:none;
-    transition: opacity 0.25s ease;
-  }
-  .mobile-scrim.is-open{ opacity:1; pointer-events:auto; }
-
-  .mobile-menu{
-    position:fixed; top:calc(5rem + 0.75rem); left:1rem; right:1rem; z-index:49;
-    display:flex; flex-direction:column; gap:0.25rem;
-    background:rgba(247,246,242,0.94); backdrop-filter: blur(20px) saturate(180%);
-    border:1px solid var(--line); border-radius:1.25rem; padding:0.75rem;
-    box-shadow: 0 2px 4px rgba(8,8,44,0.08), 0 16px 40px -12px rgba(8,8,44,0.28);
-    opacity:0; transform: translateY(-10px) scale(0.98);
-    pointer-events:none;
-    transition: opacity 0.25s cubic-bezier(0.16,1,0.3,1), transform 0.25s cubic-bezier(0.16,1,0.3,1);
-  }
-  .mobile-menu.is-open{ opacity:1; transform:none; pointer-events:auto; }
-  .mobile-nav-link{
-    display:flex; align-items:center; min-height:44px;
-    padding:0.6rem 0.9rem; border-radius:0.75rem;
-    font-size:0.95rem; font-weight:500; color:var(--ink);
-    transition: background 0.15s ease;
-  }
-  .mobile-nav-link:active{ background:rgba(8,8,44,0.06); }
-  @media (prefers-reduced-motion: reduce){
-    .mobile-menu{ transition: opacity 0.15s ease; transform:none; }
-    .mobile-scrim{ transition: opacity 0.15s ease; }
-  }
-
-  .partner-logo{ filter:grayscale(1); opacity:0.55; transition: filter 0.3s ease, opacity 0.3s ease; }
-  .partner-logo:hover{ filter:grayscale(0); opacity:1; }
-
-  @keyframes kenburns{
-    0%{ transform: scale(1) translate(0,0); }
-    50%{ transform: scale(1.08) translate(-1.5%, -1%); }
-    100%{ transform: scale(1) translate(0,0); }
-  }
-  .hero-loop{ animation: kenburns 14s ease-in-out infinite; will-change: transform; }
-  @media (prefers-reduced-motion: reduce){
-    .hero-loop{ animation: none; }
-  }
-
-  input:focus-visible, textarea:focus-visible, a:focus-visible, button:focus-visible{
-    outline: 2px solid var(--brand); outline-offset: 2px;
-  }
-</style>
+<link rel="stylesheet" href="css/site.css" />
 </head>
 <body class="antialiased">
 
@@ -189,20 +19,20 @@
 <!-- NAV -->
 <header id="siteHeader" class="sticky top-0 z-50 backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
-    <a href="#home" class="flex items-center gap-2.5">
+    <a href="index.html" class="flex items-center gap-2.5">
       <img src="brand_assets/logo.png" alt="H&amp;A Healthcare Consulting logo" class="w-10 h-10 rounded-lg shadow-soft" />
       <span class="font-display text-lg tracking-tightish text-[var(--ink)]">H&amp;A Healthcare Consulting</span>
     </a>
     <nav class="hidden md:flex items-center gap-9 text-[15px]">
-      <a href="#home" class="nav-link py-1">Home</a>
-      <a href="#about" class="nav-link py-1">About</a>
-      <a href="#services" class="nav-link py-1">Services</a>
-      <a href="#contact" class="nav-link py-1">Contact</a>
-      <a href="#blog" class="nav-link py-1">Blog</a>
+      <a href="index.html" class="nav-link is-active py-1">Home</a>
+      <a href="about.html" class="nav-link py-1">About</a>
+      <a href="services.html" class="nav-link py-1">Services</a>
+      <a href="contact.html" class="nav-link py-1">Contact</a>
+      <a href="blog.html" class="nav-link py-1">Blog</a>
     </nav>
-    <a href="#contact" class="btn-primary hidden md:inline-flex text-sm font-semibold px-5 py-2.5 rounded-full shadow-soft">
+    <button class="js-open-lead btn-primary hidden md:inline-flex text-sm font-semibold px-5 py-2.5 rounded-full shadow-soft">
       Schedule Your Free Consultation
-    </a>
+    </button>
     <button id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden w-11 h-11 flex items-center justify-center text-[var(--ink)] relative">
       <svg id="iconMenu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       <svg id="iconClose" class="hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -212,14 +42,14 @@
 
 <div id="mobileScrim" class="mobile-scrim md:hidden"></div>
 <nav id="mobileMenu" class="mobile-menu md:hidden" aria-label="Mobile">
-  <a href="#home" class="mobile-nav-link">Home</a>
-  <a href="#about" class="mobile-nav-link">About</a>
-  <a href="#services" class="mobile-nav-link">Services</a>
-  <a href="#contact" class="mobile-nav-link">Contact</a>
-  <a href="#blog" class="mobile-nav-link">Blog</a>
-  <a href="#contact" class="btn-primary flex items-center justify-center text-sm font-semibold px-5 py-3 rounded-full shadow-soft mt-3">
+  <a href="index.html" class="mobile-nav-link">Home</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="services.html" class="mobile-nav-link">Services</a>
+  <a href="contact.html" class="mobile-nav-link">Contact</a>
+  <a href="blog.html" class="mobile-nav-link">Blog</a>
+  <button class="js-open-lead btn-primary flex items-center justify-center w-full text-sm font-semibold px-5 py-3 rounded-full shadow-soft mt-3">
     Schedule Your Free Consultation
-  </a>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -241,9 +71,9 @@
         Welcome to <strong class="text-[var(--paper)] font-semibold">H&amp;A Healthcare Consulting</strong>, and thank you for visiting our site! Based in <strong class="text-[var(--paper)] font-semibold">Houston, Texas</strong>, we proudly serve clients nationwide with over <strong class="text-[var(--paper)] font-semibold">20 years of healthcare industry experience</strong>. Our team specializes in providing expert <strong class="text-[var(--paper)] font-semibold">EHR consulting services</strong> designed to meet the unique needs of your organization. Whether you're seeking to optimize, implement, or enhance your EHR system, we're here to help you streamline operations and improve patient outcomes. <strong class="text-[var(--paper)] font-semibold">Let us support your success.</strong>
       </p>
       <div class="flex flex-wrap items-center gap-4 mt-9">
-        <a href="#contact" class="btn-primary text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft-lg">
+        <button class="js-open-lead btn-primary text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft-lg">
           Schedule Your Free Consultation
-        </a>
+        </button>
       </div>
     </div>
     <div class="reveal relative hidden md:block">
@@ -255,28 +85,36 @@
     </div>
   </div>
   <div class="relative flex justify-center pb-8">
-    <a href="#services" aria-label="Scroll to explore" class="scroll-cue text-[var(--paper)]/60 hover:text-[var(--paper)] transition-colors">
+    <a href="#services-preview" aria-label="Scroll to explore" class="scroll-cue text-[var(--paper)]/60 hover:text-[var(--paper)] transition-colors">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
     </a>
   </div>
 </section>
 
-<!-- PARTNERS -->
+<!-- PARTNERS (auto-cycling marquee) -->
 <section class="border-b border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-10">
     <p class="text-center text-xs uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-6">Platform partnerships</p>
-    <div class="flex flex-wrap items-center justify-center gap-x-14 gap-y-6">
-      <img src="brand_assets/eclinicalworks.png" alt="eClinicalWorks" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-      <img src="brand_assets/og/pngwing.com_-1024x388.png" alt="Epic" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-      <img src="brand_assets/athenahealth-trimmed.png" alt="Athenahealth" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-      <img src="brand_assets/og/pngegg.png" alt="Cerner" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-      <img src="brand_assets/experity-trimmed.png" alt="Experity" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+    <div class="logo-marquee">
+      <div class="logo-marquee-track">
+        <img src="brand_assets/eclinicalworks.png" alt="eClinicalWorks" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+        <img src="brand_assets/og/pngwing.com_-1024x388.png" alt="Epic" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+        <img src="brand_assets/athenahealth-trimmed.png" alt="Athenahealth" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+        <img src="brand_assets/og/pngegg.png" alt="Cerner" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+        <img src="brand_assets/experity-trimmed.png" alt="Experity" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+        <!-- duplicated set for a seamless loop -->
+        <img src="brand_assets/eclinicalworks.png" alt="" aria-hidden="true" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+        <img src="brand_assets/og/pngwing.com_-1024x388.png" alt="" aria-hidden="true" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+        <img src="brand_assets/athenahealth-trimmed.png" alt="" aria-hidden="true" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+        <img src="brand_assets/og/pngegg.png" alt="" aria-hidden="true" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+        <img src="brand_assets/experity-trimmed.png" alt="" aria-hidden="true" class="partner-logo h-6 md:h-7 w-auto object-contain" />
+      </div>
     </div>
   </div>
 </section>
 
 <!-- INTRO TRIO -->
-<section class="max-w-6xl mx-auto px-6 md:px-8 py-20">
+<section id="services-preview" class="max-w-6xl mx-auto px-6 md:px-8 py-20">
   <div class="grid md:grid-cols-3 gap-10">
     <div class="reveal border-t-2 border-[var(--brand-deep)] pt-6">
       <h3 class="font-display text-xl tracking-tightish mb-3">Tailored EHR Solutions for Every Practice</h3>
@@ -305,7 +143,7 @@
       <p class="leading-relaxed-body text-[var(--ink-soft)] text-sm mt-5">
         At <strong class="text-[var(--ink)]">H&amp;A Healthcare Consulting</strong>, we offer a full suite of healthcare consulting services that are specifically crafted to meet the unique needs of your organization. From <strong class="text-[var(--ink)]">EHR optimization</strong> to <strong class="text-[var(--ink)]">telemedicine integration</strong> and <strong class="text-[var(--ink)]">revenue cycle management</strong>, our expert team is here to help you streamline your operations, enhance patient outcomes, and improve financial performance. With over 20 years of experience, we are dedicated to driving your practice forward with innovative, reliable solutions.
       </p>
-      <a href="#services" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-7">
+      <a href="services.html" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-7">
         Transform Your Practice Today
       </a>
     </div>
@@ -315,278 +153,24 @@
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services" class="max-w-6xl mx-auto px-6 md:px-8 py-24">
-  <div class="reveal max-w-xl mx-auto text-center">
-    <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Expert healthcare solutions</span>
-    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Your Path to Better Healthcare Management</h2>
-    <p class="leading-relaxed-body text-[var(--ink-soft)] mt-4">
-      At H&amp;A Healthcare Consulting, we provide specialized services that empower your healthcare practice to operate more efficiently, improve patient care, and boost profitability. Explore how we can support your success.
-    </p>
-  </div>
-
-  <div class="mt-16 space-y-20">
-    <!-- 1. EHR Optimization -->
-    <div class="grid md:grid-cols-2 gap-10 items-center">
-      <div class="reveal aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
-        <img src="brand_assets/og/Blue-And-White-Modern-Business-Consulting-Services-Instagram-Post-746x1024.png" alt="" class="w-full h-full object-cover" />
-      </div>
-      <div class="reveal">
-        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Streamline your EHR, enhance your practice</span>
-        <h3 class="font-display text-2xl tracking-tightish mt-2 mb-4">EHR Optimization Services</h3>
-        <p class="text-[var(--ink-soft)] leading-relaxed-body">We provide customized Electronic Health Record (EHR) optimization solutions tailored to your practice's unique needs. Our team helps healthcare organizations streamline workflows, improve data accessibility, and enhance patient care by refining and optimizing their existing&hellip;</p>
-        <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore EHR Optimization Services Services</a>
-      </div>
-    </div>
-    <!-- 2. Telemedicine Integration -->
-    <div class="grid md:grid-cols-2 gap-10 items-center">
-      <div class="reveal md:order-2 aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
-        <img src="brand_assets/og/Online-Doctor-Consultation-Promo-Facebook-Post.png" alt="" class="w-full h-full object-cover" />
-      </div>
-      <div class="reveal md:order-1">
-        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Expand your reach with secure telemedicine</span>
-        <h3 class="font-display text-2xl tracking-tightish mt-2 mb-4">Telemedicine Integration</h3>
-        <p class="text-[var(--ink-soft)] leading-relaxed-body">We offer telemedicine integration solutions designed to expand your practice's reach and improve patient engagement. Our team provides end-to-end support, from selecting the right telemedicine platform to ensuring compliance with HIPAA and other regulations, so&hellip;</p>
-        <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore Telemedicine Integration Services</a>
-      </div>
-    </div>
-    <!-- 3. Revenue Cycle Management -->
-    <div class="grid md:grid-cols-2 gap-10 items-center">
-      <div class="reveal aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
-        <img src="brand_assets/og/Black-Management-Business-Financial-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
-      </div>
-      <div class="reveal">
-        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Maximize revenue, minimize hassle</span>
-        <h3 class="font-display text-2xl tracking-tightish mt-2 mb-4">Revenue Cycle Management</h3>
-        <p class="text-[var(--ink-soft)] leading-relaxed-body">Our revenue cycle management (RCM) services help healthcare providers maximize revenue while improving operational efficiency. We work with your team to implement best practices in billing, coding, and collections, ensuring you capture the full value&hellip;</p>
-        <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore Revenue Cycle Management Services</a>
-      </div>
-    </div>
-    <!-- 4. Practice Transformation -->
-    <div class="grid md:grid-cols-2 gap-10 items-center">
-      <div class="reveal md:order-2 aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
-        <img src="brand_assets/og/Doctor-Appointment-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
-      </div>
-      <div class="reveal md:order-1">
-        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Transform your practice, improve efficiency</span>
-        <h3 class="font-display text-2xl tracking-tightish mt-2 mb-4">Practice Transformation and Workflow Optimization</h3>
-        <p class="text-[var(--ink-soft)] leading-relaxed-body">We help healthcare organizations transform their practices by optimizing workflows, automating routine tasks, and improving overall efficiency. From implementing new technologies to refining patient management processes, we ensure your practice operates smoothly and efficiently.</p>
-        <p class="text-[var(--ink)] font-semibold text-sm mt-3">Key&hellip;</p>
-        <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore Practice Transformation and Workflow Optimization Services</a>
-      </div>
-    </div>
-    <!-- 5. Compliance and Regulatory -->
-    <div class="grid md:grid-cols-2 gap-10 items-center">
-      <div class="reveal aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
-        <img src="brand_assets/og/Blue-and-White-Modern-National-Doctors-Day-Greeting-Instagram-Story-693x1024.png" alt="" class="w-full h-full object-cover" />
-      </div>
-      <div class="reveal">
-        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Stay compliant, stay secure</span>
-        <h3 class="font-display text-2xl tracking-tightish mt-2 mb-4">Compliance and Regulatory Consulting</h3>
-        <p class="text-[var(--ink-soft)] leading-relaxed-body">Ensuring compliance with healthcare regulations such as HIPAA, HITECH, and MACRA is critical. We offer consulting services that help you navigate these regulations, avoid penalties, and maintain data security and patient privacy.</p>
-        <p class="text-[var(--ink)] font-semibold text-sm mt-3">Key Benefits:</p>
-        <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore Compliance and Regulatory Consulting Services</a>
-      </div>
-    </div>
-    <!-- 6. IT Support -->
-    <div class="grid md:grid-cols-2 gap-10 items-center">
-      <div class="reveal md:order-2 aspect-[4/3] rounded-2xl overflow-hidden shadow-soft-lg">
-        <img src="brand_assets/og/White-Modern-Online-Doctor-Instagram-Post-1024x1024.png" alt="" class="w-full h-full object-cover" />
-      </div>
-      <div class="reveal md:order-1">
-        <span class="text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)]">Reliable IT solutions for seamless healthcare operations</span>
-        <h3 class="font-display text-2xl tracking-tightish mt-2 mb-4">IT Support and Managed Services</h3>
-        <p class="text-[var(--ink-soft)] leading-relaxed-body">We provide IT support and managed services to ensure your healthcare technology operates smoothly. From server maintenance to network security, we offer 24/7 support to keep your systems running without interruptions.</p>
-        <p class="text-[var(--ink)] font-semibold text-sm mt-3">Key Benefits:</p>
-        <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Explore IT Support and Managed Services Services</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="bg-[var(--paper-raised)] border-y border-[var(--line)]">
-  <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 grid md:grid-cols-2 gap-14 items-center">
-    <div class="reveal">
-      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Empowering healthcare with innovative solutions</span>
-      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Transforming Healthcare Practices for the Future</h2>
-      <p class="leading-relaxed-body text-[var(--ink-soft)] mt-5">
-        At H&amp;A Healthcare Consulting, we are dedicated to helping healthcare providers optimize their operations, enhance patient care, and implement cutting-edge technology solutions. With a deep understanding of the healthcare industry, we provide tailored consulting services that address the unique needs of medical practices and healthcare organizations. Our mission is to simplify complex healthcare systems and create more efficient, compliant, and patient-centric environments.
-      </p>
-      <p class="leading-relaxed-body text-[var(--ink-soft)] mt-4">
-        Whether you need assistance with telemedicine integration, electronic health record (EHR) optimization, or HIPAA-compliant infrastructure, our team of experienced professionals is here to guide you every step of the way. We work closely with each client to ensure that our solutions align with their vision and deliver measurable improvements in both operational efficiency and patient outcomes. Partner with H&amp;A Healthcare Consulting and take your practice to the next level.
-      </p>
-    </div>
-    <div class="reveal relative">
-      <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft-lg max-w-md ml-auto">
-        <img src="brand_assets/og/HA-CARD-FRONT-1-pdf.jpg" alt="H&amp;A Healthcare Consulting" class="w-full h-full object-cover" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MISSION -->
+<!-- TEAM (kept on the home page) -->
 <section class="max-w-6xl mx-auto px-6 md:px-8 py-24">
-  <div class="reveal">
-    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mb-12">Our Mission: Empowering Healthcare for a Better Future</h2>
-  </div>
-  <div class="grid md:grid-cols-2 gap-14">
+  <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Our team</span>
+  <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3 mb-12">Guiding Your Healthcare Practice to Success</h2>
+  <div class="grid sm:grid-cols-2 gap-8 max-w-2xl">
     <div class="reveal">
-      <h3 class="font-semibold text-lg mb-3">What We Believe</h3>
-      <p class="text-[var(--ink-soft)] leading-relaxed-body">At H&amp;A Healthcare Consulting, our mission is to help healthcare organizations thrive by delivering innovative, customized solutions that enhance patient care and streamline operations. We are dedicated to making healthcare more efficient, compliant, and accessible through expert consulting services. Our goal is to empower your practice to achieve greater success while improving the healthcare experience for both providers and patients.</p>
-    </div>
-    <div class="reveal">
-      <h3 class="font-semibold text-lg mb-3">Ready to Elevate Your Practice?</h3>
-      <a href="#contact" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full">Get in Touch Today</a>
-    </div>
-  </div>
-
-  <!-- TEAM -->
-  <div class="mt-24 pt-16 border-t border-[var(--line)]">
-    <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Our team</span>
-    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3 mb-12">Guiding Your Healthcare Practice to Success</h2>
-    <div class="grid sm:grid-cols-2 gap-8 max-w-2xl">
-      <div class="reveal">
-        <div class="aspect-[768/439] rounded-xl overflow-hidden shadow-soft">
-          <img src="brand_assets/og/EDDIE-CARD-BACK-768x439.png" alt="Eddie Zakaria business card" class="w-full h-full object-cover" />
-        </div>
-        <p class="mt-4 font-semibold text-[var(--brand)]">Eddie Zakaria</p>
-        <p class="text-sm text-[var(--ink-soft)]">President &amp; Founder | EHR Specialist</p>
+      <div class="aspect-[768/439] rounded-xl overflow-hidden shadow-soft">
+        <img src="brand_assets/og/EDDIE-CARD-BACK-768x439.png" alt="Eddie Zakaria business card" class="w-full h-full object-cover" />
       </div>
-      <div class="reveal">
-        <div class="aspect-[768/439] rounded-xl overflow-hidden shadow-soft">
-          <img src="brand_assets/og/SAJID-CARD-BACK-768x439.png" alt="Sajid Sultan business card" class="w-full h-full object-cover" />
-        </div>
-        <p class="mt-4 font-semibold text-[var(--brand)]">Sajid &ldquo;Mo&rdquo; Sultan</p>
-        <p class="text-sm text-[var(--ink-soft)]">CTO | Agile Project Manager</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BLOG -->
-<section id="blog" class="bg-[var(--paper-raised)] border-y border-[var(--line)]">
-  <div class="max-w-6xl mx-auto px-6 md:px-8 py-24">
-    <div class="reveal">
-      <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Latest updates in healthcare</span>
-      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Expert Advice for Optimizing Your Practice</h2>
-    </div>
-
-    <div class="mt-14 space-y-14">
-      <a href="#" class="reveal grid md:grid-cols-2 gap-8 items-center group">
-        <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
-          <img src="brand_assets/og/Our-Identity-1024x575.png" alt="" class="w-full h-full object-cover" />
-        </div>
-        <div>
-          <p class="text-xs text-[var(--ink-soft)] leading-relaxed">EHR consulting services, EHR optimization, Electronic Health Records, Healthcare workflow improvement, Improve patient care</p>
-          <h3 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">The Importance of EHR Optimization for Healthcare Practices</h3>
-          <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">In today's fast-paced healthcare environment, Electronic Health Records (EHR) have become a cornerstone of efficient operations. However, many healthcare practices&hellip;</p>
-        </div>
-      </a>
-      <a href="#" class="reveal grid md:grid-cols-2 gap-8 items-center group">
-        <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
-          <img src="brand_assets/og/Online-Doctor-Consultation-Promo-Facebook-Post.png" alt="" class="w-full h-full object-cover" />
-        </div>
-        <div>
-          <p class="text-xs text-[var(--ink-soft)] leading-relaxed">Benefits of telemedicine, HIPAA-compliant telemedicine, Remote patient care, Telemedicine integration, Virtual healthcare solutions</p>
-          <h3 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">How Telemedicine is Transforming Patient Care</h3>
-          <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">In recent years, telemedicine has emerged as a major component of modern healthcare, offering innovative ways to deliver care to&hellip;</p>
-        </div>
-      </a>
-      <a href="#" class="reveal grid md:grid-cols-2 gap-8 items-center group">
-        <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
-          <img src="brand_assets/og/Home-1024x620.png" alt="" class="w-full h-full object-cover" />
-        </div>
-        <div>
-          <p class="text-xs text-[var(--ink-soft)] leading-relaxed">Healthcare billing optimization, Improve financial performance in healthcare, Maximize healthcare revenue, Reduce claim denials, Revenue Cycle Management (RCM)</p>
-          <h3 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">Revenue Cycle Management: How to Maximize Your Practice's Financial Performance</h3>
-          <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">In today's complex healthcare environment, Revenue Cycle Management (RCM) is essential for maintaining the financial health of your practice. From&hellip;</p>
-        </div>
-      </a>
-      <a href="#" class="reveal grid md:grid-cols-2 gap-8 items-center group">
-        <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
-          <img src="brand_assets/og/Blue-And-White-Modern-Business-Consulting-Services-Instagram-Post-746x1024.png" alt="" class="w-full h-full object-cover" />
-        </div>
-        <div>
-          <p class="text-xs text-[var(--ink-soft)] leading-relaxed">Healthcare compliance, Healthcare regulatory consulting, HIPAA regulations, HITECH and MACRA, Protect patient data</p>
-          <h3 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">Healthcare Compliance: Navigating HIPAA, HITECH, and MACRA Regulations</h3>
-          <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Compliance with healthcare regulations is a critical concern for all healthcare providers. Failing to adhere to the necessary regulations can&hellip;</p>
-        </div>
-      </a>
-      <a href="#" class="reveal grid md:grid-cols-2 gap-8 items-center group">
-        <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
-          <img src="brand_assets/og/Blue-and-White-Modern-National-Doctors-Day-Greeting-Instagram-Story-693x1024.png" alt="" class="w-full h-full object-cover" />
-        </div>
-        <div>
-          <p class="text-xs text-[var(--ink-soft)] leading-relaxed">Healthcare practice management, Healthcare workflow optimization, Improve patient outcomes, Operational efficiency in healthcare, Streamline healthcare practice</p>
-          <h3 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">How to Streamline Your Healthcare Practice with Workflow Optimization</h3>
-          <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">In the healthcare industry, efficiency isn't just a luxury—it's a necessity. The ability to deliver timely, quality care while managing&hellip;</p>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="max-w-6xl mx-auto px-6 md:px-8 py-24">
-  <div class="grid md:grid-cols-2 gap-10">
-    <div class="reveal rounded-2xl overflow-hidden shadow-soft-lg border border-[var(--line)] min-h-[320px]">
-      <iframe
-        title="H&amp;A Healthcare Consulting location"
-        src="https://www.google.com/maps?q=20008+Champion+Forest+Dr+%23203,+Spring,+TX+77379&output=embed"
-        class="w-full h-full min-h-[320px] border-0"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <p class="mt-4 font-semibold text-[var(--brand)]">Eddie Zakaria</p>
+      <p class="text-sm text-[var(--ink-soft)]">President &amp; Founder | EHR Specialist</p>
     </div>
     <div class="reveal">
-      <h2 class="font-display tracking-tightish text-3xl md:text-4xl mb-8">Contact Us</h2>
-      <div class="space-y-6">
-        <div class="flex items-start gap-4">
-          <div class="w-10 h-10 rounded-full bg-[var(--brand-deep)] flex items-center justify-center shrink-0">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <p class="font-semibold text-sm">Address</p>
-            <p class="text-sm text-[var(--brand)]">20008 Champion Forest Dr #203, Spring, TX 77379</p>
-          </div>
-        </div>
-        <div class="flex items-start gap-4">
-          <div class="w-10 h-10 rounded-full bg-[var(--brand-deep)] flex items-center justify-center shrink-0">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <div>
-            <p class="font-semibold text-sm">Phone</p>
-            <a href="tel:+18328004352" class="text-sm text-[var(--brand)] hover:text-[var(--accent)] transition-colors">(832) 800-4352</a>
-          </div>
-        </div>
-        <div class="flex items-start gap-4">
-          <div class="w-10 h-10 rounded-full bg-[var(--brand-deep)] flex items-center justify-center shrink-0">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
-          </div>
-          <div>
-            <p class="font-semibold text-sm">Email</p>
-            <a href="mailto:info@hahealthconsulting.com" class="text-sm text-[var(--brand)] hover:text-[var(--accent)] transition-colors">info@hahealthconsulting.com</a>
-          </div>
-        </div>
+      <div class="aspect-[768/439] rounded-xl overflow-hidden shadow-soft">
+        <img src="brand_assets/og/SAJID-CARD-BACK-768x439.png" alt="Sajid Sultan business card" class="w-full h-full object-cover" />
       </div>
-
-      <form class="mt-10 space-y-4">
-        <div>
-          <label class="text-xs font-semibold text-[var(--ink-soft)]" for="name">Name</label>
-          <input id="name" type="text" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-[var(--paper-raised)]" placeholder="Jane Smith" />
-        </div>
-        <div>
-          <label class="text-xs font-semibold text-[var(--ink-soft)]" for="email">Email</label>
-          <input id="email" type="email" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-[var(--paper-raised)]" placeholder="jane@practice.com" />
-        </div>
-        <div>
-          <label class="text-xs font-semibold text-[var(--ink-soft)]" for="message">Message</label>
-          <textarea id="message" rows="4" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-[var(--paper-raised)]" placeholder="Tell us about your practice"></textarea>
-        </div>
-        <button type="submit" class="btn-primary w-full text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft">
-          Leave a Message
-        </button>
-      </form>
+      <p class="mt-4 font-semibold text-[var(--brand)]">Sajid &ldquo;Mo&rdquo; Sultan</p>
+      <p class="text-sm text-[var(--ink-soft)]">CTO | Agile Project Manager</p>
     </div>
   </div>
 </section>
@@ -600,7 +184,7 @@
     <p class="leading-relaxed-body text-[var(--paper)]/75 max-w-xl mx-auto">
       At H&amp;A Healthcare Consulting, we are committed to delivering innovative solutions that enhance healthcare operations and patient outcomes. With decades of experience and a dedicated team, we're here to support your success.
     </p>
-    <a href="#contact" class="btn-outline inline-flex text-sm font-semibold px-6 py-3.5 rounded-full mt-8">
+    <a href="contact.html" class="btn-outline inline-flex text-sm font-semibold px-6 py-3.5 rounded-full mt-8">
       Contact Us Today to Learn More
     </a>
   </div>
@@ -619,18 +203,18 @@
     <div>
       <h4 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Services</h4>
       <ul class="space-y-2.5 text-sm">
-        <li><a href="#services" class="hover:text-[var(--paper)] transition-colors">EHR Optimization</a></li>
-        <li><a href="#services" class="hover:text-[var(--paper)] transition-colors">Telemedicine Integration</a></li>
-        <li><a href="#services" class="hover:text-[var(--paper)] transition-colors">Revenue Cycle Management</a></li>
-        <li><a href="#services" class="hover:text-[var(--paper)] transition-colors">Compliance &amp; Regulatory</a></li>
+        <li><a href="services.html" class="hover:text-[var(--paper)] transition-colors">EHR Optimization</a></li>
+        <li><a href="services.html" class="hover:text-[var(--paper)] transition-colors">Telemedicine Integration</a></li>
+        <li><a href="services.html" class="hover:text-[var(--paper)] transition-colors">Revenue Cycle Management</a></li>
+        <li><a href="services.html" class="hover:text-[var(--paper)] transition-colors">Compliance &amp; Regulatory</a></li>
       </ul>
     </div>
     <div>
       <h4 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Company</h4>
       <ul class="space-y-2.5 text-sm">
-        <li><a href="#about" class="hover:text-[var(--paper)] transition-colors">About</a></li>
-        <li><a href="#blog" class="hover:text-[var(--paper)] transition-colors">Blog</a></li>
-        <li><a href="#contact" class="hover:text-[var(--paper)] transition-colors">Contact</a></li>
+        <li><a href="about.html" class="hover:text-[var(--paper)] transition-colors">About</a></li>
+        <li><a href="blog.html" class="hover:text-[var(--paper)] transition-colors">Blog</a></li>
+        <li><a href="contact.html" class="hover:text-[var(--paper)] transition-colors">Contact</a></li>
       </ul>
     </div>
     <div>
@@ -650,89 +234,79 @@
   </div>
 </footer>
 
-<script>
-(function(){
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var header = document.getElementById('siteHeader');
-  var progress = document.getElementById('scrollProgress');
-  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('.parallax-el'));
+<!-- LEAD CAPTURE POPUP -->
+<div id="leadScrim" class="lead-scrim"></div>
+<div id="leadModal" class="lead-modal" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+  <div class="p-7 md:p-8">
+    <div class="flex items-start justify-between mb-5">
+      <div class="flex items-center gap-2">
+        <span class="lead-progress-dot is-active" data-dot="1"></span>
+        <span class="lead-progress-dot" data-dot="2"></span>
+        <span class="lead-progress-dot" data-dot="3"></span>
+      </div>
+      <button id="leadCloseBtn" type="button" aria-label="Close" class="w-8 h-8 flex items-center justify-center text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors -mt-1 -mr-1">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <form id="leadForm">
+      <div class="lead-step is-active" data-step="1">
+        <h3 id="leadModalTitle" class="font-display text-2xl tracking-tightish mb-2">Get Your Free Consultation</h3>
+        <p class="text-sm text-[var(--ink-soft)] mb-6">Tell us how to reach you — takes less than a minute.</p>
+        <div class="space-y-4">
+          <input type="text" name="company_website" class="lead-honeypot" tabindex="-1" autocomplete="off" />
+          <div>
+            <label class="text-xs font-semibold text-[var(--ink-soft)]" for="leadName">Name</label>
+            <input required id="leadName" name="name" type="text" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm" placeholder="Jane Smith" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-[var(--ink-soft)]" for="leadEmail">Email</label>
+            <input required id="leadEmail" name="email" type="email" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm" placeholder="jane@practice.com" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-[var(--ink-soft)]" for="leadPhone">Phone</label>
+            <input required id="leadPhone" name="phone" type="tel" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm" placeholder="(832) 555-0100" />
+          </div>
+        </div>
+        <button type="button" class="lead-next btn-primary w-full text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft mt-6" data-next="2">Continue</button>
+      </div>
+      <div class="lead-step" data-step="2">
+        <h3 class="font-display text-2xl tracking-tightish mb-2">What can we help with?</h3>
+        <p class="text-sm text-[var(--ink-soft)] mb-6">This helps us route you to the right specialist.</p>
+        <div class="space-y-4">
+          <div>
+            <label class="text-xs font-semibold text-[var(--ink-soft)]" for="leadInterest">Area of interest</label>
+            <select id="leadInterest" name="interest" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-white">
+              <option>EHR Optimization</option>
+              <option>Telemedicine Integration</option>
+              <option>Revenue Cycle Management</option>
+              <option>Practice Transformation</option>
+              <option>Compliance &amp; Regulatory</option>
+              <option>IT Support &amp; Managed Services</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-[var(--ink-soft)]" for="leadMessage">Anything specific we should know?</label>
+            <textarea id="leadMessage" name="message" rows="3" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm" placeholder="Optional"></textarea>
+          </div>
+        </div>
+        <div class="flex gap-3 mt-6">
+          <button type="button" class="lead-back btn-ghost flex-1 text-sm font-semibold px-6 py-3.5 rounded-full" data-back="1">Back</button>
+          <button type="submit" class="btn-primary flex-1 text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft">Submit</button>
+        </div>
+      </div>
+      <div class="lead-step text-center py-6" data-step="3">
+        <div class="w-14 h-14 rounded-full bg-[var(--brand-deep)] mx-auto flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-soft)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3 class="font-display text-2xl tracking-tightish mb-2">Thanks — we've got it!</h3>
+        <p class="text-sm text-[var(--ink-soft)]">Someone from H&amp;A Healthcare Consulting will reach out shortly.</p>
+        <button type="button" id="leadDoneBtn" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full mt-6">Close</button>
+      </div>
+    </form>
+  </div>
+</div>
 
-  // Mobile menu
-  var menuBtn = document.getElementById('mobileMenuBtn');
-  var menu = document.getElementById('mobileMenu');
-  var scrim = document.getElementById('mobileScrim');
-  var iconMenu = document.getElementById('iconMenu');
-  var iconClose = document.getElementById('iconClose');
-  function setMenuOpen(open){
-    menu.classList.toggle('is-open', open);
-    scrim.classList.toggle('is-open', open);
-    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    iconMenu.classList.toggle('hidden', open);
-    iconClose.classList.toggle('hidden', !open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  }
-  if (menuBtn) {
-    menuBtn.addEventListener('click', function(){
-      setMenuOpen(!menu.classList.contains('is-open'));
-    });
-    scrim.addEventListener('click', function(){ setMenuOpen(false); });
-    menu.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', function(){ setMenuOpen(false); });
-    });
-    document.addEventListener('keydown', function(e){
-      if (e.key === 'Escape') setMenuOpen(false);
-    });
-  }
-
-  // Scroll reveal — progressive enhancement: only opt into the hidden/reveal
-  // state once IntersectionObserver is confirmed available.
-  if ('IntersectionObserver' in window) {
-    document.documentElement.classList.add('js-reveal');
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
-  }
-
-  if (reduceMotion) return;
-
-  var ticking = false;
-  function onScroll(){
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function(){
-      var y = window.scrollY || window.pageYOffset;
-
-      if (header) header.classList.toggle('is-scrolled', y > 8);
-
-      if (progress) {
-        var doc = document.documentElement;
-        var max = (doc.scrollHeight - doc.clientHeight) || 1;
-        progress.style.transform = 'scaleX(' + Math.min(y / max, 1) + ')';
-      }
-
-      parallaxEls.forEach(function(el){
-        var speed = parseFloat(el.dataset.parallax || '0.1');
-        var rect = el.getBoundingClientRect();
-        // Only move while the element is anywhere near the viewport.
-        if (rect.bottom > -200 && rect.top < window.innerHeight + 200) {
-          el.style.setProperty('--parallax-y', (y * speed * -0.15) + 'px');
-        }
-      });
-
-      ticking = false;
-    });
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-})();
-</script>
-
+<script src="js/site.js"></script>
 </body>
 </html>
