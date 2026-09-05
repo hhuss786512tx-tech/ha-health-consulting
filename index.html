@@ -53,13 +53,23 @@
 </nav>
 
 <!-- HERO -->
-<section id="home" class="relative bg-[var(--brand-deep)] text-[var(--paper)]">
+<section id="home" class="relative bg-[var(--brand-deep)] text-[var(--paper)] overflow-hidden">
+  <video
+    class="absolute inset-0 w-full h-full object-cover"
+    src="brand_assets/hero-video/doctor-patient-consult.mp4"
+    poster="brand_assets/hero-video/doctor-patient-consult-poster.jpg"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+  ></video>
   <div class="absolute inset-0" style="background:
-      radial-gradient(60% 50% at 15% 10%, rgba(26,28,77,0.9), transparent 60%),
-      radial-gradient(50% 45% at 90% 15%, rgba(195,26,33,0.3), transparent 60%),
-      radial-gradient(70% 60% at 50% 100%, rgba(8,8,44,0.95), transparent 60%);"></div>
+      linear-gradient(100deg, rgba(6,7,38,0.95) 0%, rgba(6,7,38,0.88) 32%, rgba(6,7,38,0.55) 60%, rgba(6,7,38,0.3) 100%),
+      radial-gradient(50% 45% at 90% 15%, rgba(195,26,33,0.25), transparent 60%),
+      radial-gradient(70% 60% at 50% 100%, rgba(8,8,44,0.75), transparent 60%);"></div>
   <div class="noise"></div>
-  <div class="relative max-w-6xl mx-auto px-6 md:px-8 pt-20 pb-24 md:pt-28 md:pb-32 grid md:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
+  <div class="relative max-w-6xl mx-auto px-6 md:px-8 pt-20 pb-24 md:pt-28 md:pb-32">
     <div class="max-w-2xl">
       <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)] border border-[var(--accent-soft)]/30 rounded-full px-3.5 py-1.5">
         Houston, TX &middot; Serving practices nationwide
@@ -74,22 +84,6 @@
         <button class="js-open-lead btn-primary text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft-lg">
           Schedule Your Free Consultation
         </button>
-      </div>
-    </div>
-    <div class="reveal relative hidden md:block">
-      <div class="parallax-el" data-parallax="0.12">
-        <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-soft-lg">
-          <video
-            class="w-full h-full object-cover"
-            src="brand_assets/hero-video/doctor-patient-consult.mp4"
-            poster="brand_assets/hero-video/doctor-patient-consult-poster.jpg"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto"
-          ></video>
-        </div>
       </div>
     </div>
   </div>
