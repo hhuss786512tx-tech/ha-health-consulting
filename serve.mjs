@@ -17,6 +17,7 @@ const MIME = {
   ".jpeg": "image/jpeg",
   ".webp": "image/webp",
   ".ico": "image/x-icon",
+  ".mp4": "video/mp4",
 };
 
 http
