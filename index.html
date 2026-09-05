@@ -133,6 +133,37 @@
 
   .btn-primary:active, .btn-outline:active, .btn-dark:active{ transform: scale(0.97); }
 
+  .mobile-scrim{
+    position:fixed; inset:0; top:5rem; z-index:48;
+    background:rgba(8,8,44,0.35);
+    opacity:0; pointer-events:none;
+    transition: opacity 0.25s ease;
+  }
+  .mobile-scrim.is-open{ opacity:1; pointer-events:auto; }
+
+  .mobile-menu{
+    position:fixed; top:calc(5rem + 0.75rem); left:1rem; right:1rem; z-index:49;
+    display:flex; flex-direction:column; gap:0.25rem;
+    background:rgba(247,246,242,0.94); backdrop-filter: blur(20px) saturate(180%);
+    border:1px solid var(--line); border-radius:1.25rem; padding:0.75rem;
+    box-shadow: 0 2px 4px rgba(8,8,44,0.08), 0 16px 40px -12px rgba(8,8,44,0.28);
+    opacity:0; transform: translateY(-10px) scale(0.98);
+    pointer-events:none;
+    transition: opacity 0.25s cubic-bezier(0.16,1,0.3,1), transform 0.25s cubic-bezier(0.16,1,0.3,1);
+  }
+  .mobile-menu.is-open{ opacity:1; transform:none; pointer-events:auto; }
+  .mobile-nav-link{
+    display:flex; align-items:center; min-height:44px;
+    padding:0.6rem 0.9rem; border-radius:0.75rem;
+    font-size:0.95rem; font-weight:500; color:var(--ink);
+    transition: background 0.15s ease;
+  }
+  .mobile-nav-link:active{ background:rgba(8,8,44,0.06); }
+  @media (prefers-reduced-motion: reduce){
+    .mobile-menu{ transition: opacity 0.15s ease; transform:none; }
+    .mobile-scrim{ transition: opacity 0.15s ease; }
+  }
+
   .partner-logo{ filter:grayscale(1); opacity:0.55; transition: filter 0.3s ease, opacity 0.3s ease; }
   .partner-logo:hover{ filter:grayscale(0); opacity:1; }
 
@@ -172,11 +203,24 @@
     <a href="#contact" class="btn-primary hidden md:inline-flex text-sm font-semibold px-5 py-2.5 rounded-full shadow-soft">
       Schedule Your Free Consultation
     </a>
-    <button aria-label="Open menu" class="md:hidden w-11 h-11 flex items-center justify-center text-[var(--ink)]">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <button id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden w-11 h-11 flex items-center justify-center text-[var(--ink)] relative">
+      <svg id="iconMenu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="iconClose" class="hidden" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
   </div>
 </header>
+
+<div id="mobileScrim" class="mobile-scrim md:hidden"></div>
+<nav id="mobileMenu" class="mobile-menu md:hidden" aria-label="Mobile">
+  <a href="#home" class="mobile-nav-link">Home</a>
+  <a href="#about" class="mobile-nav-link">About</a>
+  <a href="#services" class="mobile-nav-link">Services</a>
+  <a href="#contact" class="mobile-nav-link">Contact</a>
+  <a href="#blog" class="mobile-nav-link">Blog</a>
+  <a href="#contact" class="btn-primary flex items-center justify-center text-sm font-semibold px-5 py-3 rounded-full shadow-soft mt-3">
+    Schedule Your Free Consultation
+  </a>
+</nav>
 
 <!-- HERO -->
 <section id="home" class="relative bg-[var(--brand-deep)] text-[var(--paper)]">
@@ -612,6 +656,33 @@
   var header = document.getElementById('siteHeader');
   var progress = document.getElementById('scrollProgress');
   var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('.parallax-el'));
+
+  // Mobile menu
+  var menuBtn = document.getElementById('mobileMenuBtn');
+  var menu = document.getElementById('mobileMenu');
+  var scrim = document.getElementById('mobileScrim');
+  var iconMenu = document.getElementById('iconMenu');
+  var iconClose = document.getElementById('iconClose');
+  function setMenuOpen(open){
+    menu.classList.toggle('is-open', open);
+    scrim.classList.toggle('is-open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    iconMenu.classList.toggle('hidden', open);
+    iconClose.classList.toggle('hidden', !open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function(){
+      setMenuOpen(!menu.classList.contains('is-open'));
+    });
+    scrim.addEventListener('click', function(){ setMenuOpen(false); });
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){ setMenuOpen(false); });
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') setMenuOpen(false);
+    });
+  }
 
   // Scroll reveal — progressive enhancement: only opt into the hidden/reveal
   // state once IntersectionObserver is confirmed available.
