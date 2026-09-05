@@ -95,6 +95,12 @@ body{
 .js-reveal .reveal.is-visible:nth-child(4){ transition-delay: 0.18s; }
 .js-reveal .reveal.is-visible:nth-child(5){ transition-delay: 0.24s; }
 .js-reveal .reveal.is-visible:nth-child(6){ transition-delay: 0.3s; }
+
+/* Large feature images: pure fade-in, no slide, slower for a more deliberate feel. */
+.js-reveal .reveal.reveal-fade{
+  transform:none;
+  transition: opacity 1.1s cubic-bezier(0.16,1,0.3,1);
+}
 @media (prefers-reduced-motion: reduce){
   .js-reveal .reveal{ opacity:1; transform:none; transition:none; }
 }
