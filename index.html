@@ -4,6 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>HA Health Consulting | Streamlining Healthcare Practices</title>
+<link rel="icon" href="brand_assets/logo.png" type="image/png" />
 <meta name="description" content="H&amp;A Healthcare Consulting — EHR optimization, telemedicine integration, revenue cycle management, and HIPAA-compliant infrastructure, backed by 20+ years of healthcare industry experience." />
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -84,19 +85,53 @@
   }
   .card:hover{ transform: translateY(-4px); border-color: rgba(8,8,44,0.2); }
 
-  @keyframes fadeInUp{
-    from{ opacity:0; transform: translateY(16px); }
-    to{ opacity:1; transform:none; }
+  /* Progressive-enhancement scroll reveal: visible by default (no-JS / no-IO safe).
+     JS adds "js-reveal" to <html> only once IntersectionObserver is confirmed working,
+     which is what actually gates the opacity:0 starting state. */
+  .js-reveal .reveal{
+    opacity:0; transform: translateY(18px);
+    transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
   }
-  .reveal{ animation: fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) both; }
-  .reveal:nth-child(2){ animation-delay: 0.06s; }
-  .reveal:nth-child(3){ animation-delay: 0.12s; }
-  .reveal:nth-child(4){ animation-delay: 0.18s; }
-  .reveal:nth-child(5){ animation-delay: 0.24s; }
-  .reveal:nth-child(6){ animation-delay: 0.3s; }
+  .js-reveal .reveal.is-visible{ opacity:1; transform:none; }
+  .js-reveal .reveal.is-visible:nth-child(2){ transition-delay: 0.06s; }
+  .js-reveal .reveal.is-visible:nth-child(3){ transition-delay: 0.12s; }
+  .js-reveal .reveal.is-visible:nth-child(4){ transition-delay: 0.18s; }
+  .js-reveal .reveal.is-visible:nth-child(5){ transition-delay: 0.24s; }
+  .js-reveal .reveal.is-visible:nth-child(6){ transition-delay: 0.3s; }
   @media (prefers-reduced-motion: reduce){
-    .reveal{ animation: none; }
+    .js-reveal .reveal{ opacity:1; transform:none; transition:none; }
   }
+
+  /* Scroll parallax layer — JS sets --parallax-y; falls back to 0 (no motion) if JS never runs */
+  .parallax-el{ transform: translateY(var(--parallax-y, 0px)); will-change: transform; }
+  @media (prefers-reduced-motion: reduce){
+    .parallax-el{ transform:none !important; }
+  }
+
+  /* Header gains weight once the page has scrolled past the hero */
+  header{ transition: box-shadow 0.3s ease, background-color 0.3s ease; }
+  header.is-scrolled{
+    box-shadow: 0 1px 0 rgba(8,8,44,0.06), 0 12px 24px -16px rgba(8,8,44,0.25);
+  }
+
+  .scroll-progress{
+    position:fixed; top:0; left:0; right:0; height:2.5px; z-index:60;
+    background:var(--accent); transform-origin:left; transform:scaleX(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .scroll-progress{ display:none; }
+  }
+
+  @keyframes bounce-hint{
+    0%,100%{ transform: translateY(0); opacity:0.7; }
+    50%{ transform: translateY(7px); opacity:1; }
+  }
+  .scroll-cue{ animation: bounce-hint 2s ease-in-out infinite; }
+  @media (prefers-reduced-motion: reduce){
+    .scroll-cue{ animation:none; }
+  }
+
+  .btn-primary:active, .btn-outline:active, .btn-dark:active{ transform: scale(0.97); }
 
   .partner-logo{ filter:grayscale(1); opacity:0.55; transition: filter 0.3s ease, opacity 0.3s ease; }
   .partner-logo:hover{ filter:grayscale(0); opacity:1; }
@@ -118,8 +153,10 @@
 </head>
 <body class="antialiased">
 
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <!-- NAV -->
-<header class="sticky top-0 z-50 backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
+<header id="siteHeader" class="sticky top-0 z-50 backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
     <a href="#home" class="flex items-center gap-2.5">
       <img src="brand_assets/logo.png" alt="H&amp;A Healthcare Consulting logo" class="w-10 h-10 rounded-lg shadow-soft" />
@@ -166,10 +203,17 @@
       </div>
     </div>
     <div class="reveal relative hidden md:block">
-      <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-soft-lg">
-        <img src="brand_assets/og/Blue-Medical-Doctors-edit.png" alt="H&amp;A Healthcare Consulting" class="hero-loop w-full h-full object-cover" />
+      <div class="parallax-el" data-parallax="0.12">
+        <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-soft-lg">
+          <img src="brand_assets/og/Blue-Medical-Doctors-edit.png" alt="H&amp;A Healthcare Consulting" class="hero-loop w-full h-full object-cover" />
+        </div>
       </div>
     </div>
+  </div>
+  <div class="relative flex justify-center pb-8">
+    <a href="#services" aria-label="Scroll to explore" class="scroll-cue text-[var(--paper)]/60 hover:text-[var(--paper)] transition-colors">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+    </a>
   </div>
 </section>
 
@@ -561,6 +605,63 @@
     </div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var header = document.getElementById('siteHeader');
+  var progress = document.getElementById('scrollProgress');
+  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('.parallax-el'));
+
+  // Scroll reveal — progressive enhancement: only opt into the hidden/reveal
+  // state once IntersectionObserver is confirmed available.
+  if ('IntersectionObserver' in window) {
+    document.documentElement.classList.add('js-reveal');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  }
+
+  if (reduceMotion) return;
+
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var y = window.scrollY || window.pageYOffset;
+
+      if (header) header.classList.toggle('is-scrolled', y > 8);
+
+      if (progress) {
+        var doc = document.documentElement;
+        var max = (doc.scrollHeight - doc.clientHeight) || 1;
+        progress.style.transform = 'scaleX(' + Math.min(y / max, 1) + ')';
+      }
+
+      parallaxEls.forEach(function(el){
+        var speed = parseFloat(el.dataset.parallax || '0.1');
+        var rect = el.getBoundingClientRect();
+        // Only move while the element is anywhere near the viewport.
+        if (rect.bottom > -200 && rect.top < window.innerHeight + 200) {
+          el.style.setProperty('--parallax-y', (y * speed * -0.15) + 'px');
+        }
+      });
+
+      ticking = false;
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
 
 </body>
 </html>
