@@ -26,6 +26,16 @@ const browser = await puppeteer.launch();
 const page = await browser.newPage();
 await page.setViewport({ width: 1440, height: 900 });
 await page.goto(url, { waitUntil: "networkidle0" });
+// Let the opening intro splash (if present) finish its fade before capturing —
+// otherwise a full-page screenshot stitches its fixed-position overlay into
+// the capture in a way that never matches what a real visitor sees.
+await page.waitForFunction(
+  () => {
+    const s = document.getElementById("introSplash");
+    return !s || s.classList.contains("is-removed");
+  },
+  { timeout: 3000 }
+).catch(() => {});
 await page.screenshot({ path: outPath, fullPage: true });
 await browser.close();
 

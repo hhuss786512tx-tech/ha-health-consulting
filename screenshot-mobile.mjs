@@ -19,6 +19,13 @@ const browser = await puppeteer.launch();
 const page = await browser.newPage();
 await page.setViewport({ width: 390, height: 844 });
 await page.goto(url, { waitUntil: "networkidle0" });
+await page.waitForFunction(
+  () => {
+    const s = document.getElementById("introSplash");
+    return !s || s.classList.contains("is-removed");
+  },
+  { timeout: 3000 }
+).catch(() => {});
 await page.screenshot({ path: outPath, fullPage: true });
 await browser.close();
 console.log(`Saved ${outPath}`);

@@ -3,6 +3,55 @@
   var header = document.getElementById('siteHeader');
   var progress = document.getElementById('scrollProgress');
 
+  // ---------- Opening intro splash (once per browser session) ----------
+  var splash = document.getElementById('introSplash');
+  if (splash) {
+    var INTRO_KEY = 'haIntroShown';
+    var introShown = false;
+    try { introShown = sessionStorage.getItem(INTRO_KEY) === '1'; } catch(e){}
+    if (introShown || reduceMotion) {
+      splash.classList.add('is-removed');
+    } else {
+      document.body.style.overflow = 'hidden';
+      try { sessionStorage.setItem(INTRO_KEY, '1'); } catch(e){}
+      setTimeout(function(){
+        splash.classList.add('is-hidden');
+        setTimeout(function(){
+          splash.classList.add('is-removed');
+          document.body.style.overflow = '';
+        }, 550);
+      }, 1300);
+    }
+  }
+
+  // ---------- Custom cursor ring (desktop, fine-pointer only) ----------
+  var ring = document.getElementById('cursorRing');
+  if (ring) {
+    if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
+      var ringX = 0, ringY = 0, targetX = 0, targetY = 0, ringActive = false;
+      document.addEventListener('mousemove', function(e){
+        targetX = e.clientX; targetY = e.clientY;
+        if (!ringActive) { ringActive = true; ring.classList.add('is-active'); }
+      });
+      document.addEventListener('mouseleave', function(){ ring.classList.remove('is-active'); });
+      (function raf(){
+        ringX += (targetX - ringX) * 0.2;
+        ringY += (targetY - ringY) * 0.2;
+        ring.style.transform = 'translate(' + ringX + 'px,' + ringY + 'px) translate(-50%,-50%)';
+        requestAnimationFrame(raf);
+      })();
+      var hoverSelector = 'a, button, input, textarea, select, [role="button"]';
+      document.addEventListener('mouseover', function(e){
+        if (e.target.closest && e.target.closest(hoverSelector)) ring.classList.add('is-hover');
+      });
+      document.addEventListener('mouseout', function(e){
+        if (e.target.closest && e.target.closest(hoverSelector)) ring.classList.remove('is-hover');
+      });
+    } else {
+      ring.style.display = 'none';
+    }
+  }
+
   // ---------- Mobile menu ----------
   var menuBtn = document.getElementById('mobileMenuBtn');
   var menu = document.getElementById('mobileMenu');

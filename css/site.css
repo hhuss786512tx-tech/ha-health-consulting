@@ -16,6 +16,15 @@ body{
   color:var(--ink);
   font-family:'Inter',sans-serif;
 }
+
+/* Custom scrollbar */
+::-webkit-scrollbar{ width:11px; height:11px; }
+::-webkit-scrollbar-track{ background:var(--paper); }
+::-webkit-scrollbar-thumb{
+  background:rgba(8,8,44,0.22); border-radius:999px; border:3px solid var(--paper);
+}
+::-webkit-scrollbar-thumb:hover{ background:rgba(8,8,44,0.38); }
+html{ scrollbar-color: rgba(8,8,44,0.22) var(--paper); scrollbar-width: thin; }
 /* Tailwind's arbitrary-value opacity modifier (text-[var(--x)]/NN) can't resolve a CSS
    custom property to RGB channels, so it silently fails to compile — footer text and
    links were inheriting body's dark --ink color on a near-black background (~1.1:1
@@ -244,3 +253,59 @@ input:focus-visible, textarea:focus-visible, select:focus-visible, a:focus-visib
 .lead-progress-dot{ width:6px; height:6px; border-radius:999px; background:var(--line); transition: background 0.2s ease, width 0.2s ease; }
 .lead-progress-dot.is-active{ background:var(--accent); width:18px; }
 .lead-honeypot{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+/* ===== Opening intro (brief branded splash, once per session) ===== */
+.intro-splash{
+  position:fixed; inset:0; z-index:200;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brand-deep);
+  opacity:1;
+  transition: opacity 0.55s cubic-bezier(0.16,1,0.3,1);
+}
+.intro-splash.is-hidden{ opacity:0; pointer-events:none; }
+.intro-splash.is-removed{ display:none; }
+.intro-mark{ display:flex; align-items:center; gap:0.85rem; }
+.intro-logo{
+  width:44px; height:44px; border-radius:12px;
+  opacity:0; transform:scale(0.7);
+  animation: intro-logo-in 0.6s cubic-bezier(0.34,1.4,0.64,1) 0.1s forwards;
+}
+.intro-word{
+  font-family:'Fraunces',serif; letter-spacing:-0.02em;
+  font-size:1.15rem; color:var(--paper);
+  opacity:0; transform:translateY(8px);
+  animation: intro-word-in 0.6s cubic-bezier(0.16,1,0.3,1) 0.32s forwards;
+}
+@keyframes intro-logo-in{ to{ opacity:1; transform:scale(1); } }
+@keyframes intro-word-in{ to{ opacity:1; transform:translateY(0); } }
+@media (prefers-reduced-motion: reduce){
+  .intro-splash{ transition:none; }
+  .intro-logo, .intro-word{ animation:none; opacity:1; transform:none; }
+}
+
+/* ===== Custom cursor ring — desktop/fine-pointer only, supplements the native cursor ===== */
+.cursor-ring{
+  position:fixed; top:0; left:0; z-index:9999;
+  width:28px; height:28px;
+  border:1.5px solid rgba(8,8,44,0.35); border-radius:999px;
+  pointer-events:none; opacity:0;
+  transition: opacity 0.25s ease, width 0.25s cubic-bezier(0.16,1,0.3,1), height 0.25s cubic-bezier(0.16,1,0.3,1), background 0.25s ease, border-color 0.25s ease;
+  will-change: transform;
+}
+.cursor-ring.is-active{ opacity:1; }
+.cursor-ring.is-hover{
+  width:46px; height:46px;
+  background:rgba(195,26,33,0.08); border-color:rgba(195,26,33,0.5);
+}
+@media (pointer: coarse), (prefers-reduced-motion: reduce){
+  .cursor-ring{ display:none; }
+}
+
+/* Footer link underline-in on hover, matching the top nav's pattern */
+footer a{ position:relative; }
+footer a::after{
+  content:''; position:absolute; left:0; right:0; bottom:-2px; height:1px;
+  background:currentColor; transform:scaleX(0); transform-origin:left;
+  transition: transform 0.25s ease;
+}
+footer a:hover::after{ transform:scaleX(1); }
