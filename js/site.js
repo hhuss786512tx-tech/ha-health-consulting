@@ -24,22 +24,21 @@
     }
   }
 
-  // ---------- Custom cursor ring (desktop, fine-pointer only) ----------
+  // ---------- Custom cursor (desktop, fine-pointer only) ----------
+  // Replaces the native pointer outright (cursor:none, gated by a class so a
+  // JS failure never leaves the visitor with no cursor at all) and tracks the
+  // mouse 1:1 — no lag/lerp, since this needs to feel like an actual cursor.
   var ring = document.getElementById('cursorRing');
   if (ring) {
     if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
-      var ringX = 0, ringY = 0, targetX = 0, targetY = 0, ringActive = false;
+      document.documentElement.classList.add('custom-cursor-active');
+      var ringActive = false;
       document.addEventListener('mousemove', function(e){
-        targetX = e.clientX; targetY = e.clientY;
+        ring.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px) translate(-50%,-50%)';
         if (!ringActive) { ringActive = true; ring.classList.add('is-active'); }
       });
       document.addEventListener('mouseleave', function(){ ring.classList.remove('is-active'); });
-      (function raf(){
-        ringX += (targetX - ringX) * 0.2;
-        ringY += (targetY - ringY) * 0.2;
-        ring.style.transform = 'translate(' + ringX + 'px,' + ringY + 'px) translate(-50%,-50%)';
-        requestAnimationFrame(raf);
-      })();
+      document.addEventListener('mouseenter', function(){ if (ringActive) ring.classList.add('is-active'); });
       var hoverSelector = 'a, button, input, textarea, select, [role="button"]';
       document.addEventListener('mouseover', function(e){
         if (e.target.closest && e.target.closest(hoverSelector)) ring.classList.add('is-hover');

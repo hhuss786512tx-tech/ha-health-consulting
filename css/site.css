@@ -283,7 +283,12 @@ input:focus-visible, textarea:focus-visible, select:focus-visible, a:focus-visib
   .intro-logo, .intro-word{ animation:none; opacity:1; transform:none; }
 }
 
-/* ===== Custom cursor ring — desktop/fine-pointer only, supplements the native cursor ===== */
+/* ===== Custom cursor — desktop/fine-pointer only, replaces the native pointer =====
+   Gated by a JS-added class on <html> so a script failure never leaves the
+   visitor with no cursor at all (progressive enhancement, same pattern as
+   .js-reveal). */
+html.custom-cursor-active,
+html.custom-cursor-active *{ cursor:none !important; }
 .cursor-ring{
   position:fixed; top:0; left:0; z-index:9999;
   width:22px; height:22px;
