@@ -869,9 +869,9 @@ video {
   gap: 2.25rem;
 }
 
-.gap-x-10 {
-  -moz-column-gap: 2.5rem;
-       column-gap: 2.5rem;
+.gap-x-28 {
+  -moz-column-gap: 7rem;
+       column-gap: 7rem;
 }
 
 .gap-y-14 {
