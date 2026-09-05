@@ -9,6 +9,14 @@
   --accent-hover:#a5151b;
   --accent-soft:#f0a3a7;
   --line:#dcdae0;
+
+  /* Ambient shadows tinted with the brand navy — never pure black */
+  --shadow-card: 0 1px 2px rgba(8,8,44,0.05), 0 10px 24px -8px rgba(8,8,44,0.16), 0 28px 56px -28px rgba(8,8,44,0.2);
+  --shadow-card-hover: 0 2px 4px rgba(8,8,44,0.08), 0 18px 36px -10px rgba(8,8,44,0.22), 0 36px 72px -28px rgba(8,8,44,0.26);
+  --shadow-glow-accent: 0 0 0 1px rgba(195,26,33,0.12), 0 16px 40px -12px rgba(195,26,33,0.35);
+  --bezel-pad: 7px;
+  --radius-shell: 1.5rem;
+  --radius-core: calc(1.5rem - var(--bezel-pad));
 }
 html{scroll-behavior:smooth;}
 body{
@@ -166,7 +174,12 @@ footer a:hover{ color: var(--paper); }
 }
 
 /* Header gains weight once the page has scrolled past the hero */
-header{ transition: box-shadow 0.3s ease, background-color 0.3s ease; }
+header{ transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1); }
+header.is-hidden{ transform:translateY(-100%); }
+@media (prefers-reduced-motion: reduce){
+  header{ transition: box-shadow 0.3s ease, background-color 0.3s ease; }
+  header.is-hidden{ transform:none; }
+}
 header.is-scrolled{
   box-shadow: 0 1px 0 rgba(8,8,44,0.06), 0 12px 24px -16px rgba(8,8,44,0.25);
 }
@@ -383,3 +396,116 @@ footer a::after{
   transition: transform 0.25s ease;
 }
 footer a:hover::after{ transform:scaleX(1); }
+
+/* ===== Signature ring badge — animated gradient border + soft glow halo =====
+   Masks a wide animated gradient down to a 1.5px ring (SSC/A2H technique),
+   paired with a blurred radial glow behind it. Used on pill badges and
+   section eyebrow labels so small text elements read as designed components
+   rather than bare uppercase text. */
+.ring-badge{ position:relative; isolation:isolate; border-radius:9999px; }
+.ring-badge::before{
+  content:''; position:absolute; inset:-1px; border-radius:inherit; padding:1.5px;
+  background:linear-gradient(90deg, rgba(195,26,33,0) 0%, var(--accent) 30%, var(--accent-soft) 50%, var(--accent) 70%, rgba(195,26,33,0) 100%);
+  background-size:250% 100%;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  animation: ring-shift 5s linear infinite;
+  pointer-events:none; z-index:1;
+}
+.ring-badge::after{
+  content:''; position:absolute; inset:-7px; border-radius:inherit;
+  background:radial-gradient(circle, rgba(195,26,33,0.28), transparent 70%);
+  filter:blur(8px); opacity:0.55;
+  animation: ring-glow-pulse 3.4s ease-in-out infinite alternate;
+  pointer-events:none; z-index:-1;
+}
+.ring-badge.on-dark::before{
+  background:linear-gradient(90deg, rgba(240,163,167,0) 0%, var(--accent-soft) 30%, #ffffff 50%, var(--accent-soft) 70%, rgba(240,163,167,0) 100%);
+}
+@keyframes ring-shift{ from{ background-position:0% 0%; } to{ background-position:250% 0%; } }
+@keyframes ring-glow-pulse{ from{ opacity:0.3; } to{ opacity:0.65; } }
+@media (prefers-reduced-motion: reduce){
+  .ring-badge::before{ animation:none; }
+  .ring-badge::after{ animation:none; opacity:0.45; }
+}
+.eyebrow-badge{ display:inline-flex; align-items:center; padding:0.4rem 1rem; border-radius:9999px; }
+
+/* Pulsing live-dot for the "accepting new clients" nav badge */
+.live-dot{ position:relative; width:7px; height:7px; border-radius:999px; background:#3fae62; flex-shrink:0; }
+.live-dot::after{
+  content:''; position:absolute; inset:-4px; border-radius:999px; background:#3fae62; opacity:0.5;
+  animation: live-dot-pulse 2s ease-out infinite;
+}
+@keyframes live-dot-pulse{ 0%{ transform:scale(0.6); opacity:0.6; } 100%{ transform:scale(2.2); opacity:0; } }
+@media (prefers-reduced-motion: reduce){ .live-dot::after{ animation:none; opacity:0; } }
+
+/* ===== Premium bezel card — concentric shell + navy-tinted ambient shadow =====
+   Outer shell in brand-deep, inner content area on a lighter surface with a
+   stepped-down radius so the corners stay concentric (CMB's card pattern). */
+.card-premium{
+  background:var(--brand-deep); padding:var(--bezel-pad); border-radius:var(--radius-shell);
+  box-shadow:var(--shadow-card); align-self:start;
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s ease;
+}
+/* Opt back into equal-height siblings for grids that want matched-height cards
+   (e.g. the homepage intro trio) — apply on the grid container, not the card. */
+.cards-equal-height > .card-premium{ height:100%; align-self:stretch; }
+.card-premium-inner{
+  background:var(--paper-raised); border-radius:var(--radius-core); height:100%;
+  padding:1.75rem; border:1px solid var(--line);
+  transition: border-color 0.35s ease;
+}
+.card-premium:hover{ transform:translateY(-6px); box-shadow:var(--shadow-card-hover); }
+.card-premium:hover .card-premium-inner{ border-color:rgba(195,26,33,0.3); }
+@media (prefers-reduced-motion: reduce){
+  .card-premium{ transition:box-shadow 0.2s ease; }
+  .card-premium:hover{ transform:none; }
+}
+
+/* ===== Stat counters ===== */
+.stat-number{
+  font-family:'Fraunces',serif; font-weight:600; letter-spacing:-0.02em;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-size:clamp(2.25rem, 5vw, 3.25rem); color:var(--brand);
+  text-shadow: 0 0 24px rgba(195,26,33,0.18);
+}
+.stat-number.on-dark{ color:var(--paper); text-shadow: 0 0 28px rgba(195,26,33,0.4); }
+.stat-label{ margin-top:0.5rem; font-size:0.85rem; color:var(--ink-soft); }
+.text-glow{ text-shadow: 0 0 18px rgba(195,26,33,0.35); }
+
+/* Pop-in entrance for stat cards — scale+rotate rather than a flat slide-up */
+.js-reveal .reveal.reveal-pop{ transform: translateY(20px) scale(0.86) rotate(-2deg); }
+.js-reveal .reveal.reveal-pop.is-visible{ transform:none; }
+
+/* ===== Process timeline — alternating cards along a center line ===== */
+.timeline{ position:relative; }
+.timeline::before{
+  content:''; position:absolute; left:50%; top:0; bottom:0; width:2px;
+  background:linear-gradient(to bottom, transparent, rgba(26,28,77,0.2) 8%, rgba(195,26,33,0.35) 50%, rgba(26,28,77,0.2) 92%, transparent);
+  transform:translateX(-50%); display:none;
+}
+.timeline-row{ display:grid; grid-template-columns:1fr; gap:1rem; position:relative; }
+.timeline-row + .timeline-row{ margin-top:2rem; }
+.timeline-dot{ display:none; }
+@media (min-width: 768px){
+  .timeline::before{ display:block; }
+  .timeline-row{ grid-template-columns:1fr 2.5rem 1fr; align-items:center; gap:0; }
+  .timeline-dot{
+    display:flex; width:14px; height:14px; border-radius:999px; margin:0 auto;
+    background:var(--accent); box-shadow:0 0 0 5px rgba(195,26,33,0.15), 0 0 16px rgba(195,26,33,0.4);
+    position:relative; z-index:1;
+  }
+  .timeline-row .timeline-card{ grid-column:1; }
+  .timeline-row .timeline-spacer{ grid-column:3; }
+  .timeline-row.is-flipped .timeline-card{ grid-column:3; }
+  .timeline-row.is-flipped .timeline-spacer{ grid-column:1; }
+}
+.timeline-card{
+  background:var(--paper-raised); border:1px solid var(--line); border-radius:1.25rem;
+  padding:1.5rem 1.75rem; box-shadow:var(--shadow-card);
+}
+.timeline-step{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:2rem; height:2rem; border-radius:999px; background:var(--brand-deep); color:var(--paper);
+  font-family:'Fraunces',serif; font-weight:600; font-size:0.9rem; margin-bottom:0.75rem;
+}

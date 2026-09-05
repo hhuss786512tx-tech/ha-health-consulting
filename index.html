@@ -24,6 +24,16 @@
 
 <div class="scroll-progress" id="scrollProgress"></div>
 
+<!-- TOP UTILITY BAR (scrolls away, sits above the sticky nav) -->
+<div class="hidden sm:block bg-[var(--brand-deep)] text-[var(--paper)]">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 h-9 flex items-center justify-end">
+    <span class="ring-badge on-dark eyebrow-badge inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.08em]">
+      <span class="live-dot"></span>
+      Accepting new clients
+    </span>
+  </div>
+</div>
+
 <!-- NAV -->
 <header id="siteHeader" class="sticky top-0 z-50 backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
@@ -80,7 +90,7 @@
   <div class="absolute inset-x-0 bottom-0 h-28 md:h-36" style="background:linear-gradient(to bottom, transparent, var(--paper));"></div>
   <div class="relative max-w-6xl mx-auto px-6 md:px-8 pt-20 pb-24 md:pt-28 md:pb-32">
     <div class="max-w-2xl">
-      <span class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)] border border-[rgba(240,163,167,0.3)] rounded-full px-3.5 py-1.5">
+      <span class="ring-badge on-dark eyebrow-badge inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)]">
         Houston, TX &middot; Serving practices nationwide
       </span>
       <h1 class="hero-h1 font-display tracking-tightish text-4xl sm:text-5xl md:text-[3.4rem] mt-6">
@@ -106,7 +116,7 @@
 <!-- PARTNERS (auto-cycling marquee) -->
 <section class="border-b border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-10">
-    <p class="text-center text-xs uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-6">Platform partnerships</p>
+    <p class="ring-badge eyebrow-badge flex w-max mx-auto text-xs uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-6">Platform partnerships</p>
     <div class="logo-marquee">
       <div class="logo-marquee-track">
         <img src="brand_assets/eclinicalworks.png" alt="eClinicalWorks" class="partner-logo h-6 md:h-7 w-auto object-contain" />
@@ -128,18 +138,47 @@
 
 <!-- INTRO TRIO -->
 <section id="services-preview" class="max-w-6xl mx-auto px-6 md:px-8 py-20">
-  <div class="grid md:grid-cols-3 gap-10">
-    <div class="reveal border-t-2 border-[var(--brand-deep)] pt-6">
-      <h3 class="font-display text-xl tracking-tightish mb-3">Tailored EHR Solutions for Every Practice</h3>
-      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">At <strong class="text-[var(--ink)]">H&amp;A Healthcare Consulting</strong>, we understand that every healthcare practice is unique. Our expert team works closely with your organization to deliver customized <strong class="text-[var(--ink)]">Electronic Health Record (EHR) solutions</strong> that align with your operational goals and patient care needs. Whether you're implementing a new system or optimizing your current one, we provide tailored strategies that streamline workflows, improve efficiency, and enhance patient outcomes.</p>
+  <div class="cards-equal-height grid md:grid-cols-3 gap-8">
+    <div class="reveal card-premium">
+      <div class="card-premium-inner">
+        <h3 class="font-display text-xl tracking-tightish mb-3">Tailored EHR Solutions for Every Practice</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">At <strong class="text-[var(--ink)]">H&amp;A Healthcare Consulting</strong>, we understand that every healthcare practice is unique. Our expert team works closely with your organization to deliver customized <strong class="text-[var(--ink)]">Electronic Health Record (EHR) solutions</strong> that align with your operational goals and patient care needs. Whether you're implementing a new system or optimizing your current one, we provide tailored strategies that streamline workflows, improve efficiency, and enhance patient outcomes.</p>
+      </div>
     </div>
-    <div class="reveal border-t-2 border-[var(--brand-deep)] pt-6">
-      <h3 class="font-display text-xl tracking-tightish mb-3">20+ Years of Industry Expertise</h3>
-      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">With over <strong class="text-[var(--ink)]">two decades of experience</strong> in the healthcare industry, our consultants bring a wealth of knowledge and proven strategies to each project. Our expertise spans across multiple EHR platforms, ensuring that you receive the most up-to-date and effective solutions. Trust H&amp;A Healthcare Consulting to deliver the results you need to navigate the complexities of healthcare technology, compliance, and patient management.</p>
+    <div class="reveal card-premium">
+      <div class="card-premium-inner">
+        <h3 class="font-display text-xl tracking-tightish mb-3">20+ Years of Industry Expertise</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">With over <strong class="text-[var(--ink)]">two decades of experience</strong> in the healthcare industry, our consultants bring a wealth of knowledge and proven strategies to each project. Our expertise spans across multiple EHR platforms, ensuring that you receive the most up-to-date and effective solutions. Trust H&amp;A Healthcare Consulting to deliver the results you need to navigate the complexities of healthcare technology, compliance, and patient management.</p>
+      </div>
     </div>
-    <div class="reveal border-t-2 border-[var(--brand-deep)] pt-6">
-      <h3 class="font-display text-xl tracking-tightish mb-3">Nationwide Support, Local Service</h3>
-      <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Based in <strong class="text-[var(--ink)]">Houston, Texas</strong>, H&amp;A Healthcare Consulting proudly provides services to clients across the nation. Despite our wide reach, we prioritize <strong class="text-[var(--ink)]">personalized service</strong>, ensuring that each client receives the dedicated attention and tailored solutions they deserve. Whether you need remote consultations or on-site support, we're equipped to offer flexible services that fit your needs, no matter your location.</p>
+    <div class="reveal card-premium">
+      <div class="card-premium-inner">
+        <h3 class="font-display text-xl tracking-tightish mb-3">Nationwide Support, Local Service</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Based in <strong class="text-[var(--ink)]">Houston, Texas</strong>, H&amp;A Healthcare Consulting proudly provides services to clients across the nation. Despite our wide reach, we prioritize <strong class="text-[var(--ink)]">personalized service</strong>, ensuring that each client receives the dedicated attention and tailored solutions they deserve. Whether you need remote consultations or on-site support, we're equipped to offer flexible services that fit your needs, no matter your location.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<section class="bg-[var(--brand-deep)] text-[var(--paper)] relative overflow-hidden">
+  <div class="noise"></div>
+  <div class="relative max-w-6xl mx-auto px-6 md:px-8 py-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <div class="reveal reveal-pop">
+      <p class="stat-number on-dark" data-target="20" data-suffix="+">0</p>
+      <p class="stat-label text-[rgba(247,246,242,0.65)]">Years in Healthcare</p>
+    </div>
+    <div class="reveal reveal-pop">
+      <p class="stat-number on-dark" data-target="2" data-suffix="">0</p>
+      <p class="stat-label text-[rgba(247,246,242,0.65)]">Founding Consultants</p>
+    </div>
+    <div class="reveal reveal-pop">
+      <p class="stat-number on-dark" data-target="5" data-suffix="+">0</p>
+      <p class="stat-label text-[rgba(247,246,242,0.65)]">EHR Platforms Supported</p>
+    </div>
+    <div class="reveal reveal-pop">
+      <p class="stat-number on-dark" data-target="50" data-suffix="+">0</p>
+      <p class="stat-label text-[rgba(247,246,242,0.65)]">U.S. States Served</p>
     </div>
   </div>
 </section>
@@ -155,7 +194,7 @@
     <div class="absolute inset-0" style="background:linear-gradient(to left, transparent 55%, var(--paper-raised));"></div>
   </div>
   <div class="reveal relative max-w-2xl mx-auto px-6 md:px-8 py-24 md:py-36 text-center">
-    <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Tailored solutions for modern healthcare</span>
+    <span class="ring-badge eyebrow-badge inline-flex text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Tailored solutions for modern healthcare</span>
     <h2 class="font-display tracking-tightish text-2xl md:text-3xl mt-3">Comprehensive Healthcare Consulting Services Designed for Your Success</h2>
     <p class="leading-relaxed-body text-[var(--ink-soft)] text-sm mt-5">
       At <strong class="text-[var(--ink)]">H&amp;A Healthcare Consulting</strong>, we offer a full suite of healthcare consulting services that are specifically crafted to meet the unique needs of your organization. From <strong class="text-[var(--ink)]">EHR optimization</strong> to <strong class="text-[var(--ink)]">telemedicine integration</strong> and <strong class="text-[var(--ink)]">revenue cycle management</strong>, our expert team is here to help you streamline your operations, enhance patient outcomes, and improve financial performance. With over 20 years of experience, we are dedicated to driving your practice forward with innovative, reliable solutions.
@@ -166,30 +205,84 @@
   </div>
 </section>
 
+<!-- HOW WE WORK -->
+<section class="max-w-4xl mx-auto px-6 md:px-8 py-24">
+  <div class="text-center mb-16">
+    <span class="ring-badge eyebrow-badge inline-flex text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">How we work</span>
+    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">A Clear Path From First Call to Go-Live</h2>
+  </div>
+  <div class="timeline">
+    <div class="reveal timeline-row">
+      <div class="timeline-card">
+        <span class="timeline-step">1</span>
+        <h3 class="font-display text-lg tracking-tightish mb-2">Discovery Call</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">We start with a free consultation to understand your practice's workflows, pain points, and goals — no commitment required.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-spacer"></div>
+    </div>
+    <div class="reveal timeline-row is-flipped">
+      <div class="timeline-spacer"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <span class="timeline-step">2</span>
+        <h3 class="font-display text-lg tracking-tightish mb-2">Practice Assessment</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Our consultants audit your current EHR setup, compliance posture, and revenue cycle to identify exactly where the opportunities are.</p>
+      </div>
+    </div>
+    <div class="reveal timeline-row">
+      <div class="timeline-card">
+        <span class="timeline-step">3</span>
+        <h3 class="font-display text-lg tracking-tightish mb-2">Implementation Roadmap</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">We build a phased plan tailored to your practice, coordinating with your team so day-to-day operations are never disrupted.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-spacer"></div>
+    </div>
+    <div class="reveal timeline-row is-flipped">
+      <div class="timeline-spacer"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <span class="timeline-step">4</span>
+        <h3 class="font-display text-lg tracking-tightish mb-2">Ongoing Support</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Go-live is the beginning, not the end — we stay engaged for training, troubleshooting, and continuous optimization.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TEAM (kept on the home page) -->
 <section class="max-w-6xl mx-auto px-6 md:px-8 py-24">
-  <span class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Our team</span>
+  <span class="ring-badge eyebrow-badge inline-flex text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Our team</span>
   <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3 mb-12">Guiding Your Healthcare Practice to Success</h2>
-  <div class="grid sm:grid-cols-2 gap-x-28 gap-y-14 max-w-3xl">
+  <div class="grid sm:grid-cols-2 gap-x-28 gap-y-24 max-w-3xl">
     <div class="reveal">
-      <div class="w-[240px] h-[240px] rounded-full overflow-hidden shadow-soft">
-        <img src="brand_assets/team/eddie-zakaria-placeholder.svg" alt="Eddie Zakaria, President &amp; Founder — headshot placeholder" class="w-full h-full object-cover" />
+      <div class="card-premium">
+        <div class="card-premium-inner text-center">
+          <div class="w-[180px] h-[180px] mx-auto rounded-full overflow-hidden shadow-soft">
+            <img src="brand_assets/team/eddie-zakaria-placeholder.svg" alt="Eddie Zakaria, President &amp; Founder — headshot placeholder" class="w-full h-full object-cover" />
+          </div>
+          <p class="mt-5 font-semibold text-[var(--brand)]">Eddie Zakaria</p>
+          <p class="text-sm text-[var(--ink-soft)]">President &amp; Founder</p>
+        </div>
       </div>
-      <p class="mt-5 font-semibold text-[var(--brand)]">Eddie Zakaria</p>
-      <p class="text-sm text-[var(--ink-soft)] mb-6">President &amp; Founder</p>
-      <div class="biz-card-3d-wrap">
+      <div class="biz-card-3d-wrap mt-8 mx-auto">
         <div class="biz-card-3d">
           <img src="brand_assets/og/EDDIE-CARD-BACK-768x439.png" alt="Eddie Zakaria business card" />
         </div>
       </div>
     </div>
     <div class="reveal">
-      <div class="w-[240px] h-[240px] rounded-full overflow-hidden shadow-soft">
-        <img src="brand_assets/team/sajid-sultan-placeholder.svg" alt="Sajid &quot;Mo&quot; Sultan, Chief Technology Officer — headshot placeholder" class="w-full h-full object-cover" />
+      <div class="card-premium">
+        <div class="card-premium-inner text-center">
+          <div class="w-[180px] h-[180px] mx-auto rounded-full overflow-hidden shadow-soft">
+            <img src="brand_assets/team/sajid-sultan-placeholder.svg" alt="Sajid &quot;Mo&quot; Sultan, Chief Technology Officer — headshot placeholder" class="w-full h-full object-cover" />
+          </div>
+          <p class="mt-5 font-semibold text-[var(--brand)]">Sajid &ldquo;Mo&rdquo; Sultan</p>
+          <p class="text-sm text-[var(--ink-soft)]">Chief Technology Officer</p>
+        </div>
       </div>
-      <p class="mt-5 font-semibold text-[var(--brand)]">Sajid &ldquo;Mo&rdquo; Sultan</p>
-      <p class="text-sm text-[var(--ink-soft)] mb-6">Chief Technology Officer</p>
-      <div class="biz-card-3d-wrap">
+      <div class="biz-card-3d-wrap mt-8 mx-auto">
         <div class="biz-card-3d">
           <img src="brand_assets/og/SAJID-CARD-BACK-768x439.png" alt="Sajid Sultan business card" />
         </div>

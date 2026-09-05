@@ -52,8 +52,11 @@
   }
 
   // ---------- 3D business card tilt (follows the cursor, fine-pointer only) ----------
+  // Also idles with a slow auto-tilt when not being interacted with, so the
+  // card doesn't sit dead-static — the idle loop checks is-tilting every
+  // frame and yields instantly the moment a real mousemove takes over.
   if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
-    document.querySelectorAll('.biz-card-3d-wrap').forEach(function(wrap){
+    document.querySelectorAll('.biz-card-3d-wrap').forEach(function(wrap, idx){
       var card = wrap.querySelector('.biz-card-3d');
       if (!card) return;
       wrap.addEventListener('mousemove', function(e){
@@ -69,7 +72,43 @@
         wrap.classList.remove('is-tilting');
         card.style.transform = '';
       });
+      var phase = idx * 1.7; // offset each card so multiples don't sync up
+      (function idleTilt(){
+        requestAnimationFrame(idleTilt);
+        if (wrap.classList.contains('is-tilting')) return;
+        var t = Date.now() / 1600 + phase;
+        // Oscillate around the CSS resting tilt (rotateX:8deg rotateY:-14deg)
+        // so the loop doesn't jump on its first frame.
+        var rotateY = -14 + Math.sin(t) * 6;
+        var rotateX = 8 + Math.cos(t * 0.8) * 3;
+        card.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg)';
+      })();
     });
+  }
+
+  // ---------- Stat count-up (once per element, on scroll into view) ----------
+  if ('IntersectionObserver' in window) {
+    var statIo = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        statIo.unobserve(entry.target);
+        var el = entry.target;
+        var target = parseFloat(el.dataset.target) || 0;
+        var suffix = el.dataset.suffix || '';
+        if (reduceMotion) { el.textContent = target + suffix; return; }
+        var duration = 1400;
+        var start = null;
+        function step(ts){
+          if (!start) start = ts;
+          var progress = Math.min((ts - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(target * eased) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('.stat-number[data-target]').forEach(function(el){ statIo.observe(el); });
   }
 
   // ---------- Mobile menu ----------
@@ -118,12 +157,20 @@
   if (!reduceMotion) {
     var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('.parallax-el'));
     var ticking = false;
+    var lastY = window.scrollY || window.pageYOffset;
     function onScroll(){
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(function(){
         var y = window.scrollY || window.pageYOffset;
-        if (header) header.classList.toggle('is-scrolled', y > 8);
+        if (header) {
+          header.classList.toggle('is-scrolled', y > 8);
+          // Hide on scroll-down, show on scroll-up — only once past the hero
+          // so it doesn't flicker on tiny scrolls near the top.
+          if (y > lastY + 4 && y > 160) header.classList.add('is-hidden');
+          else if (y < lastY - 4 || y <= 160) header.classList.remove('is-hidden');
+        }
+        lastY = y;
         if (progress) {
           var doc = document.documentElement;
           var max = (doc.scrollHeight - doc.clientHeight) || 1;
