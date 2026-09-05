@@ -51,6 +51,27 @@
     }
   }
 
+  // ---------- 3D business card tilt (follows the cursor, fine-pointer only) ----------
+  if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
+    document.querySelectorAll('.biz-card-3d-wrap').forEach(function(wrap){
+      var card = wrap.querySelector('.biz-card-3d');
+      if (!card) return;
+      wrap.addEventListener('mousemove', function(e){
+        var rect = wrap.getBoundingClientRect();
+        var px = (e.clientX - rect.left) / rect.width;   // 0..1
+        var py = (e.clientY - rect.top) / rect.height;   // 0..1
+        var rotateY = (px - 0.5) * 26;   // left/right tilt
+        var rotateX = (0.5 - py) * 18;   // up/down tilt
+        wrap.classList.add('is-tilting');
+        card.style.transform = 'rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) scale(1.04)';
+      });
+      wrap.addEventListener('mouseleave', function(){
+        wrap.classList.remove('is-tilting');
+        card.style.transform = '';
+      });
+    });
+  }
+
   // ---------- Mobile menu ----------
   var menuBtn = document.getElementById('mobileMenuBtn');
   var menu = document.getElementById('mobileMenu');
