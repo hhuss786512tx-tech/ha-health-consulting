@@ -346,6 +346,10 @@
     function closeLead(){
       leadScrim.classList.remove('is-open');
       leadModal.classList.remove('is-open');
+      // Blur first — setting aria-hidden while a descendant (e.g. the close
+      // button itself) still has focus is an invalid ARIA state and browsers
+      // will warn/block it.
+      if (leadModal.contains(document.activeElement)) document.activeElement.blur();
       leadModal.setAttribute('aria-hidden', 'true');
       // Restore the rest of the page first, THEN re-inert the now-closed
       // modal — reversed, the blanket restore would immediately undo the
@@ -478,44 +482,63 @@
       }, { passive: true });
     }
 
-    // ---------- Rule-based chat widget ----------
-    var chatNodes = {
-      root: {
-        text: "Hi, I'm the H&A assistant. What can I help you with today?",
-        options: [
-          { label: 'eClinicalWorks / EHR', next: 'ehr' },
-          { label: 'Medical Billing & RCM', next: 'rcm' },
-          { label: 'Telemedicine Integration', next: 'telemedicine' },
-          { label: 'Compliance & Regulatory', next: 'compliance' },
-          { label: 'IT Support & Managed Services', next: 'it' },
-          { label: 'Something else', next: 'other' }
-        ]
-      },
+    // ---------- Conversational rule-based chat widget ----------
+    // Free-text input is matched against per-topic keyword lists (best-score
+    // wins); quick-reply chips still work and route through the same
+    // responder, so both interaction styles stay available side by side.
+    // Deliberately NOT LLM-backed — zero API key, zero per-message cost,
+    // per the original proposal's no-recurring-cost chatbot decision.
+    var chatTopics = {
       ehr: {
+        keywords: ['ecw','eclinicalworks','ehr','emr','implementation','optimization','go live','golive','go-live','migration','interface','interfacing','radiology','lab'],
+        label: 'eClinicalWorks / EHR',
         text: 'We work exclusively inside eClinicalWorks — implementation, go-live support, migrations, and lab/radiology interfacing. No generalist EHR consultants, just a team that knows eCW inside and out.',
+        followUp: "Because eCW is the only platform we touch, onboarding is fast and support actually knows your exact setup — no ramp-up time.",
         interest: 'EHR Optimization'
       },
       rcm: {
-        text: 'Our billing team handles medical billing and revenue cycle management end to end — claims, denials, and collections — to help you get paid faster and more completely.',
+        keywords: ['billing','rcm','revenue cycle','claims','collections','denial','coding','payer','reimbursement','get paid'],
+        label: 'Medical Billing & RCM',
+        text: "Our in-house billing team — 150+ specialists — handles claims, coding, denial management, and collections end to end, built around eCW's actual workflow.",
+        followUp: "Because our billing team and our eCW implementation team are the same company, changes on one side never get lost in translation to the other.",
         interest: 'Medical Billing & RCM'
       },
       telemedicine: {
-        text: 'We integrate telemedicine directly into your existing EHR and scheduling workflow, with HIPAA-compliant setup from day one.',
+        keywords: ['telemedicine','telehealth','virtual visit','video visit','remote care','video call'],
+        label: 'Telemedicine Integration',
+        text: 'We integrate telemedicine directly into your existing eCW workflow and scheduling, with HIPAA-compliant setup from day one.',
+        followUp: "It plugs into the scheduling your staff already uses, so there's no separate system for patients or your front desk to learn.",
         interest: 'Telemedicine Integration'
       },
       compliance: {
+        keywords: ['hipaa','hitech','macra','mips','compliance','regulatory','audit','privacy'],
+        label: 'Compliance & Regulatory',
         text: 'We help practices navigate HIPAA, HITECH, and MACRA/MIPS requirements with practical, ongoing compliance support — not just a one-time audit.',
+        followUp: "We treat this as ongoing, not a checkbox you tick once a year and forget about.",
         interest: 'Compliance & Regulatory'
       },
       it: {
-        text: 'Our team provides remote and onsite IT support for healthcare practices — day-to-day help desk, infrastructure, and ongoing managed services.',
+        keywords: ['it support','help desk','infrastructure','managed services','network','server','tech support','it help'],
+        label: 'IT Support & Managed Services',
+        text: 'We provide remote and onsite IT support for healthcare practices — day-to-day help desk, infrastructure, and ongoing managed services.',
+        followUp: "Same team that knows your eCW setup also handles the IT side, so nothing falls in the gap between two vendors.",
         interest: 'IT Support & Managed Services'
       },
-      other: {
-        text: "No problem — tell us a bit about what you need and we'll route you to the right specialist on our team.",
-        interest: 'Not sure yet'
+      workflow: {
+        keywords: ['workflow','efficiency','practice transformation','process','bottleneck'],
+        label: 'Practice Transformation',
+        text: 'We help practices optimize day-to-day workflow, automate routine tasks, and remove the friction points slowing your team down.',
+        followUp: "Usually this starts with an audit of exactly where time is actually going, not guesswork.",
+        interest: 'Practice Transformation'
       }
     };
+    var topicOrder = ['ehr','rcm','telemedicine','compliance','workflow','it'];
+
+    var companyReply = "H&A Healthcare Consulting is a Houston-based team working exclusively inside eClinicalWorks — over 20 years of healthcare experience, plus an in-house billing team of 150+ specialists. We're also an official partner of Riceland Healthcare, which gives us the scale to support practices nationwide. What would be most useful to know about — eCW, billing, or something else?";
+    var pricingReply = "Pricing depends on your practice's size and what you actually need, so I can't give you a number here — the fastest way to get a real one is a quick call with our team. Want me to get that scheduled?";
+    var greetingWords = ['hi','hello','hey','good morning','good afternoon','good evening'];
+    var bookingWords = ['book','schedule','appointment','consult','consultation','talk to someone','talk to a human','sign me up','call me','get started','set up a call','speak to someone'];
+    var thanksWords = ['thanks','thank you','appreciate it','ok cool','sounds good'];
 
     var chatLauncher = document.createElement('button');
     chatLauncher.type = 'button';
@@ -538,57 +561,158 @@
         '<div class="chatbot-panel-title">H&amp;A Assistant</div>' +
         '<div class="chatbot-panel-sub">Usually replies instantly</div>' +
       '</div>' +
-      '<div class="chatbot-body" id="chatbotBody" aria-live="polite"></div>';
+      '<div class="chatbot-body" id="chatbotBody" aria-live="polite"></div>' +
+      '<form id="chatbotInputRow" class="chatbot-input-row">' +
+        '<input type="text" id="chatbotInput" class="chatbot-input" placeholder="Type a message…" autocomplete="off" maxlength="300" />' +
+        '<button type="submit" class="chatbot-send" aria-label="Send message">' +
+          '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>' +
+        '</button>' +
+      '</form>';
 
     document.body.appendChild(chatLauncher);
     document.body.appendChild(chatPanel);
 
     var chatBody = chatPanel.querySelector('#chatbotBody');
+    var chatInputForm = chatPanel.querySelector('#chatbotInputRow');
+    var chatInput = chatPanel.querySelector('#chatbotInput');
+    var lastInterest = null;
 
-    function renderChatNode(key){
-      var node = chatNodes[key];
-      chatBody.innerHTML = '';
+    function scrollChatToBottom(){
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
 
-      if (key !== 'root') {
-        var back = document.createElement('button');
-        back.type = 'button';
-        back.className = 'chatbot-back';
-        back.textContent = '← Back to menu';
-        back.addEventListener('click', function(){ renderChatNode('root'); });
-        chatBody.appendChild(back);
-      }
-
+    function addChatMessage(text, isUser){
       var msg = document.createElement('div');
-      msg.className = 'chatbot-msg';
-      msg.textContent = node.text;
+      msg.className = 'chatbot-msg' + (isUser ? ' is-user' : '');
+      msg.textContent = text;
       chatBody.appendChild(msg);
+      scrollChatToBottom();
+      return msg;
+    }
 
-      if (node.options) {
-        var wrap = document.createElement('div');
-        wrap.className = 'chatbot-quick-replies';
-        node.options.forEach(function(opt){
-          var btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'chatbot-option';
-          btn.textContent = opt.label;
-          btn.addEventListener('click', function(){ renderChatNode(opt.next); });
-          wrap.appendChild(btn);
+    function addQuickReplies(topics, extraLabel, extraHandler){
+      var old = chatBody.querySelector('.chatbot-quick-replies');
+      if (old) old.remove();
+      var wrap = document.createElement('div');
+      wrap.className = 'chatbot-quick-replies';
+      topics.forEach(function(key){
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'chatbot-option';
+        btn.textContent = chatTopics[key].label;
+        btn.addEventListener('click', function(){ handleTopicSelection(key, true); });
+        wrap.appendChild(btn);
+      });
+      if (extraLabel) {
+        var extraBtn = document.createElement('button');
+        extraBtn.type = 'button';
+        extraBtn.className = 'chatbot-option';
+        extraBtn.textContent = extraLabel;
+        extraBtn.addEventListener('click', extraHandler);
+        wrap.appendChild(extraBtn);
+      }
+      chatBody.appendChild(wrap);
+      scrollChatToBottom();
+    }
+
+    function addBookingCta(interest){
+      var old = chatBody.querySelector('.chatbot-cta');
+      if (old) old.remove();
+      var cta = document.createElement('button');
+      cta.type = 'button';
+      cta.className = 'chatbot-cta btn-primary w-full text-sm font-semibold px-5 py-3 rounded-full shadow-soft';
+      cta.textContent = 'Schedule Your Free Consultation';
+      cta.addEventListener('click', function(){
+        closeChat();
+        openLead(interest);
+      });
+      chatBody.appendChild(cta);
+      scrollChatToBottom();
+    }
+
+    function handleTopicSelection(key, viaClick){
+      var topic = chatTopics[key];
+      if (viaClick) addChatMessage(topic.label, true);
+      lastInterest = topic.interest;
+      addChatMessage(topic.text, false);
+      setTimeout(function(){
+        addChatMessage(topic.followUp, false);
+        addBookingCta(topic.interest);
+        addQuickReplies(topicOrder.filter(function(k){ return k !== key; }).slice(0, 3), 'Something else', function(){
+          addChatMessage('Something else', true);
+          addChatMessage("No problem — tell me a bit about what you need, or pick a topic below.", false);
+          addQuickReplies(topicOrder);
         });
-        chatBody.appendChild(wrap);
+      }, 450);
+    }
+
+    function scoreTopic(input, topic){
+      var score = 0;
+      topic.keywords.forEach(function(kw){ if (input.indexOf(kw) !== -1) score += kw.split(' ').length; });
+      return score;
+    }
+
+    function handleUserText(raw){
+      var text = raw.trim();
+      if (!text) return;
+      addChatMessage(text, true);
+      var input = text.toLowerCase();
+
+      if (bookingWords.some(function(w){ return input.indexOf(w) !== -1; })) {
+        setTimeout(function(){
+          addChatMessage("Great — let's get that on the calendar. Just need a few details.", false);
+          setTimeout(function(){ closeChat(); openLead(lastInterest || 'Not sure yet'); }, 700);
+        }, 350);
+        return;
+      }
+      if (greetingWords.some(function(w){ return input.indexOf(w) !== -1; }) && input.length < 20) {
+        setTimeout(function(){
+          addChatMessage("Hi! What can I help you with — eCW, billing, telemedicine, compliance, IT support, or something else?", false);
+          addQuickReplies(topicOrder);
+        }, 350);
+        return;
+      }
+      if (thanksWords.some(function(w){ return input.indexOf(w) !== -1; })) {
+        setTimeout(function(){ addChatMessage("Anytime — happy to answer anything else, or I can get you booked with the team.", false); }, 350);
+        return;
+      }
+      // Narrow on purpose: a bare "tell me about"/"company"/"years" would swallow
+      // topic-specific questions like "tell me about billing" before they ever
+      // reach the keyword scorer below — require it to actually be about the
+      // company itself, not just contain a common phrase.
+      if (/\b(who are you|what do you do|your company|about h ?& ?a|tell me about (the company|your company|h ?& ?a))\b/.test(input)) {
+        setTimeout(function(){ addChatMessage(companyReply, false); addQuickReplies(topicOrder); }, 350);
+        return;
+      }
+      if (/\b(price|pricing|cost|how much|rate|fee)\b/.test(input)) {
+        setTimeout(function(){ addChatMessage(pricingReply, false); }, 350);
+        return;
       }
 
-      if (node.interest) {
-        var cta = document.createElement('button');
-        cta.type = 'button';
-        cta.className = 'btn-primary w-full text-sm font-semibold px-5 py-3 rounded-full shadow-soft';
-        cta.textContent = 'Schedule Your Free Consultation';
-        cta.addEventListener('click', function(){
-          closeChat();
-          openLead(node.interest);
-        });
-        chatBody.appendChild(cta);
+      var bestKey = null, bestScore = 0;
+      topicOrder.forEach(function(key){
+        var s = scoreTopic(input, chatTopics[key]);
+        if (s > bestScore) { bestScore = s; bestKey = key; }
+      });
+      if (bestKey) {
+        setTimeout(function(){ handleTopicSelection(bestKey, false); }, 350);
+      } else {
+        setTimeout(function(){
+          addChatMessage("I might not have that one exactly — want to ask about eCW, billing, telemedicine, compliance, or IT support? Or I can connect you with someone on the team.", false);
+          addQuickReplies(topicOrder.slice(0, 4), 'Talk to the team', function(){
+            addChatMessage('Talk to the team', true);
+            setTimeout(function(){ closeChat(); openLead(lastInterest || 'Not sure yet'); }, 300);
+          });
+        }, 350);
       }
     }
+
+    chatInputForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var val = chatInput.value;
+      chatInput.value = '';
+      handleUserText(val);
+    });
 
     var chatOpen = false;
     function openChat(){
@@ -600,9 +724,11 @@
       chatLauncher.setAttribute('aria-expanded', 'true');
       chatLauncher.setAttribute('aria-label', 'Close chat');
       setBackgroundInert(true, [chatLauncher, chatPanel]);
-      renderChatNode('root');
-      var firstFocusable = chatPanel.querySelector('.chatbot-option, .chatbot-back');
-      if (firstFocusable) setTimeout(function(){ firstFocusable.focus(); }, 300);
+      chatBody.innerHTML = '';
+      lastInterest = null;
+      addChatMessage("Hi, I'm the H&A assistant. Ask me anything about eClinicalWorks, billing, or our other services — or pick a topic below.", false);
+      addQuickReplies(topicOrder);
+      setTimeout(function(){ chatInput.focus(); }, 300);
     }
     function closeChat(){
       chatOpen = false;

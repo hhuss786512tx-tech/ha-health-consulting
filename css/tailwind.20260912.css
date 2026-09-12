@@ -624,6 +624,10 @@ video {
   z-index: 50;
 }
 
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -667,10 +671,6 @@ video {
 
 .mb-8 {
   margin-bottom: 2rem;
-}
-
-.ml-auto {
-  margin-left: auto;
 }
 
 .mt-1 {
@@ -962,6 +962,11 @@ video {
   gap: 2rem;
 }
 
+.gap-x-10 {
+  -moz-column-gap: 2.5rem;
+       column-gap: 2.5rem;
+}
+
 .gap-x-28 {
   -moz-column-gap: 7rem;
        column-gap: 7rem;
@@ -969,6 +974,10 @@ video {
 
 .gap-y-24 {
   row-gap: 6rem;
+}
+
+.gap-y-4 {
+  row-gap: 1rem;
 }
 
 .space-y-14 > :not([hidden]) ~ :not([hidden]) {
@@ -1087,6 +1096,11 @@ video {
      object-fit: cover;
 }
 
+.object-\[15\%_30\%\] {
+  -o-object-position: 15% 30%;
+     object-position: 15% 30%;
+}
+
 .p-7 {
   padding: 1.75rem;
 }
@@ -1168,6 +1182,11 @@ video {
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.py-7 {
+  padding-top: 1.75rem;
+  padding-bottom: 1.75rem;
 }
 
 .pb-14 {
@@ -1321,6 +1340,15 @@ video {
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
+.blur {
+  --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
 .backdrop-blur {
   --tw-backdrop-blur: blur(8px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
@@ -1343,6 +1371,10 @@ video {
 
 .hover\:text-\[var\(--accent\)\]:hover {
   color: var(--accent);
+}
+
+.hover\:text-\[var\(--accent-soft\)\]:hover {
+  color: var(--accent-soft);
 }
 
 .hover\:text-\[var\(--ink\)\]:hover {
@@ -1448,6 +1480,10 @@ video {
 
   .md\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-\[3fr_2fr\] {
+    grid-template-columns: 3fr 2fr;
   }
 
   .md\:p-8 {

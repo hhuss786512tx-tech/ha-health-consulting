@@ -40,7 +40,9 @@
     <span class="intro-word">H&amp;A Healthcare Consulting</span>
   </div>
 </div>
-<div id="cursorRing" class="cursor-ring" aria-hidden="true"></div>
+<svg id="cursorRing" class="cursor-ring" aria-hidden="true" viewBox="0 0 24 28" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4 2.5 L4 21.5 L9 16.8 L12.8 24.3 L16.4 22.5 L12.6 15.1 L20.5 14.3 Z" />
+</svg>
 
 <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -48,7 +50,7 @@
 <header id="siteHeader" class="sticky top-0 z-50 backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-2.5 shrink-0">
-      <img src="brand_assets/logo-mark.svg" alt="H&amp;A Healthcare Consulting logo" class="w-10 h-10 shadow-soft" />
+      <img src="brand_assets/logo-mark.svg" alt="H&amp;A Healthcare Consulting logo" class="w-10 h-10 nav-logo-mark" />
       <span class="font-display text-lg tracking-tightish text-[var(--ink)] whitespace-nowrap hidden lg:inline">H&amp;A Healthcare Consulting</span>
     </a>
     <nav class="hidden md:flex items-center gap-5 lg:gap-9 text-[15px]">
@@ -86,15 +88,32 @@
 <section class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
   <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 15% 10%, rgba(42,36,112,0.9), transparent 60%), radial-gradient(50% 50% at 90% 90%, rgba(109,94,240,0.22), transparent 60%);"></div>
   <div class="noise"></div>
-  <div class="relative max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-20">
+  <div class="relative max-w-6xl mx-auto px-6 md:px-8 py-20 md:py-28">
     <span class="ring-badge on-dark eyebrow-badge inline-flex text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)]">About us</span>
-    <h1 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">Transforming Healthcare Practices for the Future</h1>
+    <h1 class="font-display tracking-tightish text-3xl md:text-4xl mt-4 max-w-2xl">Transforming Healthcare Practices for the Future</h1>
+    <p class="leading-relaxed-body text-[rgba(247,246,242,0.75)] text-lg mt-5 max-w-xl">
+      A Houston-based team built around one deliberate choice: we work inside eClinicalWorks exclusively, so the depth of our expertise never gets diluted across a dozen platforms.
+    </p>
+    <div class="flex flex-wrap gap-x-10 gap-y-4 mt-10">
+      <div>
+        <p class="font-display text-2xl md:text-3xl tracking-tightish text-[var(--accent-soft)]">20+</p>
+        <p class="text-xs text-[rgba(247,246,242,0.65)] uppercase tracking-[0.08em] mt-1">Years in healthcare</p>
+      </div>
+      <div>
+        <p class="font-display text-2xl md:text-3xl tracking-tightish text-[var(--accent-soft)]">150+</p>
+        <p class="text-xs text-[rgba(247,246,242,0.65)] uppercase tracking-[0.08em] mt-1">Billing specialists</p>
+      </div>
+      <div>
+        <p class="font-display text-2xl md:text-3xl tracking-tightish text-[var(--accent-soft)]">100%</p>
+        <p class="text-xs text-[rgba(247,246,242,0.65)] uppercase tracking-[0.08em] mt-1">eClinicalWorks focused</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section class="bg-[var(--paper-raised)] border-b border-[var(--line)]">
-  <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 grid md:grid-cols-2 gap-14 items-center">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-24 grid md:grid-cols-[3fr_2fr] gap-14 items-center">
     <div class="reveal">
       <span class="ring-badge eyebrow-badge inline-flex text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">eClinicalWorks specialists, not generalists</span>
       <p class="leading-relaxed-body text-[var(--ink-soft)] mt-5">
@@ -104,9 +123,24 @@
         Whether you need help with telemedicine integration, eClinicalWorks implementation and optimization, or HIPAA-compliant infrastructure, our team has done it inside eCW specifically — not "an EHR like it." We work closely with each client to ensure our solutions align with their vision and deliver measurable improvements in both operational efficiency and patient outcomes. Partner with H&amp;A Healthcare Consulting and take your practice to the next level.
       </p>
     </div>
-    <div class="reveal relative">
-      <div class="aspect-[16/10] rounded-2xl overflow-hidden shadow-soft-lg max-w-md ml-auto">
-        <img loading="lazy" decoding="async" src="brand_assets/og/HA-CARD-FRONT-1-pdf.jpg" alt="H&amp;A Healthcare Consulting" class="w-full h-full object-cover" />
+    <div class="reveal grid grid-cols-2 gap-4">
+      <div class="card-premium">
+        <div class="card-premium-inner text-center py-7">
+          <p class="font-display text-3xl tracking-tightish text-[var(--brand)]">20+</p>
+          <p class="text-xs text-[var(--ink-soft)] uppercase tracking-[0.08em] mt-2">Years Industry<br/>Experience</p>
+        </div>
+      </div>
+      <div class="card-premium">
+        <div class="card-premium-inner text-center py-7">
+          <p class="font-display text-3xl tracking-tightish text-[var(--brand)]">150+</p>
+          <p class="text-xs text-[var(--ink-soft)] uppercase tracking-[0.08em] mt-2">Billing<br/>Specialists</p>
+        </div>
+      </div>
+      <div class="card-premium col-span-2">
+        <div class="card-premium-inner text-center py-7">
+          <p class="font-display text-3xl tracking-tightish text-[var(--brand)]">100%</p>
+          <p class="text-xs text-[var(--ink-soft)] uppercase tracking-[0.08em] mt-2">eClinicalWorks Focused — No Generalist EHR Work</p>
+        </div>
       </div>
     </div>
   </div>
@@ -124,6 +158,7 @@
     </div>
     <div class="reveal">
       <h3 class="font-semibold text-lg mb-3">Ready to Elevate Your Practice?</h3>
+      <p class="text-[var(--ink-soft)] leading-relaxed-body mb-6">A 15-minute call is usually enough for us to tell you honestly whether we're the right fit — no generic sales pitch, just a straight read on where your practice stands with eCW today and what's actually worth fixing first.</p>
       <a href="contact.html" class="btn-dark inline-flex text-sm font-semibold px-6 py-3 rounded-full">Get in Touch Today</a>
     </div>
   </div>

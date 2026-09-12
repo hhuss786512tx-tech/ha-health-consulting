@@ -40,7 +40,9 @@
     <span class="intro-word">H&amp;A Healthcare Consulting</span>
   </div>
 </div>
-<div id="cursorRing" class="cursor-ring" aria-hidden="true"></div>
+<svg id="cursorRing" class="cursor-ring" aria-hidden="true" viewBox="0 0 24 28" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4 2.5 L4 21.5 L9 16.8 L12.8 24.3 L16.4 22.5 L12.6 15.1 L20.5 14.3 Z" />
+</svg>
 
 <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -48,7 +50,7 @@
 <header id="siteHeader" class="sticky top-0 z-50 backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-2.5 shrink-0">
-      <img src="brand_assets/logo-mark.svg" alt="H&amp;A Healthcare Consulting logo" class="w-10 h-10 shadow-soft" />
+      <img src="brand_assets/logo-mark.svg" alt="H&amp;A Healthcare Consulting logo" class="w-10 h-10 nav-logo-mark" />
       <span class="font-display text-lg tracking-tightish text-[var(--ink)] whitespace-nowrap hidden lg:inline">H&amp;A Healthcare Consulting</span>
     </a>
     <nav class="hidden md:flex items-center gap-5 lg:gap-9 text-[15px]">
@@ -82,6 +84,33 @@
 </nav>
 
 <main id="main">
+<!-- PAGE HEADER -->
+<section class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
+  <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 15% 10%, rgba(42,36,112,0.9), transparent 60%), radial-gradient(50% 50% at 90% 90%, rgba(109,94,240,0.22), transparent 60%);"></div>
+  <div class="noise"></div>
+  <div class="relative max-w-6xl mx-auto px-6 md:px-8 py-20 md:py-28">
+    <span class="ring-badge on-dark eyebrow-badge inline-flex text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)]">Get in touch</span>
+    <h1 class="font-display tracking-tightish text-3xl md:text-4xl mt-4 max-w-2xl">Let's Talk About Your Practice</h1>
+    <p class="leading-relaxed-body text-[rgba(247,246,242,0.75)] text-lg mt-5 max-w-xl">
+      Whether it's a quick question or a full eClinicalWorks project, reach out directly or leave your info below — we'll follow up fast.
+    </p>
+    <div class="flex flex-wrap gap-x-10 gap-y-4 mt-10 text-sm">
+      <a href="tel:+18328004352" class="flex items-center gap-2 text-[var(--paper)] hover:text-[var(--accent-soft)] transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (832) 800-4352
+      </a>
+      <a href="mailto:info@hahealthconsulting.com" class="flex items-center gap-2 text-[var(--paper)] hover:text-[var(--accent-soft)] transition-colors">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg>
+        info@hahealthconsulting.com
+      </a>
+      <span class="flex items-center gap-2 text-[rgba(247,246,242,0.75)]">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Spring, TX
+      </span>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-24">
   <div class="grid md:grid-cols-2 gap-10">
@@ -94,7 +123,6 @@
         referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <div class="reveal">
-      <h1 class="font-display tracking-tightish text-3xl md:text-4xl mb-8">Contact Us</h1>
       <div class="space-y-6">
         <div class="flex items-start gap-4">
           <div class="w-10 h-10 rounded-full bg-[var(--brand-deep)] flex items-center justify-center shrink-0">
