@@ -1,0 +1,380 @@
+<title>H&A Brand Directions</title>
+<style>
+  :root {
+    --ground: #f7f5f1;
+    --ground-raised: #ffffff;
+    --ink: #211f1a;
+    --ink-soft: #5c584f;
+    --line: #e4e0d7;
+    --accent: #9c7a3f;
+    --accent-soft: #f1e8d6;
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #1a1815;
+      --ground-raised: #232019;
+      --ink: #f0ede4;
+      --ink-soft: #b6b0a2;
+      --line: #38342b;
+      --accent: #d4b26a;
+      --accent-soft: #2e2717;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #1a1815;
+    --ground-raised: #232019;
+    --ink: #f0ede4;
+    --ink-soft: #b6b0a2;
+    --line: #38342b;
+    --accent: #d4b26a;
+    --accent-soft: #2e2717;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 64px 28px 120px; }
+
+  header.intro { max-width: 720px; margin-bottom: 76px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 18px;
+  }
+  h1 {
+    font-size: clamp(32px, 4.4vw, 46px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0 0 20px;
+    text-wrap: balance;
+  }
+  header.intro p {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 10px;
+    max-width: 62ch;
+  }
+
+  .panel {
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--ground-raised);
+    margin-bottom: 56px;
+    overflow: hidden;
+  }
+  .panel-head {
+    padding: 30px 32px 22px;
+    border-bottom: 1px solid var(--line);
+  }
+  .panel-num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    margin: 0 0 6px;
+  }
+  .panel-head h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+  }
+  .panel-head p.rationale {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  .panel-body { padding: 32px; display: flex; flex-direction: column; gap: 30px; }
+
+  .row-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 12px;
+  }
+
+  .swatches { display: flex; gap: 10px; flex-wrap: wrap; }
+  .swatch {
+    width: 108px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .swatch-color { height: 62px; }
+  .swatch-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    padding: 7px 9px;
+    background: var(--ground-raised);
+  }
+  .swatch-label b { display: block; font-size: 10px; color: var(--ink-soft); font-weight: 400; }
+
+  .type-specimen { display: flex; flex-direction: column; gap: 14px; }
+  .type-specimen .display-sample { font-size: 34px; line-height: 1.12; margin: 0; letter-spacing: -0.015em; }
+  .type-specimen .body-sample { font-size: 15px; line-height: 1.7; margin: 0; max-width: 56ch; }
+  .type-meta { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--ink-soft); }
+
+  /* mock hero card is a fixed self-contained specimen, not theme-linked */
+  .mock-hero {
+    border-radius: 12px;
+    padding: 46px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    position: relative;
+  }
+  .mock-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    width: fit-content;
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+  .mock-headline { font-size: 32px; line-height: 1.14; margin: 0; letter-spacing: -0.015em; max-width: 20ch; }
+  .mock-sub { font-size: 15px; line-height: 1.6; margin: 0; max-width: 46ch; }
+  .mock-cta {
+    width: fit-content;
+    font-size: 14.5px;
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 8px;
+    margin-top: 6px;
+  }
+  .mock-stats { display: flex; gap: 28px; margin-top: 22px; }
+  .mock-stat b { display: block; font-size: 22px; font-variant-numeric: tabular-nums; }
+  .mock-stat span { font-size: 11.5px; opacity: 0.75; }
+
+  .wordmark-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  .wordmark-card {
+    border-radius: 12px;
+    padding: 26px 30px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .wordmark-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .wordmark-text b { font-size: 21px; letter-spacing: -0.01em; }
+  .wordmark-text span { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; margin-top: 3px; }
+
+  footer.note {
+    max-width: 640px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--line);
+    padding-top: 26px;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 44px 18px 90px; }
+    .panel-body { padding: 24px 20px; }
+    .mock-hero { padding: 32px 24px; }
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,500&family=Public+Sans:wght@400;500;600&family=Spectral:wght@400;600&family=Work+Sans:wght@400;500;600&family=Domine:wght@500;700&family=Space+Mono&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+<div class="wrap">
+
+  <header class="intro">
+    <p class="eyebrow">Brand direction — three options</p>
+    <h1>A new visual identity for H&amp;A Healthcare Consulting</h1>
+    <p>Three distinct directions, each built from a different part of what H&amp;A actually does — clinical/EHR precision, the referral network the business runs on, and the revenue-cycle billing operation. Same brief throughout: enterprise-credible, benchmarked against eClinicalWorks.com's category, executed at a sharper level than that benchmark itself.</p>
+    <p>Pick one to carry into the full rebuild — or tell me what to recombine.</p>
+  </header>
+
+  <!-- DIRECTION 1 — CLINICAL AUTHORITY -->
+  <section class="panel">
+    <div class="panel-head">
+      <p class="panel-num">DIRECTION 01</p>
+      <h2>Clinical Authority</h2>
+      <p class="rationale">Grounded in the EHR-optimization side of the business — the visual language of a regulatory document or clinical audit log. A federal-service sans (built for exactly this kind of trust-critical reading) paired with an editorial serif for headlines, and a monospace face reserved for numbers — claims, uptime, dates — since this is a business whose credibility is measured in figures.</p>
+    </div>
+    <div class="panel-body">
+      <div>
+        <p class="row-label">Palette</p>
+        <div class="swatches">
+          <div class="swatch"><div class="swatch-color" style="background:#0f2438"></div><div class="swatch-label"><b>Ink Navy</b>#0f2438</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#f4f1ea"></div><div class="swatch-label"><b>Vellum</b>#f4f1ea</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#c96a3b"></div><div class="swatch-label"><b>Signal Clay</b>#c96a3b</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#8fa6ad"></div><div class="swatch-label"><b>Chart Slate</b>#8fa6ad</div></div>
+        </div>
+      </div>
+      <div class="type-specimen">
+        <p class="row-label">Type</p>
+        <p class="display-sample" style="font-family:'Newsreader',serif; font-style:italic; font-weight:500;">EHR Optimization for eClinicalWorks Practices</p>
+        <p class="body-sample" style="font-family:'Public Sans',sans-serif;">Remote and onsite support, go-live readiness, migrations, and lab/radiology interfacing — built for practices, hospitals, and FQHCs already running eCW.</p>
+        <p class="type-meta">Newsreader (display, italic) · Public Sans (body) · IBM Plex Mono (figures)</p>
+      </div>
+      <div>
+        <p class="row-label">Hero mock</p>
+        <div class="mock-hero" style="background:#0f2438;">
+          <span class="mock-eyebrow" style="background:rgba(255,255,255,0.1); color:#e8ddd0;">HOUSTON, TX · ECLINICALWORKS SPECIALISTS</span>
+          <h3 class="mock-headline" style="font-family:'Newsreader',serif; font-style:italic; font-weight:500; color:#f4f1ea;">EHR Optimization for eClinicalWorks Practices</h3>
+          <p class="mock-sub" style="font-family:'Public Sans',sans-serif; color:#c7d1d6;">Go-live support, migrations, and revenue cycle management — from a team that only works inside eCW.</p>
+          <a class="mock-cta" style="background:#c96a3b; color:#fff; font-family:'Public Sans',sans-serif;">Schedule a Consultation</a>
+          <div class="mock-stats">
+            <div class="mock-stat" style="color:#f4f1ea;"><b class="mono">20+</b><span>years in healthcare IT</span></div>
+            <div class="mock-stat" style="color:#f4f1ea;"><b class="mono">150+</b><span>billing specialists</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="row-label">Wordmark concept</p>
+        <div class="wordmark-row">
+          <div class="wordmark-card" style="background:#0f2438;">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <rect x="1" y="1" width="38" height="38" rx="6" fill="none" stroke="#c96a3b" stroke-width="1.5"/>
+              <line x1="10" y1="14" x2="30" y2="14" stroke="#f4f1ea" stroke-width="1.5"/>
+              <line x1="10" y1="20" x2="24" y2="20" stroke="#f4f1ea" stroke-width="1.5"/>
+              <line x1="10" y1="26" x2="27" y2="26" stroke="#c96a3b" stroke-width="1.5"/>
+            </svg>
+            <div class="wordmark-text">
+              <b style="font-family:'Newsreader',serif; font-style:italic; color:#f4f1ea;">H&amp;A</b>
+              <span style="color:#8fa6ad;">Healthcare Consulting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTION 2 — REFERRAL NETWORK -->
+  <section class="panel">
+    <div class="panel-head">
+      <p class="panel-num">DIRECTION 02</p>
+      <h2>Referral Network</h2>
+      <p class="rationale">Grounded in how this business actually grows — Tahir Javed's network, the Rice Land Healthcare partnership, interoperability between systems. A warm slate-teal (distinct from the blue every EHR vendor already owns) with a copper accent standing in for a connection being made. Serif display carries warmth; a humanist sans keeps it legible at partnership-logo scale.</p>
+    </div>
+    <div class="panel-body">
+      <div>
+        <p class="row-label">Palette</p>
+        <div class="swatches">
+          <div class="swatch"><div class="swatch-color" style="background:#1b3a3c"></div><div class="swatch-label"><b>Slate Teal</b>#1b3a3c</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#faf6ee"></div><div class="swatch-label"><b>Warm Paper</b>#faf6ee</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#b5652c"></div><div class="swatch-label"><b>Copper</b>#b5652c</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#5c8a80"></div><div class="swatch-label"><b>Sage Line</b>#5c8a80</div></div>
+        </div>
+      </div>
+      <div class="type-specimen">
+        <p class="row-label">Type</p>
+        <p class="display-sample" style="font-family:'Spectral',serif; font-weight:600;">Trusted by Rice Land Healthcare and Leading FQHCs</p>
+        <p class="body-sample" style="font-family:'Work Sans',sans-serif;">A referral network built over two decades — the same relationships that back our billing operation now back our consulting practice.</p>
+        <p class="type-meta">Spectral (display) · Work Sans (body) · Space Mono (labels)</p>
+      </div>
+      <div>
+        <p class="row-label">Hero mock</p>
+        <div class="mock-hero" style="background:#1b3a3c;">
+          <span class="mock-eyebrow" style="background:rgba(255,255,255,0.1); color:#d9c9b4;">ENTERPRISE PARTNER · RICE LAND HEALTHCARE</span>
+          <h3 class="mock-headline" style="font-family:'Spectral',serif; font-weight:600; color:#faf6ee;">Trusted by Rice Land Healthcare and Leading FQHCs</h3>
+          <p class="mock-sub" style="font-family:'Work Sans',sans-serif; color:#c7d6d2;">The network behind our billing team now stands behind our consulting practice.</p>
+          <a class="mock-cta" style="background:#b5652c; color:#fff; font-family:'Work Sans',sans-serif;">See the Partnership</a>
+          <div class="mock-stats">
+            <div class="mock-stat" style="color:#faf6ee;"><b style="font-family:'Space Mono',monospace;">1</b><span>enterprise system of record</span></div>
+            <div class="mock-stat" style="color:#faf6ee;"><b style="font-family:'Space Mono',monospace;">20+</b><span>years of referral trust</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="row-label">Wordmark concept</p>
+        <div class="wordmark-row">
+          <div class="wordmark-card" style="background:#1b3a3c;">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <circle cx="12" cy="12" r="4" fill="#faf6ee"/>
+              <circle cx="28" cy="14" r="4" fill="#b5652c"/>
+              <circle cx="18" cy="28" r="4" fill="#5c8a80"/>
+              <line x1="12" y1="12" x2="28" y2="14" stroke="#faf6ee" stroke-width="1.2" opacity="0.6"/>
+              <line x1="12" y1="12" x2="18" y2="28" stroke="#faf6ee" stroke-width="1.2" opacity="0.6"/>
+              <line x1="28" y1="14" x2="18" y2="28" stroke="#faf6ee" stroke-width="1.2" opacity="0.6"/>
+            </svg>
+            <div class="wordmark-text">
+              <b style="font-family:'Spectral',serif; font-weight:600; color:#faf6ee;">H&amp;A</b>
+              <span style="color:#8caea7;">Healthcare Consulting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECTION 3 — ENTERPRISE LEDGER -->
+  <section class="panel">
+    <div class="panel-head">
+      <p class="panel-num">DIRECTION 03</p>
+      <h2>Enterprise Ledger</h2>
+      <p class="rationale">Grounded in the 150-person billing operation — the actual growth engine. Borrows the trust language of modern fintech rather than generic healthcare teal: obsidian ground, a controlled violet no EHR competitor owns (Epic is green, Cerner and eCW are blue), and a monospace face for dollar figures and claim counts. The most "exotic" of the three, closest to the original brief's language.</p>
+    </div>
+    <div class="panel-body">
+      <div>
+        <p class="row-label">Palette</p>
+        <div class="swatches">
+          <div class="swatch"><div class="swatch-color" style="background:#120f1a"></div><div class="swatch-label"><b>Obsidian</b>#120f1a</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#f5f3f7"></div><div class="swatch-label"><b>Paper Violet</b>#f5f3f7</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#7c4fd6"></div><div class="swatch-label"><b>Ledger Violet</b>#7c4fd6</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#38b28a"></div><div class="swatch-label"><b>Approved Green</b>#38b28a</div></div>
+        </div>
+      </div>
+      <div class="type-specimen">
+        <p class="row-label">Type</p>
+        <p class="display-sample" style="font-family:'Domine',serif; font-weight:700;">150+ Billing Specialists. One Revenue Cycle Partner.</p>
+        <p class="body-sample" style="font-family:'IBM Plex Sans',sans-serif;">Claims, denials, collections — handled by a dedicated team, tracked to the dollar.</p>
+        <p class="type-meta">Domine (display) · IBM Plex Sans (body) · JetBrains Mono (figures)</p>
+      </div>
+      <div>
+        <p class="row-label">Hero mock</p>
+        <div class="mock-hero" style="background:#120f1a;">
+          <span class="mock-eyebrow" style="background:rgba(124,79,214,0.18); color:#c4aef2;">MEDICAL BILLING · REVENUE CYCLE MANAGEMENT</span>
+          <h3 class="mock-headline" style="font-family:'Domine',serif; font-weight:700; color:#f5f3f7;">150+ Billing Specialists. One Revenue Cycle Partner.</h3>
+          <p class="mock-sub" style="font-family:'IBM Plex Sans',sans-serif; color:#b8b2c4;">Claims, denials, and collections — handled end to end, tracked to the dollar.</p>
+          <a class="mock-cta" style="background:#7c4fd6; color:#fff; font-family:'IBM Plex Sans',sans-serif;">Talk to Billing</a>
+          <div class="mock-stats">
+            <div class="mock-stat" style="color:#f5f3f7;"><b style="font-family:'JetBrains Mono',monospace; color:#38b28a;">99.1%</b><span>clean claim rate</span></div>
+            <div class="mock-stat" style="color:#f5f3f7;"><b style="font-family:'JetBrains Mono',monospace;">150+</b><span>billing specialists</span></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="row-label">Wordmark concept</p>
+        <div class="wordmark-row">
+          <div class="wordmark-card" style="background:#120f1a;">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <rect x="9" y="9" width="22" height="22" rx="4" fill="none" stroke="#7c4fd6" stroke-width="1.5"/>
+              <line x1="14" y1="16" x2="26" y2="16" stroke="#f5f3f7" stroke-width="1.3"/>
+              <line x1="14" y1="20" x2="26" y2="20" stroke="#f5f3f7" stroke-width="1.3"/>
+              <line x1="14" y1="24" x2="21" y2="24" stroke="#38b28a" stroke-width="1.3"/>
+            </svg>
+            <div class="wordmark-text">
+              <b style="font-family:'Domine',serif; font-weight:700; color:#f5f3f7;">H&amp;A</b>
+              <span style="color:#8a84a0;">Healthcare Consulting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="note">
+    Each hero mock uses real H&amp;A copy and claims from the brief — nothing here is placeholder. Pick a number, pick elements across two, or ask for a fourth. Once a direction is set, the full frontend rebuild, the logo, and the eCW-only page copy all build from it directly.
+  </footer>
+
+</div>

@@ -3,16 +3,71 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>HA Health Consulting | Streamlining Healthcare Practices</title>
+<title>eClinicalWorks Consulting & Support | HA Health Consulting</title>
 <link rel="icon" href="brand_assets/logo.png" type="image/png" />
-<meta name="description" content="H&amp;A Healthcare Consulting — EHR optimization, telemedicine integration, revenue cycle management, and HIPAA-compliant infrastructure, backed by 20+ years of healthcare industry experience." />
-<link rel="stylesheet" href="css/tailwind.css" />
+<meta name="description" content="H&amp;A Healthcare Consulting — eClinicalWorks implementation, optimization, and ongoing support, plus medical billing and compliance for practices nationwide." />
+<link rel="canonical" href="https://hahealthconsulting.com/" />
+<meta property="og:title" content="eClinicalWorks Consulting &amp; Support | HA Health Consulting" />
+<meta property="og:description" content="H&amp;A Healthcare Consulting — eClinicalWorks implementation, optimization, and ongoing support, plus medical billing and compliance for practices nationwide." />
+<meta property="og:image" content="https://hahealthconsulting.com/brand_assets/og/Home-1024x620.png" />
+<meta property="og:url" content="https://hahealthconsulting.com/" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "H&A Healthcare Consulting",
+  "url": "https://hahealthconsulting.com/",
+  "telephone": "+1-832-800-4352",
+  "email": "info@hahealthconsulting.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "20008 Champion Forest Dr #203",
+    "addressLocality": "Spring",
+    "addressRegion": "TX",
+    "postalCode": "77379",
+    "addressCountry": "US"
+  },
+  "areaServed": "US",
+  "makesOffer": [
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "eClinicalWorks Implementation & Optimization"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Medical Billing & Revenue Cycle Management"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Compliance and Regulatory Consulting"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Telemedicine Integration"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Practice Transformation and Workflow Optimization"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "IT Support and Managed Services"}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Eddie Zakaria",
+  "jobTitle": "President & Founder",
+  "worksFor": {"@type": "Organization", "name": "H&A Healthcare Consulting"},
+  "url": "https://hahealthconsulting.com/#eddie"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Sajid \"Mo\" Sultan",
+  "jobTitle": "Chief Technology Officer",
+  "worksFor": {"@type": "Organization", "name": "H&A Healthcare Consulting"},
+  "url": "https://hahealthconsulting.com/#sajid"
+}
+</script>
+<link rel="stylesheet" href="css/tailwind.20260911.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/site.css" />
+<link rel="stylesheet" href="css/site.css?v=20260911" />
 </head>
 <body class="antialiased">
+<a href="#main" class="skip-link">Skip to main content</a>
 
 <div id="introSplash" class="intro-splash" aria-hidden="true">
   <div class="intro-mark">
@@ -37,19 +92,20 @@
 <!-- NAV -->
 <header id="siteHeader" class="sticky top-0 z-50 backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
-    <a href="index.html" class="flex items-center gap-2.5">
+    <a href="index.html" class="flex items-center gap-2.5 shrink-0">
       <img src="brand_assets/logo.png" alt="H&amp;A Healthcare Consulting logo" class="w-10 h-10 rounded-lg shadow-soft" />
-      <span class="font-display text-lg tracking-tightish text-[var(--ink)]">H&amp;A Healthcare Consulting</span>
+      <span class="font-display text-lg tracking-tightish text-[var(--ink)] whitespace-nowrap hidden lg:inline">H&amp;A Healthcare Consulting</span>
     </a>
-    <nav class="hidden md:flex items-center gap-9 text-[15px]">
+    <nav class="hidden md:flex items-center gap-5 lg:gap-9 text-[15px]">
       <a href="index.html" class="nav-link is-active py-1">Home</a>
       <a href="about.html" class="nav-link py-1">About</a>
       <a href="services.html" class="nav-link py-1">Services</a>
       <a href="contact.html" class="nav-link py-1">Contact</a>
       <a href="blog.html" class="nav-link py-1">Blog</a>
     </nav>
-    <button class="js-open-lead btn-primary hidden md:inline-flex text-sm font-semibold px-5 py-2.5 rounded-full shadow-soft">
-      Schedule Your Free Consultation
+    <button class="js-open-lead btn-primary hidden md:inline-flex text-sm font-semibold px-3.5 py-2 lg:px-5 lg:py-2.5 rounded-full shadow-soft whitespace-nowrap">
+      <span class="lg:hidden">Free Consultation</span>
+      <span class="hidden lg:inline">Schedule Your Free Consultation</span>
     </button>
     <button id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden w-11 h-11 flex items-center justify-center text-[var(--ink)] relative">
       <svg id="iconMenu" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -70,17 +126,18 @@
   </button>
 </nav>
 
+<main id="main">
 <!-- HERO -->
 <section id="home" class="relative bg-[var(--brand-deep)] text-[var(--paper)] overflow-hidden">
   <video
+    id="heroVideo"
     class="absolute inset-0 w-full h-full object-cover"
     src="brand_assets/hero-video/doctor-patient-consult.mp4"
     poster="brand_assets/hero-video/doctor-patient-consult-poster.jpg"
-    autoplay
     muted
     loop
     playsinline
-    preload="auto"
+    preload="none"
   ></video>
   <div class="absolute inset-0" style="background:
       linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.72) 38%, rgba(0,0,0,0.35) 65%, transparent 100%),
@@ -94,10 +151,10 @@
         Houston, TX &middot; Serving practices nationwide
       </span>
       <h1 class="hero-h1 font-display tracking-tightish text-4xl sm:text-5xl md:text-[3.4rem] mt-6">
-        Expert Healthcare Consulting Tailored to Your Needs
+        eClinicalWorks Consulting, Built by Specialists Who Only Work in eCW
       </h1>
       <p class="leading-relaxed-body text-[rgba(247,246,242,0.75)] text-lg mt-6 max-w-xl">
-        Welcome to <strong class="text-[var(--paper)] font-semibold">H&amp;A Healthcare Consulting</strong>, and thank you for visiting our site! Based in <strong class="text-[var(--paper)] font-semibold">Houston, Texas</strong>, we proudly serve clients nationwide with over <strong class="text-[var(--paper)] font-semibold">20 years of healthcare industry experience</strong>. Our team specializes in providing expert <strong class="text-[var(--paper)] font-semibold">EHR consulting services</strong> designed to meet the unique needs of your organization. Whether you're seeking to optimize, implement, or enhance your EHR system, we're here to help you streamline operations and improve patient outcomes. <strong class="text-[var(--paper)] font-semibold">Let us support your success.</strong>
+        Welcome to <strong class="text-[var(--paper)] font-semibold">H&amp;A Healthcare Consulting</strong>. Based in <strong class="text-[var(--paper)] font-semibold">Houston, Texas</strong>, we serve practices nationwide with over <strong class="text-[var(--paper)] font-semibold">20 years of healthcare industry experience</strong> — and we work exclusively inside <strong class="text-[var(--paper)] font-semibold">eClinicalWorks</strong>. No generalist EHR consultants spread across a dozen platforms, just a team that knows eCW inside and out for implementation, optimization, and ongoing support. <strong class="text-[var(--paper)] font-semibold">Let us support your success.</strong>
       </p>
       <div class="flex flex-wrap items-center gap-4 mt-9">
         <button class="js-open-lead btn-primary text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft-lg">
@@ -113,26 +170,22 @@
   </div>
 </section>
 
-<!-- PARTNERS (auto-cycling marquee) -->
+<!-- ECW SPECIALIST BADGE -->
 <section class="border-b border-[var(--line)]">
-  <div class="max-w-6xl mx-auto px-6 md:px-8 py-10">
-    <p class="ring-badge eyebrow-badge flex w-max mx-auto text-xs uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-6">Platform partnerships</p>
-    <div class="logo-marquee">
-      <div class="logo-marquee-track">
-        <img src="brand_assets/eclinicalworks.png" alt="eClinicalWorks" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-        <img src="brand_assets/og/pngwing.com_-1024x388.png" alt="Epic" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-        <img src="brand_assets/athenahealth-trimmed.png" alt="Athenahealth" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-        <img src="brand_assets/og/pngegg.png" alt="Cerner" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-        <img src="brand_assets/experity-trimmed.png" alt="Experity" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-        <!-- duplicated set for a seamless loop -->
-        <img src="brand_assets/eclinicalworks.png" alt="" aria-hidden="true" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-        <img src="brand_assets/og/pngwing.com_-1024x388.png" alt="" aria-hidden="true" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-        <img src="brand_assets/athenahealth-trimmed.png" alt="" aria-hidden="true" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-        <img src="brand_assets/og/pngegg.png" alt="" aria-hidden="true" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-        <img src="brand_assets/experity-trimmed.png" alt="" aria-hidden="true" class="partner-logo h-6 md:h-7 w-auto object-contain" />
-      </div>
-    </div>
-    <p class="text-center text-xs text-[var(--ink-soft)] mt-5">Platforms our consultants have implemented for client practices — not an official partnership or certification.</p>
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-12 flex flex-col items-center text-center">
+    <p class="ring-badge eyebrow-badge flex w-max text-xs uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-6">eClinicalWorks specialists</p>
+    <img src="brand_assets/eclinicalworks.png" alt="eClinicalWorks" class="h-8 md:h-9 w-auto object-contain mb-5" />
+    <p class="text-sm text-[var(--ink-soft)] max-w-md leading-relaxed-body">We work exclusively inside eClinicalWorks — implementation, go-live support, migrations, and lab/radiology interfacing, from a team that knows the platform inside and out.</p>
+    <p class="text-xs text-[var(--ink-soft)] mt-4">Reflects our consultants' hands-on experience with the platform — not an official eClinicalWorks partnership or certification.</p>
+  </div>
+</section>
+
+<!-- STRATEGIC PARTNERSHIP -->
+<section class="border-b border-[var(--line)] bg-[var(--paper-raised)]">
+  <div class="max-w-4xl mx-auto px-6 md:px-8 py-14 flex flex-col items-center text-center reveal">
+    <p class="ring-badge eyebrow-badge flex w-max text-xs uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-6">Official Partner</p>
+    <h2 class="font-display tracking-tightish text-2xl md:text-3xl mb-4">Proud to Partner with Riceland Healthcare</h2>
+    <p class="text-sm text-[var(--ink-soft)] max-w-2xl leading-relaxed-body">H&amp;A Healthcare Consulting is an official partner of <strong class="text-[var(--ink)]">Riceland Healthcare</strong>, affiliated with <strong class="text-[var(--ink)]">Tahir Javed</strong>. This partnership extends our reach and resources, allowing us to support healthcare practices with even greater depth from coast to coast.</p>
   </div>
 </section>
 
@@ -141,19 +194,19 @@
   <div class="cards-equal-height grid md:grid-cols-3 gap-8">
     <div class="reveal card-premium">
       <div class="card-premium-inner">
-        <h3 class="font-display text-xl tracking-tightish mb-3">Tailored EHR Solutions for Every Practice</h3>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">At <strong class="text-[var(--ink)]">H&amp;A Healthcare Consulting</strong>, we understand that every healthcare practice is unique. Our expert team works closely with your organization to deliver customized <strong class="text-[var(--ink)]">Electronic Health Record (EHR) solutions</strong> that align with your operational goals and patient care needs. Whether you're implementing a new system or optimizing your current one, we provide tailored strategies that streamline workflows, improve efficiency, and enhance patient outcomes.</p>
+        <h2 class="font-display text-xl tracking-tightish mb-3">Tailored eClinicalWorks Solutions for Every Practice</h2>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">At <strong class="text-[var(--ink)]">H&amp;A Healthcare Consulting</strong>, we understand that every healthcare practice is unique. Our expert team works closely with your organization to deliver customized <strong class="text-[var(--ink)]">eClinicalWorks solutions</strong> that align with your operational goals and patient care needs. Whether you're implementing a new system or optimizing your current one, we provide tailored strategies that streamline workflows, improve efficiency, and enhance patient outcomes.</p>
       </div>
     </div>
     <div class="reveal card-premium">
       <div class="card-premium-inner">
-        <h3 class="font-display text-xl tracking-tightish mb-3">20+ Years of Industry Expertise</h3>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">With over <strong class="text-[var(--ink)]">two decades of experience</strong> in the healthcare industry, our consultants bring a wealth of knowledge and proven strategies to each project. Our expertise spans across multiple EHR platforms, ensuring that you receive the most up-to-date and effective solutions. Trust H&amp;A Healthcare Consulting to deliver the results you need to navigate the complexities of healthcare technology, compliance, and patient management.</p>
+        <h2 class="font-display text-xl tracking-tightish mb-3">20+ Years of Industry Expertise</h2>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">With over <strong class="text-[var(--ink)]">two decades of experience</strong> in the healthcare industry, our consultants bring deep, focused expertise in eClinicalWorks specifically — not a generalist EHR practice spread thin across platforms. Trust H&amp;A Healthcare Consulting to deliver the results you need to navigate the complexities of healthcare technology, compliance, and patient management.</p>
       </div>
     </div>
     <div class="reveal card-premium">
       <div class="card-premium-inner">
-        <h3 class="font-display text-xl tracking-tightish mb-3">Nationwide Support, Local Service</h3>
+        <h2 class="font-display text-xl tracking-tightish mb-3">Nationwide Support, Local Service</h2>
         <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Based in <strong class="text-[var(--ink)]">Houston, Texas</strong>, H&amp;A Healthcare Consulting proudly provides services to clients across the nation. Despite our wide reach, we prioritize <strong class="text-[var(--ink)]">personalized service</strong>, ensuring that each client receives the dedicated attention and tailored solutions they deserve. Whether you need remote consultations or on-site support, we're equipped to offer flexible services that fit your needs, no matter your location.</p>
       </div>
     </div>
@@ -173,8 +226,8 @@
       <p class="stat-label text-[rgba(247,246,242,0.65)]">Founding Consultants</p>
     </div>
     <div class="reveal reveal-pop">
-      <p class="stat-number on-dark" data-target="5" data-suffix="+">0</p>
-      <p class="stat-label text-[rgba(247,246,242,0.65)]">EHR Platforms Supported</p>
+      <p class="stat-number on-dark" data-target="150" data-suffix="+">0</p>
+      <p class="stat-label text-[rgba(247,246,242,0.65)]">Billing Specialists</p>
     </div>
     <div class="reveal reveal-pop">
       <p class="stat-number on-dark" data-target="50" data-suffix="+">0</p>
@@ -186,11 +239,11 @@
 <!-- COMPREHENSIVE SERVICES BAND -->
 <section class="relative bg-[var(--paper-raised)] border-y border-[var(--line)] overflow-hidden">
   <div class="reveal reveal-fade absolute inset-y-0 left-0 w-[30%] hidden md:block">
-    <img src="brand_assets/services-band/team-hallway-review.jpg" alt="Healthcare team reviewing patient data together" class="w-full h-full object-cover" />
+    <img loading="lazy" decoding="async" src="brand_assets/services-band/team-hallway-review.jpg" alt="Healthcare team reviewing patient data together" class="w-full h-full object-cover" />
     <div class="absolute inset-0" style="background:linear-gradient(to right, transparent 55%, var(--paper-raised));"></div>
   </div>
   <div class="reveal reveal-fade absolute inset-y-0 right-0 w-[30%] hidden md:block">
-    <img src="brand_assets/services-band/consultant-laptop.jpg" alt="Healthcare consultant working at a laptop" class="w-full h-full object-cover" />
+    <img loading="lazy" decoding="async" src="brand_assets/services-band/consultant-laptop.jpg" alt="Healthcare consultant working at a laptop" class="w-full h-full object-cover" />
     <div class="absolute inset-0" style="background:linear-gradient(to left, transparent 55%, var(--paper-raised));"></div>
   </div>
   <div class="reveal relative max-w-2xl mx-auto px-6 md:px-8 py-24 md:py-36 text-center">
@@ -256,11 +309,11 @@
   <span class="ring-badge eyebrow-badge inline-flex text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)]">Our team</span>
   <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3 mb-12">Guiding Your Healthcare Practice to Success</h2>
   <div class="grid sm:grid-cols-2 gap-x-28 gap-y-24 max-w-3xl">
-    <div class="reveal">
+    <div class="reveal" id="eddie">
       <div class="card-premium">
         <div class="card-premium-inner text-center">
           <div class="w-[180px] h-[180px] mx-auto rounded-full overflow-hidden shadow-soft">
-            <img src="brand_assets/team/eddie-zakaria-placeholder.svg" alt="Eddie Zakaria, President &amp; Founder — headshot placeholder" class="w-full h-full object-cover" />
+            <img loading="lazy" decoding="async" src="brand_assets/team/eddie-zakaria-placeholder.svg" alt="Eddie Zakaria, President &amp; Founder — headshot placeholder" class="w-full h-full object-cover" />
           </div>
           <p class="mt-5 font-semibold text-[var(--brand)]">Eddie Zakaria</p>
           <p class="text-sm text-[var(--ink-soft)]">President &amp; Founder</p>
@@ -268,15 +321,15 @@
       </div>
       <div class="biz-card-3d-wrap mt-8 mx-auto">
         <div class="biz-card-3d">
-          <img src="brand_assets/og/EDDIE-CARD-BACK-768x439.png" alt="Eddie Zakaria business card" />
+          <img loading="lazy" decoding="async" src="brand_assets/og/EDDIE-CARD-BACK-768x439.png" alt="Eddie Zakaria business card" />
         </div>
       </div>
     </div>
-    <div class="reveal">
+    <div class="reveal" id="sajid">
       <div class="card-premium">
         <div class="card-premium-inner text-center">
           <div class="w-[180px] h-[180px] mx-auto rounded-full overflow-hidden shadow-soft">
-            <img src="brand_assets/team/sajid-sultan-placeholder.svg" alt="Sajid &quot;Mo&quot; Sultan, Chief Technology Officer — headshot placeholder" class="w-full h-full object-cover" />
+            <img loading="lazy" decoding="async" src="brand_assets/team/sajid-sultan-placeholder.svg" alt="Sajid &quot;Mo&quot; Sultan, Chief Technology Officer — headshot placeholder" class="w-full h-full object-cover" />
           </div>
           <p class="mt-5 font-semibold text-[var(--brand)]">Sajid &ldquo;Mo&rdquo; Sultan</p>
           <p class="text-sm text-[var(--ink-soft)]">Chief Technology Officer</p>
@@ -284,7 +337,7 @@
       </div>
       <div class="biz-card-3d-wrap mt-8 mx-auto">
         <div class="biz-card-3d">
-          <img src="brand_assets/og/SAJID-CARD-BACK-768x439.png" alt="Sajid Sultan business card" />
+          <img loading="lazy" decoding="async" src="brand_assets/og/SAJID-CARD-BACK-768x439.png" alt="Sajid Sultan business card" />
         </div>
       </div>
     </div>
@@ -306,6 +359,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer class="bg-[var(--brand-deep)] text-[rgba(247,246,242,0.7)] border-t border-white/10">
   <div class="max-w-6xl mx-auto px-6 md:px-8 py-14 grid sm:grid-cols-2 md:grid-cols-4 gap-10">
@@ -317,16 +372,18 @@
       <p class="text-sm leading-relaxed-body">Empowering healthcare practices nationwide.</p>
     </div>
     <div>
-      <h4 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Services</h4>
+      <h3 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Services</h3>
       <ul class="space-y-2.5 text-sm">
-        <li><a href="services.html" class="hover:text-[var(--paper)] transition-colors">EHR Optimization</a></li>
-        <li><a href="services.html" class="hover:text-[var(--paper)] transition-colors">Telemedicine Integration</a></li>
-        <li><a href="services.html" class="hover:text-[var(--paper)] transition-colors">Revenue Cycle Management</a></li>
-        <li><a href="services.html" class="hover:text-[var(--paper)] transition-colors">Compliance &amp; Regulatory</a></li>
+        <li><a href="services.html#ehr" class="hover:text-[var(--paper)] transition-colors">EHR Optimization</a></li>
+        <li><a href="services.html#telemedicine" class="hover:text-[var(--paper)] transition-colors">Telemedicine Integration</a></li>
+        <li><a href="services.html#rcm" class="hover:text-[var(--paper)] transition-colors">Medical Billing &amp; RCM</a></li>
+        <li><a href="services.html#compliance" class="hover:text-[var(--paper)] transition-colors">Compliance &amp; Regulatory</a></li>
+        <li><a href="services.html#workflow" class="hover:text-[var(--paper)] transition-colors">Practice Transformation</a></li>
+        <li><a href="services.html#it-support" class="hover:text-[var(--paper)] transition-colors">IT Support &amp; Managed Services</a></li>
       </ul>
     </div>
     <div>
-      <h4 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Company</h4>
+      <h3 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Company</h3>
       <ul class="space-y-2.5 text-sm">
         <li><a href="about.html" class="hover:text-[var(--paper)] transition-colors">About</a></li>
         <li><a href="blog.html" class="hover:text-[var(--paper)] transition-colors">Blog</a></li>
@@ -334,11 +391,11 @@
       </ul>
     </div>
     <div>
-      <h4 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Legal</h4>
+      <h3 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Legal</h3>
       <ul class="space-y-2.5 text-sm">
-        <li><a href="https://hahealthconsulting.com/legal/privacy-policy/" class="hover:text-[var(--paper)] transition-colors">Privacy Policy</a></li>
-        <li><a href="https://hahealthconsulting.com/legal/disclaimer/" class="hover:text-[var(--paper)] transition-colors">Disclaimer</a></li>
-        <li><a href="https://hahealthconsulting.com/legal/terms-of-use/" class="hover:text-[var(--paper)] transition-colors">Terms of Use</a></li>
+        <li><a href="legal-privacy-policy.html" class="hover:text-[var(--paper)] transition-colors">Privacy Policy</a></li>
+        <li><a href="legal-disclaimer.html" class="hover:text-[var(--paper)] transition-colors">Disclaimer</a></li>
+        <li><a href="legal-terms-of-use.html" class="hover:text-[var(--paper)] transition-colors">Terms of Use</a></li>
       </ul>
     </div>
   </div>
@@ -352,24 +409,25 @@
 
 <!-- LEAD CAPTURE POPUP -->
 <div id="leadScrim" class="lead-scrim"></div>
-<div id="leadModal" class="lead-modal" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+<div id="leadModal" class="lead-modal" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle" aria-hidden="true" inert>
   <div class="p-7 md:p-8">
     <div class="flex items-start justify-between mb-5">
-      <div class="flex items-center gap-2">
-        <span class="lead-progress-dot is-active" data-dot="1"></span>
+      <div class="flex items-center gap-2" role="group" aria-label="Form progress">
+        <span class="lead-progress-dot is-active" data-dot="1" aria-current="step"></span>
         <span class="lead-progress-dot" data-dot="2"></span>
         <span class="lead-progress-dot" data-dot="3"></span>
+        <span id="leadStepStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true">Step 1 of 3</span>
       </div>
-      <button id="leadCloseBtn" type="button" aria-label="Close" class="w-8 h-8 flex items-center justify-center text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors -mt-1 -mr-1">
+      <button id="leadCloseBtn" type="button" aria-label="Close" class="w-11 h-11 flex items-center justify-center text-[var(--ink-soft)] hover:text-[var(--ink)] transition-colors">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
     <form id="leadForm">
-      <div class="lead-step is-active" data-step="1">
+      <div class="lead-step is-active is-in" data-step="1">
         <h3 id="leadModalTitle" class="font-display text-2xl tracking-tightish mb-2">Get Your Free Consultation</h3>
         <p class="text-sm text-[var(--ink-soft)] mb-6">Tell us how to reach you — takes less than a minute.</p>
         <div class="space-y-4">
-          <input type="text" name="company_website" class="lead-honeypot" tabindex="-1" autocomplete="off" />
+          <input type="text" name="company_website" class="lead-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <div>
             <label class="text-xs font-semibold text-[var(--ink-soft)]" for="leadName">Name</label>
             <input required id="leadName" name="name" type="text" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm" placeholder="Jane Smith" />
@@ -394,7 +452,7 @@
             <select id="leadInterest" name="interest" class="mt-1.5 w-full rounded-lg border border-[var(--line)] px-4 py-3 text-sm bg-white">
               <option>EHR Optimization</option>
               <option>Telemedicine Integration</option>
-              <option>Revenue Cycle Management</option>
+              <option>Medical Billing &amp; RCM</option>
               <option>Practice Transformation</option>
               <option>Compliance &amp; Regulatory</option>
               <option>IT Support &amp; Managed Services</option>
@@ -423,6 +481,6 @@
   </div>
 </div>
 
-<script src="js/site.js"></script>
+<script src="js/site.js?v=20260911"></script>
 </body>
 </html>
