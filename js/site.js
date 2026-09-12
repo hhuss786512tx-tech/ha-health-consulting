@@ -455,17 +455,22 @@
 
     // Trigger 2: exit intent — mouse leaves via the top of the viewport (once per session).
     // Never fires on load; requires an actual upward exit gesture past y<=0.
+    // Skipped while the chat panel is open — an ambient popup shouldn't interrupt
+    // a visitor mid-conversation with the chat widget (it used to yank the chat
+    // closed out from under them; see openLead()'s "if (chatOpen) closeChat()").
     if (!autoShown) {
       document.addEventListener('mouseout', function(e){
-        if (autoShown) return;
+        if (autoShown || chatOpen) return;
         if (e.clientY <= 0 && !e.relatedTarget) openLead();
       });
     }
 
     // Trigger 3: scroll depth past the services section (~2200px), once per session.
+    // Same chatOpen guard as Trigger 2 — don't fire while the visitor is chatting.
     if (!autoShown) {
       window.addEventListener('scroll', function onScrollDepth(){
         if (autoShown) { window.removeEventListener('scroll', onScrollDepth); return; }
+        if (chatOpen) return;
         if ((window.scrollY || window.pageYOffset) > 2200) {
           window.removeEventListener('scroll', onScrollDepth);
           openLead();

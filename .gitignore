@@ -4,3 +4,5 @@ temporary screenshots/
 .downloads/
 .env
 backups/
+.tmp/
+/concept-*.html

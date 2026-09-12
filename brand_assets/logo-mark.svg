@@ -1,0 +1,11 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="H&amp;A Healthcare Consulting">
+  <defs>
+    <linearGradient id="haMarkGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14103a"/>
+      <stop offset="1" stop-color="#2a2470"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="46" height="46" rx="13" fill="url(#haMarkGrad)"/>
+  <path d="M14 13V35M14 24H24M24 13V35" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M24 24h3l2-6 3 11 2-5h4" stroke="#6d5ef0" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
