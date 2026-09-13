@@ -41,11 +41,11 @@
   "dateModified": "2026-09-11"
 }
 </script>
-<link rel="stylesheet" href="css/tailwind.20260913.css" />
+<link rel="stylesheet" href="css/tailwind.20260913k.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/site.css?v=20260913" />
+<link rel="stylesheet" href="css/site.css?v=20260913k" />
 </head>
 <body class="antialiased">
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -63,21 +63,33 @@
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- NAV -->
-<header id="siteHeader" class="sticky top-0 z-50 backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
+<header id="siteHeader" class="sticky top-0 z-50 header--transparent backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-2.5 shrink-0">
       <img src="brand_assets/logo-mark.svg" alt="H&amp;A Healthcare Consulting logo" class="w-10 h-10 nav-logo-mark" />
-      <span class="font-display text-lg tracking-tightish text-[var(--ink)] whitespace-nowrap hidden lg:inline">H&amp;A Healthcare Consulting</span>
+      <span class="font-display text-lg tracking-tightish text-[var(--ink)] whitespace-nowrap hidden lg:inline nav-wordmark">H&amp;A Healthcare Consulting</span>
     </a>
-    <nav class="hidden md:flex items-center gap-5 lg:gap-9 text-[15px]">
+    <!-- Fills the space next to the logo that the hidden wordmark leaves empty
+         below lg — a quick-glance service scope so a visitor never has to open
+         a menu to see what we do. Same breakpoint as the hamburger/mobile CTA. -->
+    <div class="service-tags-inline md:hidden">
+      <a href="services.html#ehr" class="service-tag">EMR</a>
+      <a href="services.html#ehr" class="service-tag">Migration</a>
+      <a href="medical-billing.html" class="service-tag">Billing</a>
+      <a href="services.html#ehr" class="service-tag">Interfacing</a>
+    </div>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-[15px]">
       <a href="index.html" class="nav-link py-1">Home</a>
       <a href="about.html" class="nav-link py-1">About</a>
       <a href="services.html" class="nav-link py-1">Services</a>
+      <a href="faq.html" class="nav-link py-1">FAQ</a>
+      <a href="news.html" class="nav-link py-1">News</a>
       <a href="contact.html" class="nav-link py-1">Contact</a>
       <a href="blog.html" class="nav-link is-active py-1">Blog</a>
     </nav>
-    <button class="js-open-lead btn-primary hidden md:inline-flex text-sm font-semibold px-3.5 py-2 lg:px-5 lg:py-2.5 rounded-full shadow-soft whitespace-nowrap">
-      <span class="lg:hidden">Free Consultation</span>
+    <button class="js-open-lead btn-primary inline-flex text-sm font-semibold px-3.5 py-2 lg:px-5 lg:py-2.5 rounded-full shadow-soft whitespace-nowrap shrink-0">
+      <span class="md:hidden">Free Consult</span>
+      <span class="hidden md:inline lg:hidden">Free Consultation</span>
       <span class="hidden lg:inline">Schedule Your Free Consultation</span>
     </button>
     <button id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden w-11 h-11 flex items-center justify-center text-[var(--ink)] relative">
@@ -92,6 +104,8 @@
   <a href="index.html" class="mobile-nav-link">Home</a>
   <a href="about.html" class="mobile-nav-link">About</a>
   <a href="services.html" class="mobile-nav-link">Services</a>
+  <a href="faq.html" class="mobile-nav-link">FAQ</a>
+  <a href="news.html" class="mobile-nav-link">News</a>
   <a href="contact.html" class="mobile-nav-link">Contact</a>
   <a href="blog.html" class="mobile-nav-link">Blog</a>
   <button class="js-open-lead btn-primary flex items-center justify-center w-full text-sm font-semibold px-5 py-3 rounded-full shadow-soft mt-3">
@@ -102,11 +116,12 @@
 <main id="main">
 <!-- ARTICLE HEADER -->
 <section class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
-  <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 15% 10%, rgba(42,36,112,0.9), transparent 60%), radial-gradient(50% 50% at 90% 90%, rgba(109,94,240,0.22), transparent 60%);"></div>
+  <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 15% 10%, rgba(74,80,88,0.9), transparent 60%), radial-gradient(50% 50% at 90% 90%, rgba(168,118,62,0.22), transparent 60%);"></div>
   <div class="noise"></div>
+  <div class="ambient-glow"></div>
   <div class="relative max-w-3xl mx-auto px-6 md:px-8 py-16 md:py-20">
     <a href="blog.html" class="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)] hover:text-[var(--paper)] transition-colors">&larr; Back to Blog</a>
-    <h1 class="font-display tracking-tightish text-3xl md:text-4xl mt-4">The Importance of EHR Optimization for Healthcare Practices</h1>
+    <h1 class="hero-intro hero-intro-d2 font-display tracking-tightish text-3xl md:text-4xl mt-4">The Importance of EHR Optimization for Healthcare Practices</h1>
     <p class="text-sm text-[rgba(247,246,242,0.7)] mt-4">EHR Optimization</p>
   </div>
 </section>
@@ -166,6 +181,8 @@
       <h3 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Company</h3>
       <ul class="space-y-2.5 text-sm">
         <li><a href="about.html" class="hover:text-[var(--paper)] transition-colors">About</a></li>
+        <li><a href="faq.html" class="hover:text-[var(--paper)] transition-colors">FAQ</a></li>
+        <li><a href="news.html" class="hover:text-[var(--paper)] transition-colors">News</a></li>
         <li><a href="blog.html" class="hover:text-[var(--paper)] transition-colors">Blog</a></li>
         <li><a href="contact.html" class="hover:text-[var(--paper)] transition-colors">Contact</a></li>
       </ul>
@@ -261,6 +278,6 @@
   </div>
 </div>
 
-<script src="js/site.js?v=20260913"></script>
+<script src="js/site.js?v=20260913k"></script>
 </body>
 </html>

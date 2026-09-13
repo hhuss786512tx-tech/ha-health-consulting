@@ -57,7 +57,7 @@
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Sajid \"Mo\" Sultan",
+  "name": "Muhammad \"Sajj\" Sultan",
   "jobTitle": "Chief Technology Officer",
   "worksFor": {"@type": "Organization", "name": "H&A Healthcare Consulting"},
   "url": "https://hahealthconsulting.com/#sajid"
@@ -73,11 +73,11 @@
   "url": "https://hahealthconsulting.com/#tahir"
 }
 </script>
-<link rel="stylesheet" href="css/tailwind.20260913.css" />
+<link rel="stylesheet" href="css/tailwind.20260913k.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/site.css?v=20260913" />
+<link rel="stylesheet" href="css/site.css?v=20260913k" />
 </head>
 <body class="antialiased">
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -105,21 +105,33 @@
 </div>
 
 <!-- NAV -->
-<header id="siteHeader" class="sticky top-0 z-50 backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
+<header id="siteHeader" class="sticky top-0 z-50 header--transparent backdrop-blur bg-[#f7f6f2]/90 border-b border-[var(--line)]">
   <div class="max-w-6xl mx-auto px-6 md:px-8 h-20 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-2.5 shrink-0">
       <img src="brand_assets/logo-mark.svg" alt="H&amp;A Healthcare Consulting logo" class="w-10 h-10 nav-logo-mark" />
-      <span class="font-display text-lg tracking-tightish text-[var(--ink)] whitespace-nowrap hidden lg:inline">H&amp;A Healthcare Consulting</span>
+      <span class="font-display text-lg tracking-tightish text-[var(--ink)] whitespace-nowrap hidden lg:inline nav-wordmark">H&amp;A Healthcare Consulting</span>
     </a>
-    <nav class="hidden md:flex items-center gap-5 lg:gap-9 text-[15px]">
+    <!-- Fills the space next to the logo that the hidden wordmark leaves empty
+         below lg — a quick-glance service scope so a visitor never has to open
+         a menu to see what we do. Same breakpoint as the hamburger/mobile CTA. -->
+    <div class="service-tags-inline md:hidden">
+      <a href="services.html#ehr" class="service-tag">EMR</a>
+      <a href="services.html#ehr" class="service-tag">Migration</a>
+      <a href="medical-billing.html" class="service-tag">Billing</a>
+      <a href="services.html#ehr" class="service-tag">Interfacing</a>
+    </div>
+    <nav class="hidden md:flex items-center gap-4 lg:gap-7 text-[15px]">
       <a href="index.html" class="nav-link is-active py-1">Home</a>
       <a href="about.html" class="nav-link py-1">About</a>
       <a href="services.html" class="nav-link py-1">Services</a>
+      <a href="faq.html" class="nav-link py-1">FAQ</a>
+      <a href="news.html" class="nav-link py-1">News</a>
       <a href="contact.html" class="nav-link py-1">Contact</a>
       <a href="blog.html" class="nav-link py-1">Blog</a>
     </nav>
-    <button class="js-open-lead btn-primary hidden md:inline-flex text-sm font-semibold px-3.5 py-2 lg:px-5 lg:py-2.5 rounded-full shadow-soft whitespace-nowrap">
-      <span class="lg:hidden">Free Consultation</span>
+    <button class="js-open-lead btn-primary inline-flex text-sm font-semibold px-3.5 py-2 lg:px-5 lg:py-2.5 rounded-full shadow-soft whitespace-nowrap shrink-0">
+      <span class="md:hidden">Free Consult</span>
+      <span class="hidden md:inline lg:hidden">Free Consultation</span>
       <span class="hidden lg:inline">Schedule Your Free Consultation</span>
     </button>
     <button id="mobileMenuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" class="md:hidden w-11 h-11 flex items-center justify-center text-[var(--ink)] relative">
@@ -134,6 +146,8 @@
   <a href="index.html" class="mobile-nav-link">Home</a>
   <a href="about.html" class="mobile-nav-link">About</a>
   <a href="services.html" class="mobile-nav-link">Services</a>
+  <a href="faq.html" class="mobile-nav-link">FAQ</a>
+  <a href="news.html" class="mobile-nav-link">News</a>
   <a href="contact.html" class="mobile-nav-link">Contact</a>
   <a href="blog.html" class="mobile-nav-link">Blog</a>
   <button class="js-open-lead btn-primary flex items-center justify-center w-full text-sm font-semibold px-5 py-3 rounded-full shadow-soft mt-3">
@@ -156,22 +170,22 @@
   ></video>
   <div class="absolute inset-0" style="background:
       linear-gradient(90deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.72) 38%, rgba(0,0,0,0.35) 65%, transparent 100%),
-      radial-gradient(50% 45% at 90% 15%, rgba(109,94,240,0.25), transparent 60%),
-      radial-gradient(70% 60% at 50% 100%, rgba(20,16,58,0.75), transparent 60%);"></div>
+      radial-gradient(50% 45% at 90% 15%, rgba(168,118,62,0.25), transparent 60%),
+      radial-gradient(70% 60% at 50% 100%, rgba(34,38,42,0.75), transparent 60%);"></div>
   <div class="noise"></div>
   <div class="absolute inset-x-0 bottom-0 h-28 md:h-36" style="background:linear-gradient(to bottom, transparent, var(--paper));"></div>
   <div class="relative max-w-6xl mx-auto px-6 md:px-8 pt-20 pb-24 md:pt-28 md:pb-32">
     <div class="max-w-2xl">
-      <span class="ring-badge on-dark eyebrow-badge inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)]">
+      <span class="hero-intro hero-intro-d1 ring-badge on-dark eyebrow-badge inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)]">
         Houston, TX &middot; Serving practices nationwide
       </span>
-      <h1 class="hero-h1 font-display tracking-tightish text-4xl sm:text-5xl md:text-[3.4rem] mt-6">
-        eClinicalWorks Consulting, Built by Specialists Who Only Work in eCW
+      <h1 class="hero-intro hero-intro-d2 hero-h1 font-display tracking-tightish text-4xl sm:text-5xl md:text-[3.4rem] mt-6">
+        eClinicalWorks Consulting, Built by Specialists Who <span class="headline-accent">Only Work in eCW</span>
       </h1>
-      <p class="leading-relaxed-body text-[rgba(247,246,242,0.75)] text-lg mt-6 max-w-xl">
+      <p class="hero-intro hero-intro-d3 leading-relaxed-body text-[rgba(247,246,242,0.75)] text-lg mt-6 max-w-xl">
         Welcome to <strong class="text-[var(--paper)] font-semibold">H&amp;A Healthcare Consulting</strong>. Based in <strong class="text-[var(--paper)] font-semibold">Houston, Texas</strong>, we serve practices nationwide with over <strong class="text-[var(--paper)] font-semibold">20 years of healthcare industry experience</strong> — and we work exclusively inside <strong class="text-[var(--paper)] font-semibold">eClinicalWorks</strong>. No generalist EHR consultants spread across a dozen platforms, just a team that knows eCW inside and out for implementation, optimization, and ongoing support. <strong class="text-[var(--paper)] font-semibold">Let us support your success.</strong>
       </p>
-      <div class="flex flex-wrap items-center gap-4 mt-9">
+      <div class="hero-intro hero-intro-d4 flex flex-wrap items-center gap-4 mt-9">
         <button class="js-open-lead btn-primary text-sm font-semibold px-6 py-3.5 rounded-full shadow-soft-lg">
           Schedule Your Free Consultation
         </button>
@@ -230,8 +244,10 @@
   <div class="max-w-5xl mx-auto px-6 md:px-8 py-16">
     <div class="reveal card-premium">
       <div class="card-premium-inner grid sm:grid-cols-[180px_1fr] gap-8 items-start">
-        <div class="team-avatar w-[140px] h-[140px] sm:w-[180px] sm:h-[180px] mx-auto sm:mx-0 rounded-full overflow-hidden shadow-soft shrink-0">
-          <img loading="lazy" decoding="async" src="brand_assets/team/tahir-javed-placeholder.svg" alt="Tahir Javed, Founder &amp; Chairman — headshot placeholder" class="w-full h-full object-cover" />
+        <div class="avatar-halo w-[140px] h-[140px] sm:w-[180px] sm:h-[180px] mx-auto sm:mx-0 shrink-0">
+          <div class="team-avatar w-full h-full rounded-full overflow-hidden shadow-soft">
+            <img loading="lazy" decoding="async" src="brand_assets/team/tahir-javed-placeholder.svg" alt="Tahir Javed, Founder &amp; Chairman — headshot placeholder" class="w-full h-full object-cover" />
+          </div>
         </div>
         <div class="text-center sm:text-left">
           <p class="ring-badge eyebrow-badge inline-flex text-xs font-semibold uppercase tracking-[0.14em] text-[var(--brand)] mb-3">Founder &amp; Chairman</p>
@@ -243,26 +259,26 @@
   </div>
 </section>
 
-<!-- INTRO TRIO -->
-<section id="services-preview" class="max-w-6xl mx-auto px-6 md:px-8 py-20">
-  <div class="cards-equal-height grid md:grid-cols-3 gap-8">
-    <div class="reveal card-premium">
-      <div class="card-premium-inner">
-        <h2 class="font-display text-xl tracking-tightish mb-3">Tailored eClinicalWorks Solutions for Every Practice</h2>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">At <strong class="text-[var(--ink)]">H&amp;A Healthcare Consulting</strong>, we understand that every healthcare practice is unique. Our expert team works closely with your organization to deliver customized <strong class="text-[var(--ink)]">eClinicalWorks solutions</strong> that align with your operational goals and patient care needs. Whether you're implementing a new system or optimizing your current one, we provide tailored strategies that streamline workflows, improve efficiency, and enhance patient outcomes.</p>
-      </div>
+<!-- INTRO TRIO — editorial layout (no card boxes): a thin accent rule, a large
+     serif headline, and open body copy carry the section instead of borders.
+     Matches the inspiration site's actual pattern of using typographic
+     weight and generous spacing to read as substantial, not boxed cards. -->
+<section id="services-preview" class="max-w-6xl mx-auto px-6 md:px-8 py-24">
+  <div class="grid md:grid-cols-3 gap-x-12 gap-y-16">
+    <div class="reveal">
+      <span class="block w-10 h-[3px] bg-[var(--accent)] mb-6"></span>
+      <h2 class="font-display text-2xl md:text-[1.7rem] tracking-tightish leading-tight mb-4">Tailored eClinicalWorks Solutions for Every Practice</h2>
+      <p class="text-[var(--ink-soft)] leading-relaxed-body">At <strong class="text-[var(--ink)]">H&amp;A Healthcare Consulting</strong>, we understand that every healthcare practice is unique. Our expert team works closely with your organization to deliver customized <strong class="text-[var(--ink)]">eClinicalWorks solutions</strong> that align with your operational goals and patient care needs. Whether you're implementing a new system or optimizing your current one, we provide tailored strategies that streamline workflows, improve efficiency, and enhance patient outcomes.</p>
     </div>
-    <div class="reveal card-premium">
-      <div class="card-premium-inner">
-        <h2 class="font-display text-xl tracking-tightish mb-3">20+ Years of Industry Expertise</h2>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">With over <strong class="text-[var(--ink)]">two decades of experience</strong> in the healthcare industry, our consultants bring deep, focused expertise in eClinicalWorks specifically — not a generalist EHR practice spread thin across platforms. Trust H&amp;A Healthcare Consulting to deliver the results you need to navigate the complexities of healthcare technology, compliance, and patient management.</p>
-      </div>
+    <div class="reveal">
+      <span class="block w-10 h-[3px] bg-[var(--accent)] mb-6"></span>
+      <h2 class="font-display text-2xl md:text-[1.7rem] tracking-tightish leading-tight mb-4">20+ Years of Industry Expertise</h2>
+      <p class="text-[var(--ink-soft)] leading-relaxed-body">With over <strong class="text-[var(--ink)]">two decades of experience</strong> in the healthcare industry, our consultants bring deep, focused expertise in eClinicalWorks specifically — not a generalist EHR practice spread thin across platforms. Trust H&amp;A Healthcare Consulting to deliver the results you need to navigate the complexities of healthcare technology, compliance, and patient management.</p>
     </div>
-    <div class="reveal card-premium">
-      <div class="card-premium-inner">
-        <h2 class="font-display text-xl tracking-tightish mb-3">Nationwide Support, Local Service</h2>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Based in <strong class="text-[var(--ink)]">Houston, Texas</strong>, H&amp;A Healthcare Consulting proudly provides services to clients across the nation. Despite our wide reach, we prioritize <strong class="text-[var(--ink)]">personalized service</strong>, ensuring that each client receives the dedicated attention and tailored solutions they deserve. Whether you need remote consultations or on-site support, we're equipped to offer flexible services that fit your needs, no matter your location.</p>
-      </div>
+    <div class="reveal">
+      <span class="block w-10 h-[3px] bg-[var(--accent)] mb-6"></span>
+      <h2 class="font-display text-2xl md:text-[1.7rem] tracking-tightish leading-tight mb-4">Nationwide Support, Local Service</h2>
+      <p class="text-[var(--ink-soft)] leading-relaxed-body">Based in <strong class="text-[var(--ink)]">Houston, Texas</strong>, H&amp;A Healthcare Consulting proudly provides services to clients across the nation. Despite our wide reach, we prioritize <strong class="text-[var(--ink)]">personalized service</strong>, ensuring that each client receives the dedicated attention and tailored solutions they deserve. Whether you need remote consultations or on-site support, we're equipped to offer flexible services that fit your needs, no matter your location.</p>
     </div>
   </div>
 </section>
@@ -270,6 +286,7 @@
 <!-- STATS STRIP -->
 <section class="bg-[var(--brand-deep)] text-[var(--paper)] relative overflow-hidden">
   <div class="noise"></div>
+  <div class="ambient-glow"></div>
   <div class="relative max-w-6xl mx-auto px-6 md:px-8 py-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
     <div class="reveal reveal-pop">
       <p class="stat-number on-dark" data-target="20" data-suffix="+">0</p>
@@ -319,6 +336,7 @@
     <h2 class="font-display tracking-tightish text-3xl md:text-4xl mt-3">A Clear Path From First Call to Go-Live</h2>
   </div>
   <div class="timeline">
+    <div class="timeline-fill"></div>
     <div class="reveal timeline-row">
       <div class="timeline-card">
         <span class="timeline-step">1</span>
@@ -366,8 +384,10 @@
     <div class="reveal" id="eddie">
       <div class="card-premium">
         <div class="card-premium-inner text-center">
-          <div class="team-avatar w-[180px] h-[180px] mx-auto rounded-full overflow-hidden shadow-soft">
-            <img loading="lazy" decoding="async" src="brand_assets/team/eddie-zakaria-placeholder.svg" alt="Eddie Zakaria, President &amp; Founder — headshot placeholder" class="w-full h-full object-cover" />
+          <div class="avatar-halo w-[180px] h-[180px] mx-auto">
+            <div class="team-avatar w-full h-full rounded-full overflow-hidden shadow-soft">
+              <img loading="lazy" decoding="async" src="brand_assets/team/eddie-zakaria-placeholder.svg" alt="Eddie Zakaria, President &amp; Founder — headshot placeholder" class="w-full h-full object-cover" />
+            </div>
           </div>
           <p class="mt-5 font-semibold text-[var(--brand)]">Eddie Zakaria</p>
           <p class="text-sm text-[var(--ink-soft)]">President &amp; Founder</p>
@@ -382,16 +402,18 @@
     <div class="reveal" id="sajid">
       <div class="card-premium">
         <div class="card-premium-inner text-center">
-          <div class="team-avatar w-[180px] h-[180px] mx-auto rounded-full overflow-hidden shadow-soft">
-            <img loading="lazy" decoding="async" src="brand_assets/team/sajid-sultan-placeholder.svg" alt="Sajid &quot;Mo&quot; Sultan, Chief Technology Officer — headshot placeholder" class="w-full h-full object-cover" />
+          <div class="avatar-halo w-[180px] h-[180px] mx-auto">
+            <div class="team-avatar w-full h-full rounded-full overflow-hidden shadow-soft">
+              <img loading="lazy" decoding="async" src="brand_assets/team/sajid-sultan-placeholder.svg" alt="Muhammad &quot;Sajj&quot; Sultan, Chief Technology Officer — headshot placeholder" class="w-full h-full object-cover" />
+            </div>
           </div>
-          <p class="mt-5 font-semibold text-[var(--brand)]">Sajid &ldquo;Mo&rdquo; Sultan</p>
+          <p class="mt-5 font-semibold text-[var(--brand)]">Muhammad "Sajj" Sultan</p>
           <p class="text-sm text-[var(--ink-soft)]">Chief Technology Officer</p>
         </div>
       </div>
       <div class="biz-card-3d-wrap mt-8 mx-auto">
         <div class="biz-card-3d">
-          <img loading="lazy" decoding="async" src="brand_assets/og/SAJID-CARD-BACK-768x439.png" alt="Sajid Sultan business card" />
+          <img loading="lazy" decoding="async" src="brand_assets/og/SAJID-CARD-BACK-768x439.png" alt="Muhammad &quot;Sajj&quot; Sultan business card" />
         </div>
       </div>
     </div>
@@ -400,8 +422,9 @@
 
 <!-- CLOSING CTA -->
 <section class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
-  <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 85% 20%, rgba(109,94,240,0.22), transparent 60%), radial-gradient(50% 50% at 10% 90%, rgba(42,36,112,0.9), transparent 60%);"></div>
+  <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 85% 20%, rgba(168,118,62,0.22), transparent 60%), radial-gradient(50% 50% at 10% 90%, rgba(74,80,88,0.9), transparent 60%);"></div>
   <div class="noise"></div>
+  <div class="ambient-glow"></div>
   <div class="relative max-w-3xl mx-auto px-6 md:px-8 py-20 text-center">
     <h2 class="font-display tracking-tightish text-3xl md:text-4xl mb-6">Partner with Experts in Healthcare Consulting</h2>
     <p class="leading-relaxed-body text-[rgba(247,246,242,0.75)] max-w-xl mx-auto">
@@ -440,6 +463,8 @@
       <h3 class="text-xs font-semibold uppercase tracking-[0.1em] text-[var(--paper)] mb-4">Company</h3>
       <ul class="space-y-2.5 text-sm">
         <li><a href="about.html" class="hover:text-[var(--paper)] transition-colors">About</a></li>
+        <li><a href="faq.html" class="hover:text-[var(--paper)] transition-colors">FAQ</a></li>
+        <li><a href="news.html" class="hover:text-[var(--paper)] transition-colors">News</a></li>
         <li><a href="blog.html" class="hover:text-[var(--paper)] transition-colors">Blog</a></li>
         <li><a href="contact.html" class="hover:text-[var(--paper)] transition-colors">Contact</a></li>
       </ul>
@@ -535,6 +560,6 @@
   </div>
 </div>
 
-<script src="js/site.js?v=20260913"></script>
+<script src="js/site.js?v=20260913k"></script>
 </body>
 </html>
