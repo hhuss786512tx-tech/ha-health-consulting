@@ -625,7 +625,7 @@ footer a:hover::after{ transform:scaleX(1); }
 .chatbot-msg{
   background:var(--paper); border:1px solid var(--line); border-radius:1rem; border-top-left-radius:0.35rem;
   padding:0.7rem 0.9rem; font-size:0.85rem; line-height:1.5; color:var(--ink-soft);
-  margin-bottom:0.85rem; max-width:92%;
+  margin-bottom:0.85rem; max-width:92%; width:fit-content;
 }
 .chatbot-msg.is-user{
   background:var(--brand); color:var(--paper); border:none;
