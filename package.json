@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "tailwindcss -i css/tailwind-src.css -o css/tailwind.20260912b.css"
+    "build:css": "tailwindcss -i css/tailwind-src.css -o css/tailwind.20260913.css"
   },
   "repository": {
     "type": "git",
