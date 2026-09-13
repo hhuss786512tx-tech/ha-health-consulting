@@ -682,6 +682,117 @@ footer a:hover::after{ transform:scaleX(1); }
   font-family:'Fraunces',serif; font-weight:600; font-size:0.9rem; margin-bottom:0.75rem;
 }
 
+/* ===== Linear timeline variant — one straight rail down the left edge,
+   a dot per row, used for the Services list (numbered) and News feed
+   (chronological). Reuses .timeline/.timeline-row/.timeline-fill and the
+   reveal-driven fill-height logic already in site.js — only the layout
+   differs from the homepage's alternating left/right cards, since a
+   numbered list and a chronological feed both read better as one
+   continuous line than a zigzag. Dots start neutral and switch to the
+   accent color + a one-shot pulse when their row's reveal fires, so the
+   line visibly "fills in" as you scroll rather than everything already
+   looking finished on load. */
+.timeline--linear::before{
+  display:block; left:1.5rem; top:0.25rem; bottom:0.25rem;
+  background:linear-gradient(to bottom, transparent, rgba(74,80,88,0.2) 6%, rgba(168,118,62,0.3) 50%, rgba(74,80,88,0.2) 94%, transparent);
+}
+.timeline--linear .timeline-fill{ display:block; left:1.5rem; }
+.timeline--linear .timeline-row{
+  display:grid; grid-template-columns:3rem 1fr; column-gap:1.25rem; align-items:start;
+}
+.timeline--linear .timeline-row + .timeline-row{ margin-top:2.75rem; }
+.timeline--linear .timeline-dot{
+  display:flex; grid-column:1; width:3rem; height:3rem; margin:0;
+  align-items:center; justify-content:center; position:relative; z-index:1;
+  border-radius:999px; background:var(--paper-raised); border:2px solid var(--line); box-shadow:none;
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s var(--ease-out);
+}
+.timeline--linear .timeline-row.is-visible .timeline-dot{
+  background:var(--accent); border-color:var(--accent); transform:scale(1.05);
+  box-shadow:0 0 0 5px rgba(168,118,62,0.15);
+}
+.timeline--linear .timeline-dot::before{ background:var(--accent); animation:none; opacity:0; }
+.timeline--linear .timeline-dot::after{ animation:none; opacity:0; }
+.timeline--linear .timeline-row.is-visible .timeline-dot::before{ animation: timeline-dot-pulse 0.9s ease-out 1; }
+.timeline--linear .timeline-dot-label{
+  font-family:'Fraunces',serif; font-weight:600; font-size:0.85rem; color:var(--ink-soft);
+  transition: color 0.4s ease;
+}
+.timeline--linear .timeline-row.is-visible .timeline-dot-label{ color:#fff; }
+.timeline--linear .timeline-content{ grid-column:2; }
+@media (max-width:479px){
+  .timeline--linear::before, .timeline--linear .timeline-fill{ left:1.125rem; }
+  .timeline--linear .timeline-row{ grid-template-columns:2.25rem 1fr; column-gap:0.85rem; }
+  .timeline--linear .timeline-dot{ width:2.25rem; height:2.25rem; }
+  .timeline--linear .timeline-dot-label{ font-size:0.62rem; }
+}
+@media (prefers-reduced-motion: reduce){
+  .timeline--linear .timeline-dot{ transition:none; }
+  .timeline--linear .timeline-row.is-visible .timeline-dot::before{ animation:none; opacity:0; }
+}
+
+/* News feed's date badge doubles as its timeline dot — wider than the
+   generic 3rem circle so month/day/year all still fit. */
+.timeline--news .timeline-row{ grid-template-columns:4.25rem 1fr; }
+.timeline--news .timeline-dot{
+  width:4.25rem; height:auto; border-radius:0.85rem; flex-direction:column; padding:0.6rem 0.3rem;
+  line-height:1.15;
+}
+.timeline--news .timeline-dot .news-month{ font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); transition:color 0.4s ease; }
+.timeline--news .timeline-dot .news-day{ font-family:'Fraunces',serif; font-size:1.3rem; font-weight:600; color:var(--ink); transition:color 0.4s ease; }
+.timeline--news .timeline-dot .news-year{ font-size:0.6rem; color:var(--ink-soft); transition:color 0.4s ease; }
+.timeline--news .timeline-row.is-visible .timeline-dot .news-month{ color:var(--accent-soft); }
+.timeline--news .timeline-row.is-visible .timeline-dot .news-day,
+.timeline--news .timeline-row.is-visible .timeline-dot .news-year{ color:#fff; }
+@media (max-width:479px){
+  .timeline--news .timeline-row{ grid-template-columns:3.5rem 1fr; }
+  .timeline--news .timeline-dot{ width:3.5rem; padding:0.45rem 0.2rem; }
+  .timeline--news .timeline-dot .news-day{ font-size:1.05rem; }
+}
+
+/* ===== Image hover-zoom — subtle scale on hover/focus, used on the
+   Services page's alternating image blocks so the section reads as
+   interactive rather than a flat gallery. Transform only. */
+.img-hover-zoom{ overflow:hidden; }
+.img-hover-zoom img{ transition: transform 0.5s var(--ease-out); }
+.img-hover-zoom:hover img, .img-hover-zoom:focus-within img{ transform:scale(1.06); }
+@media (prefers-reduced-motion: reduce){
+  .img-hover-zoom img{ transition:none; }
+  .img-hover-zoom:hover img, .img-hover-zoom:focus-within img{ transform:none; }
+}
+
+/* ===== Accent pulse dot — a small always-on ping, used inside eyebrow
+   badges (e.g. each Services row's label) so a static pill reads as
+   "live" without borrowing the nav's semantic green live-dot. Same
+   live-dot-pulse keyframe, different host/color. */
+.accent-dot{ position:relative; width:6px; height:6px; border-radius:999px; background:var(--accent); flex-shrink:0; }
+.accent-dot::after{
+  content:''; position:absolute; inset:-5px; border:1.5px solid var(--accent); border-radius:999px;
+  animation: live-dot-pulse 2.4s ease-out infinite; opacity:0.5;
+}
+@media (prefers-reduced-motion: reduce){ .accent-dot::after{ animation:none; opacity:0; } }
+
+/* ===== Tag ticker — slow auto-scrolling marquee of real service names,
+   used at the top of the Services list. Duplicated content for a
+   seamless loop; pauses on hover so it never fights someone trying to
+   read it, and freezes (wraps normally) under reduced motion. */
+.tag-ticker{
+  overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.tag-ticker-track{ display:flex; width:max-content; animation: ticker-scroll 32s linear infinite; }
+.tag-ticker:hover .tag-ticker-track, .tag-ticker:focus-within .tag-ticker-track{ animation-play-state:paused; }
+.tag-ticker-item{
+  font-family:'Fraunces',serif; font-style:italic; font-size:clamp(1rem, 2vw, 1.2rem);
+  color:var(--ink-soft); white-space:nowrap; display:flex; align-items:center; padding:0 1.75rem;
+}
+.tag-ticker-item::after{ content:'\2022'; color:var(--accent); margin-left:1.75rem; font-style:normal; }
+@keyframes ticker-scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+@media (prefers-reduced-motion: reduce){
+  .tag-ticker{ -webkit-mask-image:none; mask-image:none; }
+  .tag-ticker-track{ animation:none; flex-wrap:wrap; width:auto; justify-content:center; }
+}
+
 /* Circular portrait halo — an oversized soft-color ring behind each team
    photo, gently pulsing. The avatar itself keeps its own overflow-hidden
    circle crop, so the halo lives on this separate wrapper instead, sized
