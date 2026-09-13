@@ -747,5 +747,19 @@
     document.addEventListener('keydown', function(e){
       if (e.key === 'Escape' && chatOpen) closeChat();
     });
+
+    // Reveal the launcher only once scrolled past the hero — on short/mobile
+    // viewports the hero's own last line of text can otherwise sit directly
+    // behind the fixed launcher on first load.
+    var launcherRevealed = false;
+    function updateLauncherReveal(){
+      var shouldShow = chatOpen || (window.scrollY || window.pageYOffset) > 400;
+      if (shouldShow !== launcherRevealed) {
+        launcherRevealed = shouldShow;
+        chatLauncher.classList.toggle('is-revealed', shouldShow);
+      }
+    }
+    window.addEventListener('scroll', updateLauncherReveal, { passive: true });
+    updateLauncherReveal();
   }
 })();
