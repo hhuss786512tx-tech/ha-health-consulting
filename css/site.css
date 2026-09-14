@@ -22,6 +22,14 @@
   --radius-core: calc(1.5rem - var(--bezel-pad));
 }
 html{scroll-behavior:smooth;}
+/* Phones: every size on the site is set in rem, so scaling the root
+   font-size scales type, spacing, and component sizing (buttons, the nav
+   bar, badges) all together — the whole page reads smaller/denser instead
+   of like a desktop layout stretched to fit a narrow screen. Left alone
+   above this breakpoint (tablet/desktop already sized correctly). */
+@media (max-width:639px){
+  html{ font-size:84%; }
+}
 body{
   background:var(--paper);
   color:var(--ink);
@@ -205,9 +213,13 @@ header.header--transparent.is-scrolled #mobileMenuBtn{ color:var(--ink); }
    is what actually lets the transparent header show hero content instead of
    bare page background. The section's own top padding (py-20/md:py-28, both
    >= 80px) absorbs the shift so the heading text still lands in the same
-   place, only the section's background/noise/glow bleeds up under the header. */
+   place, only the section's background/noise/glow bleeds up under the header.
+   In rem, not px, so it stays in lockstep with the header's own h-20 (5rem)
+   when the phone-only root font-size scale below kicks in — a fixed px pull
+   against a header that shrinks with the root size would overshoot and drag
+   hero content up under the bar. */
 header.header--transparent ~ main > section:first-child{
-  margin-top: -80px;
+  margin-top: -5rem;
 }
 
 /* Ambient drifting glow on the static dark page-headers/CTAs — gives them
