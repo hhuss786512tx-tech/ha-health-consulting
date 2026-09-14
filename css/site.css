@@ -198,36 +198,6 @@ header.header--transparent.is-scrolled #mobileMenuBtn{ color:var(--ink); }
 .nav-wordmark{ transition: color 0.3s ease; }
 #mobileMenuBtn{ transition: color 0.3s ease; }
 
-/* Mobile/tablet-only service-scope strip filling the gap the hidden wordmark
-   leaves next to the logo below `md` — horizontally scrollable so it never
-   pushes the CTA button or hamburger out of the header row. */
-.service-tags-inline{
-  display:flex; align-items:center; gap:6px; flex:1 1 auto; min-width:0;
-  overflow-x:auto; scrollbar-width:none; -webkit-overflow-scrolling:touch;
-  margin:0 8px;
-}
-.service-tags-inline::-webkit-scrollbar{ display:none; }
-/* Tailwind's md:hidden utility loads before this stylesheet, so the
-   unconditional display:flex above (equal specificity, later in source
-   order) always wins the cascade and beats it at md+ regardless of
-   viewport. Reasserting the hide here, after it, actually works. */
-@media (min-width:768px){
-  .service-tags-inline{ display:none; }
-}
-.service-tag{
-  flex:0 0 auto; padding:5px 11px; border-radius:999px;
-  font-size:11px; font-weight:600; white-space:nowrap;
-  background:var(--paper); border:1px solid var(--line); color:var(--brand);
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.3s ease;
-}
-.service-tag:active{ background:var(--accent-soft); border-color:var(--accent-soft); }
-header.header--transparent .service-tag{
-  background:rgba(255,255,255,0.1); border-color:rgba(247,246,242,0.3); color:#fff;
-}
-header.header--transparent.is-scrolled .service-tag{
-  background:var(--paper); border-color:var(--line); color:var(--brand);
-}
-
 /* The header itself only ever paints text/background — it doesn't overlap
    anything by default, since it's a normal sticky element that pushes the
    page's first section down below it. Pulling that first dark section up by
@@ -424,6 +394,60 @@ input:focus-visible, textarea:focus-visible, select:focus-visible, a:focus-visib
   .intro-splash, .intro-splash.is-hidden{ transition:none; transform:none; }
   .intro-splash::before{ animation:none; }
   .intro-logo, .intro-word{ animation:none; opacity:1; transform:none; }
+}
+
+/* ===== Home page only: the wordmark traced letter-by-letter in gold light,
+   a traveling spark leading the write, then the whole screen wipes off in a
+   random direction — a bigger, one-time "wow" moment reserved for the front
+   door of the site. Scoped entirely under .intro-splash--ignite so every
+   other page keeps the plain logo+word fade above untouched. */
+.intro-splash--ignite .intro-mark{ flex-direction:column; gap:0.55rem; text-align:center; }
+.intro-splash--ignite .intro-logo{ display:none; }
+.intro-ignite-mark{
+  position:relative; margin:0; font-family:'Fraunces',serif; font-style:italic;
+  font-weight:600; letter-spacing:-0.02em; color:var(--paper);
+  font-size:clamp(2.75rem, 13vw, 6.5rem); line-height:1.05;
+}
+.intro-ignite-tagline{
+  margin:0; font-family:'Inter',sans-serif; font-weight:500;
+  letter-spacing:0.26em; text-transform:uppercase; font-size:0.7rem;
+  color:rgba(217,185,138,0.75); opacity:0; transform:translateY(6px);
+  animation: intro-word-in 0.7s var(--ease-out) 1.05s forwards;
+}
+.intro-ignite-letter{
+  display:inline-block; color:transparent;
+  -webkit-text-stroke:1px rgba(242,243,244,0.16); text-shadow:none;
+}
+.intro-ignite-letter.lit{ animation: intro-ignite-write 0.65s cubic-bezier(0.22,1,0.36,1) forwards; }
+@keyframes intro-ignite-write{
+  0%{ color:transparent; -webkit-text-stroke:1px rgba(242,243,244,0.16); text-shadow:none; }
+  40%{ color:#fff8ef; -webkit-text-stroke:0px transparent;
+       text-shadow:0 0 10px #fff8ef, 0 0 26px var(--accent-soft), 0 0 46px var(--accent); }
+  100%{ color:var(--paper); -webkit-text-stroke:0px transparent;
+        text-shadow:0 0 6px rgba(217,185,138,0.65), 0 0 22px rgba(168,118,62,0.4); }
+}
+.intro-ignite-spark{
+  position:absolute; top:50%; left:0; width:10px; height:10px; border-radius:999px;
+  background: radial-gradient(circle, #fff8ef, var(--accent-soft) 55%, transparent 75%);
+  box-shadow: 0 0 16px 5px rgba(217,185,138,0.75);
+  opacity:0; pointer-events:none; transform:translate(-50%,-50%);
+  transition: left 0.1s linear, top 0.1s linear, opacity 0.15s ease;
+}
+.intro-splash--ignite.exit-up,
+.intro-splash--ignite.exit-down,
+.intro-splash--ignite.exit-left,
+.intro-splash--ignite.exit-right,
+.intro-splash--ignite.exit-fade{
+  transition: transform 0.75s cubic-bezier(0.76,0,0.24,1), opacity 0.6s ease;
+}
+.intro-splash--ignite.exit-up{ transform:translateY(-100%); }
+.intro-splash--ignite.exit-down{ transform:translateY(100%); }
+.intro-splash--ignite.exit-left{ transform:translateX(-100%); }
+.intro-splash--ignite.exit-right{ transform:translateX(100%); }
+.intro-splash--ignite.exit-fade{ opacity:0; }
+@media (prefers-reduced-motion: reduce){
+  .intro-ignite-letter, .intro-ignite-spark{ display:none; }
+  .intro-ignite-tagline{ animation:none; opacity:1; transform:none; }
 }
 
 /* ===== Above-the-fold hero/page-header stagger reveal on page load =====

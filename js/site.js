@@ -12,6 +12,70 @@
     if (introShown || reduceMotion) {
       splash.classList.add('is-removed');
       document.documentElement.classList.add('is-intro-ready');
+    } else if (splash.classList.contains('intro-splash--ignite')) {
+      // Home page only: the wordmark writes itself letter-by-letter in gold
+      // light with a traveling spark, holds, then the whole screen wipes off
+      // in a random direction — see finishIntro's sibling branch below for
+      // every other page's plain fade, which is untouched by this.
+      document.body.style.overflow = 'hidden';
+      try { sessionStorage.setItem(INTRO_KEY, '1'); } catch(e){}
+      var mark = splash.querySelector('.intro-ignite-mark');
+      var spark = document.getElementById('introIgniteSpark');
+      var letters = Array.prototype.slice.call(splash.querySelectorAll('.intro-ignite-letter'));
+      var markRect = mark.getBoundingClientRect();
+      var stagger = 38;
+      var startDelay = 200;
+      var timers = [];
+      var track = function(id){ timers.push(id); return id; };
+      var cleaned = false;
+      function cleanupIgnite(){
+        if (cleaned) return;
+        cleaned = true;
+        splash.classList.add('is-removed');
+        document.body.style.overflow = '';
+      }
+      letters.forEach(function(letter, i){
+        var delay = startDelay + i * stagger;
+        track(setTimeout(function(){
+          var r = letter.getBoundingClientRect();
+          spark.style.left = (r.left - markRect.left + r.width / 2) + 'px';
+          spark.style.top = (r.top - markRect.top + r.height * 0.3) + 'px';
+          spark.style.opacity = '1';
+        }, delay));
+        track(setTimeout(function(){
+          letter.classList.add('lit');
+          spark.style.opacity = '0';
+        }, delay + stagger * 0.8));
+      });
+      var writeDone = startDelay + letters.length * stagger + 300;
+      var holdAfterWrite = 300;
+      var exitAt = writeDone + holdAfterWrite;
+      var dirs = ['exit-up', 'exit-down', 'exit-left', 'exit-right', 'exit-fade'];
+      var dir = dirs[Math.floor(Math.random() * dirs.length)];
+      var exited = false;
+      function exitIgnite(){
+        if (exited) return;
+        exited = true;
+        document.documentElement.classList.add('is-intro-ready');
+        splash.classList.add(dir);
+        splash.addEventListener('transitionend', cleanupIgnite, { once: true });
+        track(setTimeout(cleanupIgnite, 1500));
+      }
+      track(setTimeout(exitIgnite, exitAt));
+      var skipped = false;
+      function skipIgnite(){
+        if (skipped || cleaned) return;
+        skipped = true;
+        timers.forEach(function(id){ clearTimeout(id); });
+        letters.forEach(function(letter){ letter.classList.add('lit'); });
+        spark.style.opacity = '0';
+        exitIgnite();
+      }
+      splash.addEventListener('click', skipIgnite);
+      document.addEventListener('keydown', function onIgniteKey(e){
+        if (skipped || cleaned) { document.removeEventListener('keydown', onIgniteKey); return; }
+        skipIgnite();
+      });
     } else {
       document.body.style.overflow = 'hidden';
       try { sessionStorage.setItem(INTRO_KEY, '1'); } catch(e){}
