@@ -41,6 +41,66 @@
     }
   }
 
+  // ---------- Blog page only: character-decode headline ----------
+  // Splits the H1 into per-letter spans and cycles each through random
+  // characters before settling on the real one, staggered left to right —
+  // a "terminal decode" reveal used nowhere else on the site, so the Blog
+  // page's opening reads as distinct rather than the same fade-up as
+  // every other header. Waits on .is-intro-ready the same way hero-intro
+  // does (via MutationObserver, since this file doesn't know whether the
+  // splash already ran this session or is still about to).
+  var blogDecode = document.querySelector('.blog-decode');
+  if (blogDecode && !reduceMotion) {
+    var decodeChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var decodeLetters = blogDecode.textContent.split('').map(function(ch){
+      var span = document.createElement('span');
+      span.className = 'char';
+      span.textContent = ch === ' ' ? ' ' : ch;
+      return { span: span, final: ch };
+    });
+    blogDecode.textContent = '';
+    decodeLetters.forEach(function(l){ blogDecode.appendChild(l.span); });
+    function runDecode(){
+      decodeLetters.forEach(function(l, i){
+        if (l.final === ' ') { l.span.style.opacity = 1; return; }
+        var frame = 0;
+        var maxFrames = 6 + Math.floor(Math.random() * 4);
+        setTimeout(function(){
+          l.span.style.opacity = 1;
+          var iv = setInterval(function(){
+            frame++;
+            if (frame >= maxFrames) {
+              clearInterval(iv);
+              l.span.textContent = l.final;
+            } else {
+              l.span.textContent = decodeChars[Math.floor(Math.random() * decodeChars.length)];
+            }
+          }, 35);
+        }, i * 28);
+      });
+    }
+    if (document.documentElement.classList.contains('is-intro-ready')) {
+      runDecode();
+    } else {
+      var decodeObs = new MutationObserver(function(){
+        if (document.documentElement.classList.contains('is-intro-ready')) {
+          runDecode();
+          decodeObs.disconnect();
+        }
+      });
+      decodeObs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    }
+  }
+
+  // ---------- News page only: stacked-sticky scroll cards ----------
+  // Assigns each row its position in the stack via a CSS custom property
+  // rather than hardcoding per-row offsets, so the "How it works"-style
+  // stacking effect (see .stack-scroll in site.css) keeps working however
+  // many news entries get added later.
+  document.querySelectorAll('.stack-scroll .timeline-row').forEach(function(row, i){
+    row.style.setProperty('--stack-index', i);
+  });
+
   // ---------- Custom cursor (desktop, fine-pointer only) ----------
   // Replaces the native pointer outright (cursor:none, gated by a class so a
   // JS failure never leaves the visitor with no cursor at all) and tracks the

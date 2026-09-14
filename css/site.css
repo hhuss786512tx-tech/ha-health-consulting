@@ -793,6 +793,70 @@ footer a:hover::after{ transform:scaleX(1); }
   .tag-ticker-track{ animation:none; flex-wrap:wrap; width:auto; justify-content:center; }
 }
 
+/* ===== Blog page opening — a character-decode headline + a light-sweep
+   across the dark header, distinct from every other page's calm
+   hero-intro fade-up. Gated by the same .is-intro-ready class the rest
+   of the site's staged reveal uses (added either immediately or once
+   the splash finishes — see site.js), so first-visit vs repeat-visit
+   timing still lines up; the actual character-cycling is driven from
+   JS, this just holds the sweep and the per-char opacity states. */
+.blog-hero{ position:relative; }
+.blog-hero::before{
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:1;
+  background: linear-gradient(100deg, transparent 30%, rgba(217,185,138,0.22) 45%, rgba(217,185,138,0.4) 50%, rgba(217,185,138,0.22) 55%, transparent 70%);
+  background-size:250% 100%; background-position:150% 0; opacity:0;
+}
+.is-intro-ready .blog-hero::before{ animation: blog-sweep 2.4s ease-in-out 0.2s 2; }
+@keyframes blog-sweep{
+  0%{ background-position:150% 0; opacity:0; }
+  12%{ opacity:1; }
+  88%{ opacity:1; }
+  100%{ background-position:-50% 0; opacity:0; }
+}
+.blog-decode .char{ display:inline-block; opacity:0; }
+@media (prefers-reduced-motion: reduce){
+  .blog-hero::before{ animation:none !important; opacity:0 !important; }
+  .blog-decode .char{ opacity:1 !important; }
+}
+
+/* Numbered badge on each blog card, matching the Services page's
+   numbered-step language so the two "list" pages read as one system. */
+.blog-card-num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:2rem; height:2rem; border-radius:999px; background:var(--brand-deep); color:var(--paper);
+  font-family:'Fraunces',serif; font-weight:600; font-size:0.85rem; flex-shrink:0;
+}
+
+/* ===== Stacked-sticky scroll cards — inspired by Function Health's
+   "How it works" page, where each step's rounded-top panel slides up
+   and settles just under the previous one as you scroll, reading as a
+   continuous stack rather than separate blocks. Pure CSS (position:
+   sticky with a per-row top offset set via --stack-index from site.js),
+   no scroll-math JS engine. Layered on top of the existing
+   .timeline--linear rail/dot so the connecting line still runs behind
+   the stacking cards. */
+.stack-scroll .timeline-row{
+  position:sticky; top:calc(5rem + var(--stack-index, 0) * 0.9rem);
+  z-index:calc(var(--stack-index, 0) + 1);
+  background:var(--paper-raised); border:1px solid var(--line); border-bottom:none;
+  border-radius:1.5rem 1.5rem 0 0; box-shadow:0 -12px 28px rgba(28,31,34,0.07);
+  padding:1.75rem 1.5rem 2.25rem; margin-top:0 !important;
+}
+.stack-scroll .timeline-row:last-child{ border-bottom:1px solid var(--line); border-radius:1.5rem; box-shadow:var(--shadow-card); }
+.stack-scroll .timeline-row + .timeline-row{ margin-top:1.25rem; }
+.timeline-image{
+  margin-top:1.25rem; border-radius:0.85rem; overflow:hidden; aspect-ratio:16/7;
+  box-shadow:var(--shadow-card);
+}
+.timeline-image img{ width:100%; height:100%; object-fit:cover; }
+@media (min-width:768px){
+  .stack-scroll .timeline-content{ display:grid; grid-template-columns:1fr 220px; gap:1.5rem; align-items:start; }
+  .timeline-image{ margin-top:0; aspect-ratio:4/3; }
+}
+@media (prefers-reduced-motion: reduce){
+  .stack-scroll .timeline-row{ position:relative; top:auto; box-shadow:var(--shadow-card); border-radius:1.5rem; border-bottom:1px solid var(--line); }
+}
+
 /* Circular portrait halo — an oversized soft-color ring behind each team
    photo, gently pulsing. The avatar itself keeps its own overflow-hidden
    circle crop, so the halo lives on this separate wrapper instead, sized
