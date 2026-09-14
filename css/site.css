@@ -38,6 +38,13 @@ html{scroll-behavior:smooth;}
      utility classes and component-specific rules on dozens of fields across
      every page, not one selector worth chasing down individually. */
   input, textarea, select{ font-size:16px !important; }
+  /* The homepage hero video frames its subject toward the right side of
+     the source footage (composed for desktop, where the text column only
+     covers the left ~40% and the person reads fine on the right). On a
+     narrow phone the text spans nearly the full width, so a plain center
+     crop (the default 50%) pushed the person almost off the right edge
+     instead of reading as centered behind the text. */
+  #heroVideo{ object-position: 70% center; }
 }
 body{
   background:var(--paper);

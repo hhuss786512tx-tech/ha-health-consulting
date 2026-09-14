@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
-  <rect width="240" height="240" fill="#4a5058" />
-  <circle cx="120" cy="95" r="42" fill="#f2f3f4" opacity="0.14" />
-  <path d="M120 145 c-46 0 -70 24 -70 55 l0 40 l140 0 l0 -40 c0 -31 -24 -55 -70 -55 z" fill="#f2f3f4" opacity="0.14" />
+  <rect width="240" height="240" fill="#22262a" />
+  <circle cx="120" cy="95" r="42" fill="#d9b98a" opacity="0.16" />
+  <path d="M120 145 c-46 0 -70 24 -70 55 l0 40 l140 0 l0 -40 c0 -31 -24 -55 -70 -55 z" fill="#d9b98a" opacity="0.16" />
   <text x="120" y="132" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="64" fill="#f2f3f4" font-weight="600">EZ</text>
 </svg>
