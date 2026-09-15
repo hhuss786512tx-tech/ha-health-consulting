@@ -877,6 +877,21 @@ footer a:hover::after{ transform:scaleX(1); }
   display:inline-flex; align-items:center; justify-content:center;
   width:2rem; height:2rem; border-radius:999px; background:var(--brand-deep); color:var(--paper);
   font-family:'Fraunces',serif; font-weight:600; font-size:0.85rem; flex-shrink:0;
+  transition: box-shadow 0.35s ease;
+}
+/* Blog card premium hover — the whole card lifts, its badge gets a soft
+   glow ring, and the "Read the full article" arrow nudges forward, all on
+   real pointers only so a touch tap never leaves a stuck hover state. */
+.blog-card-link{ transition: transform 0.4s var(--ease-spring); border-radius:1.25rem; }
+.blog-card-arrow{ display:inline-block; transition: transform 0.3s var(--ease-out); }
+@media (hover:hover) and (pointer:fine){
+  .blog-card-link:hover{ transform:translateY(-6px); }
+  .blog-card-link:hover .blog-card-num{ box-shadow:0 0 0 6px rgba(168,118,62,0.16); }
+  .blog-card-link:hover .blog-card-arrow{ transform:translateX(5px); }
+}
+@media (prefers-reduced-motion: reduce){
+  .blog-card-link{ transition:none; }
+  .blog-card-link:hover{ transform:none; }
 }
 
 /* ===== Stacked-sticky scroll cards — inspired by Function Health's
@@ -892,21 +907,35 @@ footer a:hover::after{ transform:scaleX(1); }
   z-index:calc(var(--stack-index, 0) + 1);
   background:var(--paper-raised); border:1px solid var(--line); border-bottom:none;
   border-radius:1.5rem 1.5rem 0 0; box-shadow:0 -12px 28px rgba(28,31,34,0.07);
-  padding:1.75rem 1.5rem 2.25rem; margin-top:0 !important;
+  padding:2rem 1.5rem; margin-top:0 !important;
+  min-height:calc(100svh - 6.5rem);
+  display:flex; flex-direction:column; justify-content:center;
+  overflow:hidden;
 }
 .stack-scroll .timeline-row:last-child{ border-bottom:1px solid var(--line); border-radius:1.5rem; box-shadow:var(--shadow-card); }
 .stack-scroll .timeline-row + .timeline-row{ margin-top:1.25rem; }
+/* The dot/date badge normally sits inline at the top of the row (see
+   .timeline--linear grid-template-columns above); in the full-screen
+   panels it reads better pinned to the corner of the card instead of
+   pushing the vertically-centered content off-balance. */
+.stack-scroll .timeline-row{ position:sticky; }
+.stack-scroll .timeline-dot{ position:absolute; top:1.75rem; left:1.5rem; }
+.stack-scroll .timeline-content{ margin-top:2.5rem; }
 .timeline-image{
-  margin-top:1.25rem; border-radius:0.85rem; overflow:hidden; aspect-ratio:16/7;
+  margin-top:1.5rem; border-radius:1rem; overflow:hidden; aspect-ratio:16/9;
   box-shadow:var(--shadow-card);
 }
 .timeline-image img{ width:100%; height:100%; object-fit:cover; }
 @media (min-width:768px){
-  .stack-scroll .timeline-content{ display:grid; grid-template-columns:1fr 220px; gap:1.5rem; align-items:start; }
-  .timeline-image{ margin-top:0; aspect-ratio:4/3; }
+  .stack-scroll .timeline-content{ display:grid; grid-template-columns:1.1fr 1fr; gap:3rem; align-items:center; margin-top:0; }
+  .stack-scroll .timeline-dot{ position:static; margin-bottom:1.25rem; }
+  .stack-scroll .timeline-image{ margin-top:0; aspect-ratio:4/3; max-height:min(46vh, 420px); }
+  .stack-scroll h2{ font-size:2.25rem !important; line-height:1.15 !important; }
+  .stack-scroll .timeline-content p{ font-size:1.05rem !important; }
 }
 @media (prefers-reduced-motion: reduce){
-  .stack-scroll .timeline-row{ position:relative; top:auto; box-shadow:var(--shadow-card); border-radius:1.5rem; border-bottom:1px solid var(--line); }
+  .stack-scroll .timeline-row{ position:relative; top:auto; box-shadow:var(--shadow-card); border-radius:1.5rem; border-bottom:1px solid var(--line); min-height:0; }
+  .stack-scroll .timeline-dot{ position:static; margin-bottom:1rem; }
 }
 
 /* Circular portrait halo — an oversized soft-color ring behind each team
