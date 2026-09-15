@@ -522,11 +522,12 @@ html.custom-cursor-active textarea{ cursor:text !important; }
   position:fixed; top:0; left:0; z-index:9999;
   width:20px; height:23px;
   pointer-events:none; opacity:0;
-  filter:
-    drop-shadow(0 0 6px rgba(168,118,62,0.65))
-    drop-shadow(0 0 14px rgba(168,118,62,0.35))
-    drop-shadow(0 2px 3px rgba(34,38,42,0.45));
-  transition: opacity 0.25s ease, width 0.25s var(--ease-out), height 0.25s var(--ease-out), filter 0.25s ease;
+  /* A single drop-shadow instead of three stacked ones — drop-shadow forces
+     a recomputed blur/alpha mask every frame this moves, and stacking three
+     of them was the actual cause of the reported cursor lag, not the
+     custom-cursor idea itself. One layer keeps the glow, cuts that cost ~3x. */
+  filter: drop-shadow(0 0 8px rgba(168,118,62,0.55));
+  transition: opacity 0.25s ease, width 0.25s var(--ease-out), height 0.25s var(--ease-out);
   will-change: transform;
 }
 .cursor-ring path{
@@ -539,10 +540,7 @@ html.custom-cursor-active textarea{ cursor:text !important; }
 .cursor-ring.is-active{ opacity:1; }
 .cursor-ring.is-hover{
   width:30px; height:34.5px;
-  filter:
-    drop-shadow(0 0 10px rgba(168,118,62,0.85))
-    drop-shadow(0 0 26px rgba(168,118,62,0.55))
-    drop-shadow(0 3px 4px rgba(34,38,42,0.5));
+  filter: drop-shadow(0 0 12px rgba(168,118,62,0.7));
 }
 .cursor-ring.is-hover path{ stroke: var(--accent-hover); }
 @media (pointer: coarse), (prefers-reduced-motion: reduce){

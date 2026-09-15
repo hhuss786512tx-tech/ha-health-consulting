@@ -169,13 +169,24 @@
   // Replaces the native pointer outright (cursor:none, gated by a class so a
   // JS failure never leaves the visitor with no cursor at all) and tracks the
   // mouse 1:1 — no lag/lerp, since this needs to feel like an actual cursor.
+  // The transform write itself is batched to one requestAnimationFrame per
+  // frame (mousemove can fire far faster than 60fps on some trackpads/high
+  // poll-rate mice) — combined with trimming the CSS filter down to a single
+  // drop-shadow, this is what actually fixed the reported lag; a raw 1:1
+  // write on every event was doing redundant style writes between paints.
   var ring = document.getElementById('cursorRing');
   if (ring) {
     if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
       document.documentElement.classList.add('custom-cursor-active');
       var ringActive = false;
+      var ringX = 0, ringY = 0, ringFrameQueued = false;
+      function applyRingPosition(){
+        ringFrameQueued = false;
+        ring.style.transform = 'translate(' + ringX + 'px,' + ringY + 'px) translate(-50%,-50%)';
+      }
       document.addEventListener('mousemove', function(e){
-        ring.style.transform = 'translate(' + e.clientX + 'px,' + e.clientY + 'px) translate(-50%,-50%)';
+        ringX = e.clientX; ringY = e.clientY;
+        if (!ringFrameQueued) { ringFrameQueued = true; requestAnimationFrame(applyRingPosition); }
         if (!ringActive) { ringActive = true; ring.classList.add('is-active'); }
       });
       document.addEventListener('mouseleave', function(){ ring.classList.remove('is-active'); });
