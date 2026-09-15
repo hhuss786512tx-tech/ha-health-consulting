@@ -184,6 +184,17 @@ footer a:hover{ color: var(--paper); }
   .parallax-el{ transform:none !important; }
 }
 
+/* Soften the hard color-cut where a dark hero/page-header section meets the
+   light body below it. The fade lives on the FOLLOWING section's own ::before
+   (not the dark section's ::after) specifically so it paints first in DOM
+   order and never needs z-index gymnastics to stay under real content. */
+section.bg-\[var\(--brand-deep\)\] + section{ position:relative; }
+section.bg-\[var\(--brand-deep\)\] + section::before{
+  content:''; position:absolute; top:0; left:0; right:0; height:6rem;
+  background:linear-gradient(to bottom, var(--brand-deep), transparent);
+  pointer-events:none;
+}
+
 /* Header gains weight once the page has scrolled past the hero */
 header{ transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.35s var(--ease-out); }
 header.is-hidden{ transform:translateY(-100%); }
@@ -805,9 +816,17 @@ footer a:hover::after{ transform:scaleX(1); }
 /* ===== Image hover-zoom — subtle scale on hover/focus, used on the
    Services page's alternating image blocks so the section reads as
    interactive rather than a flat gallery. Transform only. */
-.img-hover-zoom{ overflow:hidden; }
-.img-hover-zoom img{ transition: transform 0.5s var(--ease-out); }
+.img-hover-zoom{ overflow:hidden; position:relative; }
+.img-hover-zoom img{ transition: transform 0.5s var(--ease-out); filter:saturate(1.08) contrast(1.03); }
 .img-hover-zoom:hover img, .img-hover-zoom:focus-within img{ transform:scale(1.06); }
+/* A soft brand-tinted color grade so stock photography reads as art-directed
+   rather than pasted-in — warm gold at the top-left easing into a touch of
+   the brand's dark ink at the bottom-right, multiplied over the photo. */
+.img-hover-zoom::after{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(160deg, rgba(168,118,62,0.16) 0%, transparent 45%, rgba(34,38,42,0.12) 100%);
+  mix-blend-mode:multiply;
+}
 @media (prefers-reduced-motion: reduce){
   .img-hover-zoom img{ transition:none; }
   .img-hover-zoom:hover img, .img-hover-zoom:focus-within img{ transform:none; }
@@ -869,6 +888,14 @@ footer a:hover::after{ transform:scaleX(1); }
 @media (prefers-reduced-motion: reduce){
   .blog-hero::before{ animation:none !important; opacity:0 !important; }
   .blog-decode .char{ opacity:1 !important; }
+}
+
+/* Ghost numeral for the home page's boxless editorial trio — adds the same
+   "numbered system" presence as the Services/Blog numbered badges, without
+   reversing the deliberate no-card-boxes treatment those three blocks use. */
+.editorial-num{
+  display:block; font-family:'Fraunces',serif; font-weight:600; font-size:2.5rem;
+  line-height:1; color:var(--accent-soft); opacity:0.6; margin-bottom:0.75rem;
 }
 
 /* Numbered badge on each blog card, matching the Services page's
