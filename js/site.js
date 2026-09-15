@@ -156,6 +156,63 @@
     }
   }
 
+  // ---------- About page only: interactive values list ----------
+  // Click, hover, or keyboard-focus a value swaps in its description.
+  // No-op everywhere else since it bails when .values-list isn't on the page.
+  var valuesList = document.querySelector('.values-list');
+  if (valuesList) {
+    var valueItems = valuesList.querySelectorAll('.values-item');
+    var valueDetails = document.querySelectorAll('[data-value-detail]');
+    var setActiveValue = function(id){
+      valueItems.forEach(function(item){
+        var active = item.getAttribute('data-value') === id;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-expanded', active ? 'true' : 'false');
+      });
+      valueDetails.forEach(function(p){
+        p.classList.toggle('is-active', p.getAttribute('data-value-detail') === id);
+      });
+    };
+    valueItems.forEach(function(item){
+      var id = item.getAttribute('data-value');
+      item.addEventListener('click', function(){ setActiveValue(id); });
+      item.addEventListener('focus', function(){ setActiveValue(id); });
+      item.addEventListener('mouseenter', function(){ setActiveValue(id); });
+    });
+  }
+
+  // ---------- Blog page only: category filter ----------
+  // Plain show/hide against [data-category] — no framework, no rebuild of
+  // the DOM. No-ops everywhere else since it bails when .blog-filter-bar
+  // isn't on the page.
+  var blogFilterBar = document.querySelector('.blog-filter-bar');
+  if (blogFilterBar) {
+    var filterPills = blogFilterBar.querySelectorAll('.blog-filter-pill');
+    var filterCards = document.querySelectorAll('[data-category]');
+    var filterStatus = document.getElementById('blogFilterStatus');
+    filterPills.forEach(function(pill){
+      pill.addEventListener('click', function(){
+        var filter = pill.getAttribute('data-filter');
+        filterPills.forEach(function(p){
+          var active = p === pill;
+          p.classList.toggle('is-active', active);
+          p.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        var shown = 0;
+        filterCards.forEach(function(card){
+          var match = filter === 'all' || card.getAttribute('data-category') === filter;
+          card.classList.toggle('is-hidden', !match);
+          if (match) shown++;
+        });
+        if (filterStatus) {
+          filterStatus.textContent = filter === 'all'
+            ? 'Showing all ' + shown + ' articles.'
+            : 'Showing ' + shown + ' article' + (shown === 1 ? '' : 's') + ' in ' + pill.textContent.trim() + '.';
+        }
+      });
+    });
+  }
+
   // ---------- News page only: stacked-sticky scroll cards ----------
   // Assigns each row its position in the stack via a CSS custom property
   // rather than hardcoding per-row offsets, so the "How it works"-style

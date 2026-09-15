@@ -686,6 +686,57 @@ footer a:hover::after{ transform:scaleX(1); }
 .stat-label{ margin-top:0.5rem; font-size:0.85rem; }
 .text-glow{ text-shadow: 0 0 18px rgba(168,118,62,0.35); }
 
+/* Hero stat row with thin dividers instead of plain gaps — reads as one
+   composed measurement, not three separate floating labels. */
+.stat-row-divided{ display:flex; flex-direction:column; gap:1.25rem; }
+.stat-row-divided > div{ padding:0; border-left:none; }
+@media (min-width:640px){
+  .stat-row-divided{ flex-direction:row; flex-wrap:wrap; gap:0; }
+  .stat-row-divided > div{ padding:0 2.5rem; border-left:1px solid rgba(247,246,242,0.18); }
+  .stat-row-divided > div:first-child{ padding-left:0; border-left:none; }
+}
+
+/* A single statistic given the whole stage — huge type, tiny label. Used
+   once per page, deliberately, instead of three equally-sized numbers
+   competing for attention. */
+.stat-number-huge{
+  font-size:clamp(4.5rem, 16vw, 9rem); line-height:0.95;
+  text-shadow: 0 0 40px rgba(168,118,62,0.22);
+}
+
+/* ===== Values — interactive numbered list =====
+   Click/hover/focus any item; its description swaps in on the right.
+   Absolute-positioned paragraphs cross-fade over a fixed-height box so
+   swapping never shifts the layout under a cursor mid-hover. */
+.values-item{
+  display:flex; align-items:baseline; gap:1.25rem; width:100%; text-align:left;
+  padding:1.35rem 0; border-top:1px solid var(--line); background:none;
+  border-left:none; border-right:none; cursor:pointer;
+}
+.values-list .values-item:last-child{ border-bottom:1px solid var(--line); }
+.values-index{ font-family:'Fraunces',serif; color:var(--accent-soft); font-size:0.95rem; flex-shrink:0; }
+.values-name{
+  font-family:'Fraunces',serif; font-size:1.5rem; letter-spacing:-0.02em;
+  color:var(--ink-soft); transition:color 0.3s ease;
+}
+@media (min-width:768px){ .values-name{ font-size:1.9rem; } }
+.values-item.is-active .values-name{ color:var(--ink); }
+.values-item.is-active .values-index{ color:var(--accent); }
+@media (hover:hover) and (pointer:fine){
+  .values-item:hover .values-name{ color:var(--ink); }
+  .values-item:hover .values-index{ color:var(--accent); }
+}
+.values-item:focus-visible{ outline:2px solid var(--brand); outline-offset:-2px; }
+.values-detail{ position:relative; min-height:9rem; }
+.values-detail p{
+  position:absolute; inset:0; opacity:0; pointer-events:none;
+  transition:opacity 0.3s ease; color:var(--ink-soft); line-height:1.7; font-size:1.05rem;
+}
+.values-detail p.is-active{ opacity:1; pointer-events:auto; }
+@media (prefers-reduced-motion: reduce){
+  .values-name, .values-index, .values-detail p{ transition:none; }
+}
+
 /* Pop-in entrance for stat cards — scale+rotate rather than a flat slide-up */
 .js-reveal .reveal.reveal-pop{ transform: translateY(20px) scale(0.86) rotate(-2deg); }
 .js-reveal .reveal.reveal-pop.is-visible{ transform:none; }
@@ -918,6 +969,68 @@ footer a:hover::after{ transform:scaleX(1); }
   .blog-card-link{ transition:none; }
   .blog-card-link:hover{ transform:none; }
 }
+
+/* ===== Blog editorial redesign — category filter pills =====
+   Real client-side filtering (site.js toggles .hidden on matching
+   [data-category] elements), not decorative. Kept deliberately quiet —
+   thin border, no color until hover/active — so the row reads as
+   navigation, not another row of buttons competing with the CTAs. */
+.blog-filter-bar{ display:flex; flex-wrap:wrap; gap:0.625rem; }
+.blog-filter-pill{
+  font-size:0.8rem; font-weight:600; letter-spacing:0.01em;
+  padding:0.5rem 1.1rem; border-radius:9999px;
+  border:1px solid var(--line); color:var(--ink-soft); background:var(--paper-raised);
+  transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+}
+@media (hover:hover) and (pointer:fine){
+  .blog-filter-pill:hover{ border-color:var(--accent); color:var(--ink); }
+}
+.blog-filter-pill:focus-visible{ outline:2px solid var(--brand); outline-offset:2px; }
+.blog-filter-pill.is-active{ background:var(--brand-deep); border-color:var(--brand-deep); color:var(--paper); }
+@media (prefers-reduced-motion: reduce){ .blog-filter-pill{ transition:none; } }
+/* Dedicated hidden state (not Tailwind's .hidden) — site.css loads after the
+   Tailwind bundle, so a plain .hidden{display:none} utility loses the
+   cascade to this file's own .blog-list-row{display:grid} at equal
+   specificity. !important here is intentional: this must always win. */
+.is-hidden{ display:none !important; }
+
+/* Category + read-time byline, shared by the featured card and each list row */
+.blog-meta{ font-size:0.8rem; color:var(--ink-soft); }
+.blog-meta-cat{ color:var(--brand); font-weight:600; }
+
+/* ===== Blog editorial redesign — secondary article list =====
+   Deliberately not a card grid: a divided, text-forward list (thin
+   top-border rule per row) so the one Featured piece above reads as
+   the clear hero and these read as an index, per the "enterprise
+   editorial publication, not startup blog template" brief. Background
+   tint + title color + arrow nudge on hover, no lift/shadow — that
+   heavier treatment stays reserved for the single featured card. */
+.blog-list-row{
+  display:grid; grid-template-columns:1fr; gap:0.75rem;
+  grid-template-areas: "index" "body" "cta";
+  padding:1.75rem 0; border-top:1px solid var(--line);
+  transition: background-color 0.3s ease;
+}
+.blog-list-row:last-of-type{ border-bottom:1px solid var(--line); }
+@media (min-width:768px){
+  .blog-list-row{
+    grid-template-columns:4.5rem 1fr auto; gap:1.75rem; align-items:center;
+    grid-template-areas: "index body cta";
+  }
+}
+.blog-list-index{
+  grid-area:index; font-family:'Fraunces',serif; font-weight:600; color:var(--accent-soft);
+  font-size:1.15rem; line-height:1;
+}
+.blog-list-body{ grid-area:body; }
+.blog-list-cta{ grid-area:cta; white-space:nowrap; }
+.blog-list-title{ transition:color 0.25s ease; }
+@media (hover:hover) and (pointer:fine){
+  .blog-list-row:hover{ background:rgba(74,80,88,0.035); }
+  .blog-list-row:hover .blog-list-title{ color:var(--brand); }
+  .blog-list-row:hover .blog-card-arrow{ transform:translateX(5px); }
+}
+@media (prefers-reduced-motion: reduce){ .blog-list-row{ transition:none; } }
 
 /* ===== Stacked-sticky scroll cards — inspired by Function Health's
    "How it works" page, where each step's rounded-top panel slides up

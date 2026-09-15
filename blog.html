@@ -24,11 +24,11 @@
   ]
 }
 </script>
-<link rel="stylesheet" href="css/tailwind.20260914e.css" />
+<link rel="stylesheet" href="css/tailwind.20260916b.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/site.css?v=20260914i" />
+<link rel="stylesheet" href="css/site.css?v=20260916b" />
 </head>
 <body class="antialiased">
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -93,106 +93,99 @@
   <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 15% 10%, rgba(74,80,88,0.9), transparent 60%), radial-gradient(50% 50% at 90% 90%, rgba(168,118,62,0.22), transparent 60%);"></div>
   <div class="noise"></div>
   <div class="ambient-glow"></div>
-  <div class="relative max-w-6xl mx-auto px-6 md:px-8 py-16 md:py-20">
-    <span class="hero-intro hero-intro-d1 ring-badge on-dark eyebrow-badge inline-flex text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)]">Latest updates in healthcare</span>
-    <h1 class="font-display tracking-tightish text-3xl md:text-4xl mt-3"><span class="blog-decode">Expert Advice for Optimizing Your Practice</span></h1>
+  <div class="relative max-w-6xl mx-auto px-6 md:px-8 py-20 md:py-28">
+    <span class="hero-intro hero-intro-d1 ring-badge on-dark eyebrow-badge inline-flex text-xs font-semibold uppercase tracking-[0.14em] text-[var(--accent-soft)]">H&amp;A Health Consulting</span>
+    <h1 class="hero-intro hero-intro-d2 font-display tracking-tightish text-3xl md:text-4xl mt-5 max-w-2xl">Healthcare Operations Insight, From Inside eClinicalWorks</h1>
+    <p class="hero-intro hero-intro-d3 text-[rgba(247,246,242,0.75)] leading-relaxed-body max-w-xl mt-5 text-[15px] md:text-base">Practical guidance on EHR optimization, telemedicine, revenue cycle management, and compliance &mdash; written by the team that works inside eClinicalWorks every day, not generalists covering a dozen platforms.</p>
   </div>
 </section>
 
-<!-- BLOG TAG TICKER -->
-<div class="tag-ticker py-8 border-b border-[var(--line)]" role="presentation">
-  <div class="tag-ticker-track" aria-hidden="true">
-    <span class="tag-ticker-item">EHR Optimization</span>
-    <span class="tag-ticker-item">Telemedicine Integration</span>
-    <span class="tag-ticker-item">Revenue Cycle Management</span>
-    <span class="tag-ticker-item">Healthcare Compliance</span>
-    <span class="tag-ticker-item">Workflow Optimization</span>
-    <span class="tag-ticker-item">EHR Optimization</span>
-    <span class="tag-ticker-item">Telemedicine Integration</span>
-    <span class="tag-ticker-item">Revenue Cycle Management</span>
-    <span class="tag-ticker-item">Healthcare Compliance</span>
-    <span class="tag-ticker-item">Workflow Optimization</span>
+<!-- CATEGORY FILTER -->
+<div class="reveal border-b border-[var(--line)]">
+  <div class="max-w-6xl mx-auto px-6 md:px-8 py-7 md:py-8">
+    <div class="blog-filter-bar" role="group" aria-label="Filter articles by category">
+      <button type="button" class="blog-filter-pill is-active" data-filter="all" aria-pressed="true">All Articles</button>
+      <button type="button" class="blog-filter-pill" data-filter="ehr" aria-pressed="false">EHR Optimization</button>
+      <button type="button" class="blog-filter-pill" data-filter="telemedicine" aria-pressed="false">Telemedicine</button>
+      <button type="button" class="blog-filter-pill" data-filter="revenue-cycle" aria-pressed="false">Revenue Cycle</button>
+      <button type="button" class="blog-filter-pill" data-filter="compliance" aria-pressed="false">Compliance</button>
+      <button type="button" class="blog-filter-pill" data-filter="workflow" aria-pressed="false">Workflow</button>
+    </div>
+    <p id="blogFilterStatus" class="sr-only" role="status" aria-live="polite"></p>
   </div>
 </div>
 
-<!-- BLOG -->
-<section class="max-w-6xl mx-auto px-6 md:px-8 py-24">
-  <div class="space-y-14">
-    <a href="blog-ehr-optimization.html" class="reveal blog-card-link grid md:grid-cols-2 gap-8 items-center group">
-      <div class="img-hover-zoom aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
-        <picture>
-          <source srcset="brand_assets/og/Our-Identity-1024x575.webp" type="image/webp" />
-          <img loading="lazy" decoding="async" src="brand_assets/og/Our-Identity-1024x575.png" alt="EHR optimization for healthcare practices" class="w-full h-full object-cover" />
-        </picture>
+<!-- ARTICLES -->
+<section class="max-w-6xl mx-auto px-6 md:px-8 py-20 md:py-24">
+
+  <!-- FEATURED -->
+  <a href="blog-ehr-optimization.html" data-category="ehr" class="reveal blog-card-link group grid md:grid-cols-2 gap-10 lg:gap-16 items-center pb-16 md:pb-20 mb-16 md:mb-20 border-b border-[var(--line)]">
+    <div class="img-hover-zoom aspect-[4/3] rounded-2xl overflow-hidden shadow-soft">
+      <picture>
+        <source srcset="brand_assets/og/Our-Identity-1024x575.webp" type="image/webp" />
+        <img loading="lazy" decoding="async" src="brand_assets/og/Our-Identity-1024x575.png" alt="EHR optimization for healthcare practices" class="w-full h-full object-cover" />
+      </picture>
+    </div>
+    <div>
+      <span class="ring-badge eyebrow-badge inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--brand)] mb-4"><span class="accent-dot"></span>Featured Insight</span>
+      <div class="blog-meta"><span class="blog-meta-cat">EHR Optimization</span> &middot; 2 min read</div>
+      <h2 class="font-display text-2xl md:text-[1.85rem] tracking-tightish mt-3 mb-4 group-hover:text-[var(--brand)] transition-colors">The Importance of EHR Optimization for Healthcare Practices</h2>
+      <p class="text-[var(--ink-soft)] leading-relaxed-body">In today's fast-paced healthcare environment, Electronic Health Records (EHR) have become a cornerstone of efficient operations. However, many healthcare practices&hellip;</p>
+      <span class="text-sm font-semibold text-[var(--brand)] mt-5 inline-flex items-center gap-1.5">Read Article <span class="blog-card-arrow">&rarr;</span></span>
+    </div>
+  </a>
+
+  <!-- SECONDARY LIST -->
+  <h2 class="reveal text-xs font-semibold uppercase tracking-[0.14em] text-[var(--ink-soft)] mb-6 md:mb-8">More Insights</h2>
+  <div class="blog-list">
+    <a href="blog-telemedicine-integration.html" data-category="telemedicine" class="reveal blog-list-row group">
+      <span class="blog-list-index">02</span>
+      <div class="blog-list-body">
+        <div class="blog-meta mb-2"><span class="blog-meta-cat">Telemedicine</span> &middot; 3 min read</div>
+        <h3 class="blog-list-title font-display text-lg md:text-xl tracking-tightish mb-2">How Telemedicine is Transforming Patient Care</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body max-w-2xl">In recent years, telemedicine has emerged as a major component of modern healthcare, offering innovative ways to deliver care to&hellip;</p>
       </div>
-      <div>
-        <span class="blog-card-num mb-3">01</span>
-        <p class="text-xs text-[var(--ink-soft)] leading-relaxed">EHR consulting services, EHR optimization, Electronic Health Records, Healthcare workflow improvement, Improve patient care</p>
-        <h2 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">The Importance of EHR Optimization for Healthcare Practices</h2>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">In today's fast-paced healthcare environment, Electronic Health Records (EHR) have become a cornerstone of efficient operations. However, many healthcare practices&hellip;</p>
-        <span class="text-sm font-semibold text-[var(--brand)] mt-3 inline-flex items-center gap-1.5">Read the full article <span class="blog-card-arrow">&rarr;</span></span>
-      </div>
+      <span class="blog-list-cta text-sm font-semibold text-[var(--brand)] inline-flex items-center gap-1.5">Read Article <span class="blog-card-arrow">&rarr;</span></span>
     </a>
-    <a href="blog-telemedicine-integration.html" class="reveal blog-card-link grid md:grid-cols-2 gap-8 items-center group">
-      <div class="img-hover-zoom aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
-        <picture>
-          <source srcset="brand_assets/og/Online-Doctor-Consultation-Promo-Facebook-Post.webp" type="image/webp" />
-          <img loading="lazy" decoding="async" src="brand_assets/og/Online-Doctor-Consultation-Promo-Facebook-Post.png" alt="Telemedicine consultation transforming patient care" class="w-full h-full object-cover" />
-        </picture>
+    <a href="blog-revenue-cycle-management.html" data-category="revenue-cycle" class="reveal blog-list-row group">
+      <span class="blog-list-index">03</span>
+      <div class="blog-list-body">
+        <div class="blog-meta mb-2"><span class="blog-meta-cat">Revenue Cycle</span> &middot; 3 min read</div>
+        <h3 class="blog-list-title font-display text-lg md:text-xl tracking-tightish mb-2">Revenue Cycle Management: How to Maximize Your Practice's Financial Performance</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body max-w-2xl">In today's complex healthcare environment, Revenue Cycle Management (RCM) is essential for maintaining the financial health of your practice. From&hellip;</p>
       </div>
-      <div>
-        <span class="blog-card-num mb-3">02</span>
-        <p class="text-xs text-[var(--ink-soft)] leading-relaxed">Benefits of telemedicine, HIPAA-compliant telemedicine, Remote patient care, Telemedicine integration, Virtual healthcare solutions</p>
-        <h2 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">How Telemedicine is Transforming Patient Care</h2>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">In recent years, telemedicine has emerged as a major component of modern healthcare, offering innovative ways to deliver care to&hellip;</p>
-        <span class="text-sm font-semibold text-[var(--brand)] mt-3 inline-flex items-center gap-1.5">Read the full article <span class="blog-card-arrow">&rarr;</span></span>
-      </div>
+      <span class="blog-list-cta text-sm font-semibold text-[var(--brand)] inline-flex items-center gap-1.5">Read Article <span class="blog-card-arrow">&rarr;</span></span>
     </a>
-    <a href="blog-revenue-cycle-management.html" class="reveal blog-card-link grid md:grid-cols-2 gap-8 items-center group">
-      <div class="img-hover-zoom aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
-        <picture>
-          <source srcset="brand_assets/og/Home-1024x620.webp" type="image/webp" />
-          <img loading="lazy" decoding="async" src="brand_assets/og/Home-1024x620.png" alt="Revenue cycle management for healthcare practices" class="w-full h-full object-cover" />
-        </picture>
+    <a href="blog-healthcare-compliance.html" data-category="compliance" class="reveal blog-list-row group">
+      <span class="blog-list-index">04</span>
+      <div class="blog-list-body">
+        <div class="blog-meta mb-2"><span class="blog-meta-cat">Compliance</span> &middot; 3 min read</div>
+        <h3 class="blog-list-title font-display text-lg md:text-xl tracking-tightish mb-2">Healthcare Compliance: Navigating HIPAA, HITECH, and MACRA Regulations</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body max-w-2xl">Compliance with healthcare regulations is a critical concern for all healthcare providers. Failing to adhere to the necessary regulations can&hellip;</p>
       </div>
-      <div>
-        <span class="blog-card-num mb-3">03</span>
-        <p class="text-xs text-[var(--ink-soft)] leading-relaxed">Healthcare billing optimization, Improve financial performance in healthcare, Maximize healthcare revenue, Reduce claim denials, Revenue Cycle Management (RCM)</p>
-        <h2 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">Revenue Cycle Management: How to Maximize Your Practice's Financial Performance</h2>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">In today's complex healthcare environment, Revenue Cycle Management (RCM) is essential for maintaining the financial health of your practice. From&hellip;</p>
-        <span class="text-sm font-semibold text-[var(--brand)] mt-3 inline-flex items-center gap-1.5">Read the full article <span class="blog-card-arrow">&rarr;</span></span>
-      </div>
+      <span class="blog-list-cta text-sm font-semibold text-[var(--brand)] inline-flex items-center gap-1.5">Read Article <span class="blog-card-arrow">&rarr;</span></span>
     </a>
-    <a href="blog-healthcare-compliance.html" class="reveal blog-card-link grid md:grid-cols-2 gap-8 items-center group">
-      <div class="img-hover-zoom aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
-        <picture>
-          <source srcset="brand_assets/og/Blue-And-White-Modern-Business-Consulting-Services-Instagram-Post-746x1024.webp" type="image/webp" />
-          <img loading="lazy" decoding="async" src="brand_assets/og/Blue-And-White-Modern-Business-Consulting-Services-Instagram-Post-746x1024.png" alt="Healthcare compliance and regulatory consulting" class="w-full h-full object-cover" />
-        </picture>
+    <a href="blog-workflow-optimization.html" data-category="workflow" class="reveal blog-list-row group">
+      <span class="blog-list-index">05</span>
+      <div class="blog-list-body">
+        <div class="blog-meta mb-2"><span class="blog-meta-cat">Workflow</span> &middot; 3 min read</div>
+        <h3 class="blog-list-title font-display text-lg md:text-xl tracking-tightish mb-2">How to Streamline Your Healthcare Practice with Workflow Optimization</h3>
+        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body max-w-2xl">In the healthcare industry, efficiency isn't just a luxury&mdash;it's a necessity. The ability to deliver timely, quality care while managing&hellip;</p>
       </div>
-      <div>
-        <span class="blog-card-num mb-3">04</span>
-        <p class="text-xs text-[var(--ink-soft)] leading-relaxed">Healthcare compliance, Healthcare regulatory consulting, HIPAA regulations, HITECH and MACRA, Protect patient data</p>
-        <h2 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">Healthcare Compliance: Navigating HIPAA, HITECH, and MACRA Regulations</h2>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">Compliance with healthcare regulations is a critical concern for all healthcare providers. Failing to adhere to the necessary regulations can&hellip;</p>
-        <span class="text-sm font-semibold text-[var(--brand)] mt-3 inline-flex items-center gap-1.5">Read the full article <span class="blog-card-arrow">&rarr;</span></span>
-      </div>
+      <span class="blog-list-cta text-sm font-semibold text-[var(--brand)] inline-flex items-center gap-1.5">Read Article <span class="blog-card-arrow">&rarr;</span></span>
     </a>
-    <a href="blog-workflow-optimization.html" class="reveal blog-card-link grid md:grid-cols-2 gap-8 items-center group">
-      <div class="img-hover-zoom aspect-[16/10] rounded-2xl overflow-hidden shadow-soft">
-        <picture>
-          <source srcset="brand_assets/og/Blue-and-White-Modern-National-Doctors-Day-Greeting-Instagram-Story-693x1024.webp" type="image/webp" />
-          <img loading="lazy" decoding="async" src="brand_assets/og/Blue-and-White-Modern-National-Doctors-Day-Greeting-Instagram-Story-693x1024.png" alt="Healthcare workflow optimization" class="w-full h-full object-cover" />
-        </picture>
-      </div>
-      <div>
-        <span class="blog-card-num mb-3">05</span>
-        <p class="text-xs text-[var(--ink-soft)] leading-relaxed">Healthcare practice management, Healthcare workflow optimization, Improve patient outcomes, Operational efficiency in healthcare, Streamline healthcare practice</p>
-        <h2 class="font-display text-xl md:text-2xl tracking-tightish mt-3 mb-3 group-hover:text-[var(--brand)] transition-colors">How to Streamline Your Healthcare Practice with Workflow Optimization</h2>
-        <p class="text-sm text-[var(--ink-soft)] leading-relaxed-body">In the healthcare industry, efficiency isn't just a luxury—it's a necessity. The ability to deliver timely, quality care while managing&hellip;</p>
-        <span class="text-sm font-semibold text-[var(--brand)] mt-3 inline-flex items-center gap-1.5">Read the full article <span class="blog-card-arrow">&rarr;</span></span>
-      </div>
-    </a>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="relative overflow-hidden bg-[var(--brand-deep)] text-[var(--paper)]">
+  <div class="absolute inset-0" style="background: radial-gradient(60% 60% at 85% 20%, rgba(168,118,62,0.22), transparent 60%), radial-gradient(50% 50% at 10% 90%, rgba(74,80,88,0.9), transparent 60%);"></div>
+  <div class="noise"></div>
+  <div class="ambient-glow"></div>
+  <div class="relative max-w-3xl mx-auto px-6 md:px-8 py-20 text-center reveal">
+    <h2 class="font-display tracking-tightish text-3xl md:text-4xl mb-6">Looking Beyond the Blog?</h2>
+    <p class="leading-relaxed-body text-[rgba(247,246,242,0.75)] max-w-xl mx-auto">These articles cover the same operational and technology questions we work through with healthcare practices every day &mdash; EHR optimization, telemedicine, revenue cycle, and compliance. If one sounds like where your practice is right now, our services page has the specifics.</p>
+    <a href="services.html" class="btn-outline inline-flex text-sm font-semibold px-6 py-3.5 rounded-full mt-8">Explore Our Services &rarr;</a>
   </div>
 </section>
 
@@ -320,6 +313,6 @@
   </div>
 </div>
 
-<script src="js/site.js?v=20260914b"></script>
+<script src="js/site.js?v=20260916b"></script>
 </body>
 </html>
