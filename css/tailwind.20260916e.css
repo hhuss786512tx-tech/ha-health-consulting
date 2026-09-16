@@ -1605,6 +1605,10 @@ video {
     gap: 5rem;
   }
 
+  .md\:self-start {
+    align-self: flex-start;
+  }
+
   .md\:p-8 {
     padding: 2rem;
   }
