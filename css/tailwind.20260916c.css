@@ -997,12 +997,21 @@ video {
        column-gap: 7rem;
 }
 
+.gap-x-8 {
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+}
+
 .gap-y-14 {
   row-gap: 3.5rem;
 }
 
 .gap-y-16 {
   row-gap: 4rem;
+}
+
+.gap-y-2 {
+  row-gap: 0.5rem;
 }
 
 .gap-y-24 {
