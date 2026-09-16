@@ -452,8 +452,16 @@
   }
 
   // ---------- Scroll-driven: header weight, progress bar, parallax ----------
-  if (!reduceMotion) {
-    var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('.parallax-el'));
+  // header.is-scrolled must keep tracking scroll position regardless of
+  // reduced-motion — it toggles the header's background from transparent to
+  // opaque, not a decorative animation. Skipping this listener under
+  // reduced-motion left the header stuck in whatever state it loaded in
+  // (transparent, since pages load at scroll 0), so hero content scrolling
+  // behind it stayed visible through the see-through header indefinitely —
+  // the "glitchy header" bug on any visitor with Reduce Motion enabled.
+  // Only the hide-on-scroll-down and parallax bits are skipped for them.
+  (function(){
+    var parallaxEls = reduceMotion ? [] : Array.prototype.slice.call(document.querySelectorAll('.parallax-el'));
     var ticking = false;
     var lastY = window.scrollY || window.pageYOffset;
     function onScroll(){
@@ -463,10 +471,12 @@
         var y = window.scrollY || window.pageYOffset;
         if (header) {
           header.classList.toggle('is-scrolled', y > 8);
-          // Hide on scroll-down, show on scroll-up — only once past the hero
-          // so it doesn't flicker on tiny scrolls near the top.
-          if (y > lastY + 4 && y > 160) header.classList.add('is-hidden');
-          else if (y < lastY - 4 || y <= 160) header.classList.remove('is-hidden');
+          if (!reduceMotion) {
+            // Hide on scroll-down, show on scroll-up — only once past the
+            // hero so it doesn't flicker on tiny scrolls near the top.
+            if (y > lastY + 4 && y > 160) header.classList.add('is-hidden');
+            else if (y < lastY - 4 || y <= 160) header.classList.remove('is-hidden');
+          }
         }
         lastY = y;
         if (progress) {
@@ -486,9 +496,7 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-  } else if (header) {
-    header.classList.toggle('is-scrolled', (window.scrollY || 0) > 8);
-  }
+  })();
 
   // ---------- Lead capture popup ----------
   var leadScrim = document.getElementById('leadScrim');

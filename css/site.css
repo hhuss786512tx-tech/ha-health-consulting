@@ -196,10 +196,15 @@ section.bg-\[var\(--brand-deep\)\] + section::before{
 }
 
 /* Header gains weight once the page has scrolled past the hero */
-header{ transition: box-shadow 0.3s ease, background-color 0.3s ease, transform 0.35s var(--ease-out); }
+/* background-color kept short and deliberately un-eased (not the 0.3s used
+   elsewhere): during a fast scroll, hero content underneath a still-fading
+   translucent header briefly "ghosts" through it — a visible glitch on
+   pages with light-colored hero text (e.g. FAQ's eyebrow badge). A quick
+   linear snap closes that window without feeling abrupt. */
+header{ transition: box-shadow 0.3s ease, background-color 0.12s linear, transform 0.35s var(--ease-out); }
 header.is-hidden{ transform:translateY(-100%); }
 @media (prefers-reduced-motion: reduce){
-  header{ transition: box-shadow 0.3s ease, background-color 0.3s ease; }
+  header{ transition: box-shadow 0.3s ease, background-color 0.12s linear; }
   header.is-hidden{ transform:none; }
 }
 header.is-scrolled{
