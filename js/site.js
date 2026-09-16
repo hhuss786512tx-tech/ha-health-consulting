@@ -395,14 +395,25 @@
   }
 
   // ---------- FAQ accordion + search (only present on faq.html) ----------
+  // Single-open accordion: opening one question closes whichever else was
+  // open, across the whole page (not just its own category) — matches how
+  // a real accordion reads, rather than letting answers pile up.
   var faqItems = document.querySelectorAll('.faq-item');
   if (faqItems.length) {
+    var closeFaqItem = function(item){
+      var btn = item.querySelector('.faq-question');
+      var answer = item.querySelector('.faq-answer');
+      item.classList.remove('is-open');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+      if (answer) answer.style.maxHeight = '0px';
+    };
     faqItems.forEach(function(item){
       var btn = item.querySelector('.faq-question');
       var answer = item.querySelector('.faq-answer');
       if (!btn || !answer) return;
       btn.addEventListener('click', function(){
         var isOpen = item.classList.contains('is-open');
+        faqItems.forEach(function(other){ if (other !== item) closeFaqItem(other); });
         item.classList.toggle('is-open', !isOpen);
         btn.setAttribute('aria-expanded', String(!isOpen));
         answer.style.maxHeight = isOpen ? '0px' : answer.scrollHeight + 'px';

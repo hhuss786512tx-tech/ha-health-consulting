@@ -1320,38 +1320,39 @@ footer a:hover::after{ transform:scaleX(1); }
 
 .faq-category{ margin-bottom:3.5rem; scroll-margin-top:6.5rem; }
 .faq-category:last-child{ margin-bottom:0; }
-.faq-category-title{ margin-bottom:1.25rem; }
-.faq-list{ display:flex; flex-direction:column; gap:0.85rem; }
+.faq-category-title{ margin-bottom:0.5rem; }
+/* Editorial divided list, not boxed cards — thin top-border rules between
+   rows, matching the Blog page's secondary-article list pattern instead of
+   the bordered/rounded/backgrounded "card" this used to be. */
+.faq-list{ display:flex; flex-direction:column; counter-reset:faq-counter; }
 .faq-item{
-  border:1px solid var(--line); border-radius:1rem; background:var(--paper-raised);
-  overflow:hidden; transition: border-color 0.2s ease;
+  border-top:1px solid var(--line); transition: background-color 0.3s ease;
 }
-.faq-item.is-open{ border-color: rgba(168,118,62,0.35); }
+.faq-list .faq-item:last-child{ border-bottom:1px solid var(--line); }
+.faq-item.is-open{ background:rgba(74,80,88,0.03); }
 .faq-question{
-  width:100%; display:flex; align-items:center; justify-content:space-between; gap:1rem;
-  padding:1.1rem 1.35rem; text-align:left; font-weight:600; font-size:0.98rem; color:var(--ink);
+  counter-increment: faq-counter;
+  width:100%; display:grid; grid-template-columns:2.25rem 1fr 1.5rem; align-items:baseline; gap:1rem;
+  padding:1.35rem 0; text-align:left; font-weight:600; font-size:1.02rem; color:var(--ink);
+}
+.faq-question::before{
+  content: counter(faq-counter, decimal-leading-zero);
+  font-family:'Fraunces',serif; font-weight:600; color:var(--accent-soft); font-size:0.9rem;
 }
 .faq-question:focus-visible{ outline:2px solid var(--accent); outline-offset:-2px; }
 .faq-toggle{
-  flex-shrink:0; width:2rem; height:2rem; border-radius:0.5rem; border:1.5px solid var(--line);
-  position:relative; transition: background-color 0.2s ease, border-color 0.2s ease;
+  flex-shrink:0; display:inline-flex; align-items:center; justify-content:center;
+  color:var(--ink-soft); transition: transform 0.3s var(--ease-out), color 0.2s ease;
 }
-.faq-toggle::before, .faq-toggle::after{
-  content:''; position:absolute; top:50%; left:50%; width:11px; height:2px; background:var(--brand);
-  border-radius:2px; transform-origin:center;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-.faq-toggle::before{ transform:translate(-50%,-50%) rotate(0deg); }
-.faq-toggle::after{ transform:translate(-50%,-50%) rotate(90deg); }
-.faq-item.is-open .faq-toggle{ background:var(--brand); border-color:var(--brand); }
-.faq-item.is-open .faq-toggle::before{ background:#fff; transform:translate(-50%,-50%) rotate(45deg); }
-.faq-item.is-open .faq-toggle::after{ background:#fff; transform:translate(-50%,-50%) rotate(-45deg); }
+.faq-toggle::before{ content:'\2192'; font-size:1.05rem; }
+.faq-item.is-open .faq-toggle{ transform:rotate(90deg); color:var(--brand); }
 .faq-answer{ max-height:0; overflow:hidden; transition: max-height 0.3s var(--ease-out); }
-.faq-answer-inner{ padding:0 1.35rem 1.25rem; font-size:0.9rem; color:var(--ink-soft); line-height:1.7; }
+.faq-answer-inner{ padding:0 2.25rem 1.5rem 0; margin-left:2.25rem; font-size:0.9rem; color:var(--ink-soft); line-height:1.7; max-width:38rem; }
 .faq-answer-inner a{ color:var(--brand); text-decoration:underline; text-underline-offset:2px; }
 @media (prefers-reduced-motion: reduce){
+  .faq-item{ transition:none; }
   .faq-answer{ transition:none; }
-  .faq-toggle::before, .faq-toggle::after{ transition:none; }
+  .faq-toggle{ transition:none; }
 }
 
 /* In The News / Press list — structure borrowed from eClinicalWorks' news
