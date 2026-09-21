@@ -13,6 +13,8 @@
 // honeypot field name, same deterministic lead-scoring rules, same two
 // emails (staff notification + lead auto-reply).
 
+const { forwardInBackground, cleanKey, hasPrivacySignal } = require('../lib/crm');
+
 const ALLOWED_ORIGIN = 'https://hahealthconsulting.com';
 const NOTIFY_TO = 'info@hahealthconsulting.com';
 const NOTIFY_CC = 'mo@hahealthconsulting.com';
@@ -179,6 +181,23 @@ module.exports = async function handler(req, res) {
     }
 
     res.status(200).json({ success: true });
+
+    // Save the lead in the CRM once the email and response are done. Never blocks the visitor.
+    // The lead itself is saved (they asked us to contact them), but a visitor sending
+    // a privacy signal is not linked to their browsing or chat history.
+    const crm = !hasPrivacySignal(req) && body.crm && typeof body.crm === 'object' ? body.crm : {};
+    forwardInBackground('/api/ingest/lead', {
+      name,
+      email,
+      phone,
+      interest: interest || null,
+      message: message || null,
+      label: leadScore.label,
+      visitorKey: cleanKey(crm.visitorKey),
+      sessionKey: cleanKey(crm.sessionKey),
+      conversationKey: cleanKey(crm.conversationKey),
+      sourcePage: cleanField(req.headers.referer, 300) || null,
+    });
   } catch (err) {
     console.error('lead error', err);
     fail(res, 502, 'We could not send your message right now. Please call us at (832) 800-4352.');

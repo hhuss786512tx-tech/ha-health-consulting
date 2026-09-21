@@ -7,6 +7,8 @@
 // — same system prompt, same response shape ({success, reply} /
 // {success:false, error}) — so the widget's fetch call only needs a new URL.
 
+const { forwardInBackground, cleanKey, cleanString, hasPrivacySignal } = require('../lib/crm');
+
 const GEMINI_MODEL = 'gemini-3.6-flash';
 const ALLOWED_ORIGIN = 'https://hahealthconsulting.com';
 
@@ -37,8 +39,31 @@ Rules:
   them to schedule a free consultation — but don't do this in every single
   reply, only when it's a genuinely good moment (they asked something you've
   now answered, or they show buying interest).
+- Never use em dashes or en dashes in replies; use commas, periods, or parentheses instead.
 - If asked something with no relation to healthcare IT/billing/H&A at all,
   briefly and politely redirect back to what you can help with.`;
+
+// Gemini occasionally answers 429/503 ("high demand") for a few seconds at a time.
+// One quick retry turns most of those into a normal reply; more than one would
+// risk the function's time limit and leave the visitor waiting.
+const RETRYABLE_STATUSES = new Set([429, 500, 502, 503, 504]);
+async function callGemini(url, init) {
+  const attempt = async () => {
+    try {
+      return await fetch(url, init);
+    } catch (err) {
+      console.error('chat-api Gemini network error', err && err.name);
+      return null;
+    }
+  };
+  let res = await attempt();
+  if (!res || RETRYABLE_STATUSES.has(res.status)) {
+    if (res) console.error('chat-api Gemini transient error', res.status, '- retrying once');
+    await new Promise((resolve) => setTimeout(resolve, 700));
+    res = await attempt();
+  }
+  return res;
+}
 
 // Best-effort per-instance rate limit (resets on cold start — Vercel
 // functions have no persistent filesystem across invocations the way the
@@ -74,7 +99,7 @@ module.exports = async function handler(req, res) {
 
   const ip = (req.headers['x-forwarded-for'] || req.socket?.remoteAddress || '').split(',')[0].trim();
   if (isRateLimited(ip)) {
-    fail(res, 429, "You've reached today's chat limit — call us at (832) 800-4352 or schedule a free consultation and we'll pick up right where this left off.");
+    fail(res, 429, "You've reached today's chat limit. Call us at (832) 800-4352 or schedule a free consultation and we'll pick up right where this left off.");
     return;
   }
 
@@ -90,6 +115,28 @@ module.exports = async function handler(req, res) {
     return;
   }
 
+  // Log-only turn: the widget answered locally (e.g. a booking request that goes
+  // straight to the lead form), so nothing is sent to Gemini. This only records the
+  // exchange in the CRM, and never for visitors sending a privacy signal.
+  if (body.logOnly === true) {
+    const crm = body.crm && typeof body.crm === 'object' ? body.crm : {};
+    const conversationKey = cleanKey(crm.conversationKey);
+    const localReply = typeof body.reply === 'string' ? body.reply.trim().slice(0, 1000) : '';
+    if (conversationKey && localReply && !hasPrivacySignal(req)) {
+      forwardInBackground('/api/ingest/chat', {
+        visitorKey: cleanKey(crm.visitorKey),
+        sessionKey: cleanKey(crm.sessionKey),
+        conversationKey,
+        pagePath: cleanString(crm.pagePath, 300),
+        topic: cleanString(crm.topic, 120),
+        visitorMessage: userMessage,
+        assistantReply: localReply,
+      });
+    }
+    res.status(200).json({ success: true });
+    return;
+  }
+
   const contents = [];
   if (Array.isArray(body.history)) {
     for (const turn of body.history.slice(-12)) {
@@ -102,12 +149,12 @@ module.exports = async function handler(req, res) {
 
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) {
-    fail(res, 502, 'Assistant is temporarily unavailable — please try again or call (832) 800-4352.');
+    fail(res, 502, 'Assistant is temporarily unavailable. Please try again or call (832) 800-4352.');
     return;
   }
 
   try {
-    const upstream = await fetch(
+    const upstream = await callGemini(
       `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`,
       {
         method: 'POST',
@@ -124,10 +171,10 @@ module.exports = async function handler(req, res) {
       }
     );
 
-    if (!upstream.ok) {
-      const errText = await upstream.text().catch(() => '');
-      console.error('chat-api Gemini error', upstream.status, errText.slice(0, 500));
-      fail(res, 502, 'Assistant is temporarily unavailable — please try again or call (832) 800-4352.');
+    if (!upstream || !upstream.ok) {
+      const errText = upstream ? await upstream.text().catch(() => '') : '';
+      console.error('chat-api Gemini error', upstream ? upstream.status : 'no response', errText.slice(0, 500));
+      fail(res, 502, 'Assistant is temporarily unavailable. Please try again or call (832) 800-4352.');
       return;
     }
 
@@ -135,13 +182,28 @@ module.exports = async function handler(req, res) {
     const reply = data?.candidates?.[0]?.content?.parts?.map((p) => p.text || '').join('').trim();
 
     if (!reply) {
-      fail(res, 502, 'Assistant is temporarily unavailable — please try again or call (832) 800-4352.');
+      fail(res, 502, 'Assistant is temporarily unavailable. Please try again or call (832) 800-4352.');
       return;
     }
 
     res.status(200).json({ success: true, reply });
+
+    // Log the turn to the CRM after the visitor already has their answer.
+    const crm = body.crm && typeof body.crm === 'object' ? body.crm : {};
+    const conversationKey = cleanKey(crm.conversationKey);
+    if (conversationKey && !hasPrivacySignal(req)) {
+      forwardInBackground('/api/ingest/chat', {
+        visitorKey: cleanKey(crm.visitorKey),
+        sessionKey: cleanKey(crm.sessionKey),
+        conversationKey,
+        pagePath: cleanString(crm.pagePath, 300),
+        topic: cleanString(crm.topic, 120),
+        visitorMessage: userMessage,
+        assistantReply: reply,
+      });
+    }
   } catch (err) {
     console.error('chat-api error', err);
-    fail(res, 502, 'Assistant is temporarily unavailable — please try again or call (832) 800-4352.');
+    fail(res, 502, 'Assistant is temporarily unavailable. Please try again or call (832) 800-4352.');
   }
 };
