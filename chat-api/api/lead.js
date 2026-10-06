@@ -14,6 +14,9 @@
 // emails (staff notification + lead auto-reply).
 
 const { forwardInBackground, cleanKey, hasPrivacySignal } = require('../lib/crm');
+const { verifySolution } = require('../lib/captcha');
+const { verifyEmail, verifyPhone } = require('../lib/verify');
+const { classifyLead } = require('../lib/spam');
 
 const ALLOWED_ORIGIN = 'https://hahealthconsulting.com';
 const NOTIFY_TO = 'info@hahealthconsulting.com';
@@ -102,17 +105,60 @@ module.exports = async function handler(req, res) {
   }
 
   const name = cleanField(body.name, 200);
-  const email = cleanField(body.email, 200);
-  const phone = cleanField(body.phone, 50);
+  const rawEmail = cleanField(body.email, 200);
+  const rawPhone = cleanField(body.phone, 50);
   const interest = cleanField(body.interest, 200);
   const message = cleanField(body.message, 2000);
 
-  if (!name || !email || !phone) {
+  if (!name || !rawEmail || !rawPhone) {
     fail(res, 400, 'Name, email, and phone are required.');
     return;
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    fail(res, 400, 'Please enter a valid email address.');
+
+  // Captcha. Until CAPTCHA_REQUIRED=1 is set (after the site with the captcha
+  // widget is live), a missing solution only counts toward the spam score so
+  // the old cached form keeps working. A present-but-invalid one always fails.
+  let captcha = 'ok';
+  if (body.captcha == null || body.captcha === '') {
+    if (process.env.CAPTCHA_REQUIRED === '1') {
+      fail(res, 400, 'Please complete the "I\'m not a robot" check and try again.');
+      return;
+    }
+    captcha = 'missing';
+  } else {
+    let solution = body.captcha;
+    if (typeof solution === 'string') {
+      try { solution = JSON.parse(solution); } catch { solution = null; }
+    }
+    const check = verifySolution(solution);
+    if (!check.ok) {
+      console.log('lead captcha rejected', check.reason);
+      fail(res, 400, 'The robot check expired or failed. Please tick "I\'m not a robot" again and resubmit.');
+      return;
+    }
+  }
+
+  const phoneCheck = verifyPhone(rawPhone);
+  if (!phoneCheck.ok) {
+    res.status(400).json({ success: false, error: phoneCheck.error, field: 'phone' });
+    return;
+  }
+  const emailCheck = await verifyEmail(rawEmail);
+  if (!emailCheck.ok) {
+    res.status(400).json({ success: false, error: emailCheck.error, field: 'email', suggestion: emailCheck.suggestion || null });
+    return;
+  }
+  const email = emailCheck.email;
+  const phone = phoneCheck.display || phoneCheck.phone;
+  const flags = [...emailCheck.flags, ...phoneCheck.flags];
+
+  const verdict = await classifyLead({ name, email, interest, message, flags, captcha });
+  if (verdict.decision === 'SPAM') {
+    // Looks like success to the sender so a bot learns nothing. No staff
+    // email, no auto-reply (replying to spam hurts our sending reputation),
+    // not saved to the CRM. Logged so a false positive can be recovered.
+    console.log('lead filtered as spam', JSON.stringify({ email, score: verdict.score, reasons: verdict.reasons }));
+    res.status(200).json({ success: true });
     return;
   }
 
@@ -124,8 +170,16 @@ module.exports = async function handler(req, res) {
   }
 
   const replyToName = name.replace(/["<>]/g, '');
-  const notifyText = `New lead submitted through hahealthconsulting.com\n\n`
-    + `Priority: ${leadScore.label} (score ${leadScore.score})\n\n`
+  const review = verdict.decision === 'REVIEW';
+  const notifyText = (review
+    ? `CHECK BEFORE CALLING: the spam filter was not sure about this one${verdict.notALead ? ' (looks like a real person, but maybe not a client, e.g. job seeker or vendor)' : ''}.\n`
+      + `Why: ${verdict.reasons.join('; ')}\n\n`
+    : '')
+    + `New lead submitted through hahealthconsulting.com\n\n`
+    + `Priority: ${leadScore.label} (score ${leadScore.score})\n`
+    + `Spam check: ${review ? 'NEEDS REVIEW' : 'passed'} (spam score ${verdict.score})\n`
+    + (flags.length ? `Notes: ${flags.join(', ')}\n` : '')
+    + `\n`
     + `Name: ${name}\n`
     + `Email: ${email}\n`
     + `Phone: ${phone}\n`
@@ -156,7 +210,7 @@ module.exports = async function handler(req, res) {
       to: NOTIFY_TO,
       cc: NOTIFY_CC,
       reply_to: `"${replyToName}" <${email}>`,
-      subject: `[${leadScore.label}] New Lead - H&A Healthcare Consulting Website`,
+      subject: `${review ? '[CHECK: possible spam] ' : ''}[${leadScore.label}] New Lead - H&A Healthcare Consulting Website`,
       text: notifyText,
     });
 

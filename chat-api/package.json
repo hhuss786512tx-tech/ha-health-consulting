@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "@vercel/functions": "^3.9.8"
+    "@vercel/functions": "^3.9.8",
+    "libphonenumber-js": "^1.13.14"
   }
 }
