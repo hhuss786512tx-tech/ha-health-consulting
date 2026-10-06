@@ -12,6 +12,12 @@ const { forwardInBackground, cleanKey, cleanString, hasPrivacySignal } = require
 const GEMINI_MODEL = 'gemini-3.6-flash';
 const ALLOWED_ORIGIN = 'https://hahealthconsulting.com';
 
+// Replies the site widget answers by itself (see js/site.js BOOKING_REPLY) and
+// logs through log-only mode. Keep in sync with the widget.
+const LOCAL_REPLIES = new Set([
+  "Great, let's get that on the calendar. Just need a few details.",
+]);
+
 const SYSTEM_INSTRUCTION = `You are the H&A Assistant, a helpful chat assistant embedded on the website
 of H&A Healthcare Consulting, a Houston-based company that works
 EXCLUSIVELY inside eClinicalWorks (eCW) — no other EHR platforms.
@@ -121,7 +127,10 @@ module.exports = async function handler(req, res) {
   if (body.logOnly === true) {
     const crm = body.crm && typeof body.crm === 'object' ? body.crm : {};
     const conversationKey = cleanKey(crm.conversationKey);
-    const localReply = typeof body.reply === 'string' ? body.reply.trim().slice(0, 1000) : '';
+    // Only replies the widget really sends locally are accepted, so nobody can
+    // put words in the assistant's mouth in the CRM by calling this directly.
+    const claimed = typeof body.reply === 'string' ? body.reply.trim() : '';
+    const localReply = LOCAL_REPLIES.has(claimed) ? claimed : '';
     if (conversationKey && localReply && !hasPrivacySignal(req)) {
       forwardInBackground('/api/ingest/chat', {
         visitorKey: cleanKey(crm.visitorKey),
